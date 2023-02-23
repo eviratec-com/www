@@ -15,6 +15,7 @@ export default function Home() {
         <meta name="description" content="Callan Milne's Homepage" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="theme-color" content="rgba(77,0,153,1)">
       </Head>
 
       <Hero />
