@@ -1,0 +1,105 @@
+._ {
+  min-height: 100vh;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  background: linear-gradient(to bottom right, rgba(102, 0, 204,1) 0%, rgba(77,0,153,1) 100%);
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 1px 20px 5px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 4rem;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: right;
+}
+
+.navigation ol {
+  list-style: none;
+  font-size: 5vh;
+  color: rgba(255,255,255,1);
+  transition: all 333ms;
+}
+
+.navigation ol:hover {
+  color: rgba(255,255,255,0.5);
+}
+
+.navigation ol li {
+
+}
+
+.navigation ol li a {
+  transition: all 333ms;
+  border-right: 4px solid;
+  padding-right: 1rem;
+}
+
+.navigation ol li a:hover {
+  color: rgba(255,255,255,1);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  line-height: 1;
+}
+
+.text p.primary {
+  font-size: 14vh;
+  line-height: 0.9;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.text p.secondary {
+  font-size: 8vh;
+  font-weight: 200;
+}
+
+.next {
+  background-color: rgb(var(--background-start-rgb));
+  color: rgba(var(--text-rgb),0.5);
+  text-align: center;
+  line-height: 6vh;
+  position: relative;
+  z-index: 0;
+}
+
+/* Tablet and Smaller Desktop */
+@media screen and (max-width: 700px) {
+  .navigation {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  .main {
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 2rem;
+  }
+
+  .text {
+    width: 100%;
+  }
+
+  .text p.primary {
+    font-size: 10vh;
+  }
+
+  .text p.secondary {
+    font-size: 5vh;
+  }
+}
