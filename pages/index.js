@@ -21,7 +21,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <div>
-          Text
+          Coming Soon...
         </div>
       </main>
     </>
