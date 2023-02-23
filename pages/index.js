@@ -1,11 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 
+import About from '@/components/About'
 import Hero from '@/components/Hero'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
@@ -21,8 +19,9 @@ export default function Home() {
       <Hero />
 
       <main className={styles.main}>
-        <div>
-          Coming Soon...
+        <div id="about">
+          <h3>About</h3>
+          <About />
         </div>
       </main>
     </>

@@ -13,10 +13,10 @@
     rgb(var(--background-start-rgb));
 }
 
-/* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {
+/* Mobile */
+@media screen and (max-width: 700px) {
   .main {
-
+    padding: 2rem;
   }
 }
 

@@ -1,13 +1,8 @@
 import React from 'react'
 
+import Link from 'next/link'
+
 import styles from './Hero.module.css'
-
-import { Kanit } from '@next/font/google'
-
-const kanit = Kanit({
-  weight: ['200','300','400'],
-  subsets: ['latin'],
-})
 
 type MenuItem = {
   label: string
@@ -17,23 +12,23 @@ type MenuItem = {
 export default function Hero() {
   const menu: MenuItem[] = [{
     label: 'About',
-    link: '/#about',
+    link: '#about',
   }, {
     label: 'Contact',
-    link: '/#contact',
+    link: '#contact',
   }, {
     label: 'Port Folio',
-    link: '/#folio',
+    link: '#folio',
   }, {
     label: 'Experience',
-    link: '/#experience',
+    link: '#experience',
   }, {
     label: 'Social Profiles',
-    link: '/#profiles',
+    link: '#profiles',
   }]
 
   return (
-    <div className={styles._} style={{'font-family': kanit.style.fontFamily}}>
+    <div className={styles._}>
       <div className={styles.main}>
         <div className={styles.text}>
           <p className={styles.primary}>Callan<br/>Milne</p>
@@ -47,7 +42,9 @@ export default function Hero() {
             {menu.map((item: MenuItem, index: number) => {
               return (
                 <li key={index}>
-                  <a href={item.link}>{item.label}</a>
+                  <Link href={item.link}>
+                    {item.label}
+                  </Link>
                 </li>
               )
             })}
