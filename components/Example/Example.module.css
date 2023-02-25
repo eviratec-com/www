@@ -3,11 +3,12 @@
   background-color: transparent;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 /* Mobile */
 @media screen and (max-width: 700px) {
-  _. {
-    
+  ._ {
+
   }
 }

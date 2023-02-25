@@ -2,8 +2,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 
-import About from '@/components/About'
 import Hero from '@/components/Hero'
+import About from '@/components/About'
+import Example from '@/components/Example'
+import Experience from '@/components/Experience'
 
 export default function Home() {
   return (
@@ -22,6 +24,26 @@ export default function Home() {
         <div id="about">
           <h3>About</h3>
           <About />
+        </div>
+
+        <div id="contact">
+          <h3>Contact</h3>
+          <Example />
+        </div>
+
+        <div id="folio">
+          <h3>Port Folio</h3>
+          <Example />
+        </div>
+
+        <div id="experience">
+          <h3>Experience</h3>
+          <Experience />
+        </div>
+
+        <div id="profiles">
+          <h3>Social Profiles</h3>
+          <Example />
         </div>
       </main>
     </>

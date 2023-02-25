@@ -42,7 +42,7 @@ export default function Hero() {
             {menu.map((item: MenuItem, index: number) => {
               return (
                 <li key={index}>
-                  <Link href={item.link}>
+                  <Link href={item.link} scroll={false}>
                     {item.label}
                   </Link>
                 </li>
