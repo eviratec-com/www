@@ -55,15 +55,15 @@ export default function SocialProfiles() {
       link: 'https://www.github.com',
       name: 'GitHub',
     },
-    link: 'https://github.com/eviratec ',
-    name: 'eviratec ',
+    name: 'eviratec',
+    link: 'https://github.com/eviratec',
   }, {
     service: {
       icon: '',
       link: 'https://www.github.com',
       name: 'GitHub',
     },
-    link: 'https://github.com/luminous-patterns ',
+    link: 'https://github.com/luminous-patterns',
     name: 'luminous-patterns',
   }, {
     service: {

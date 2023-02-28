@@ -12,7 +12,7 @@ export default function ProfileLink({ profile }: Opt) {
   return (
     <div className={styles._}>
       <span>{profile.service.name}</span>
-      <a href={profile.link} target="_blank">
+      <a href={profile.link} target="_blank" rel="noreferrer">
         {profile.name}
       </a>
     </div>
