@@ -5,7 +5,7 @@ import styles from './Example.module.css'
 export default function Example() {
   return (
     <div className={styles._}>
-      Example
+      Coming Soon...
     </div>
   )
 }

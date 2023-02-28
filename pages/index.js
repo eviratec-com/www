@@ -6,6 +6,7 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Example from '@/components/Example'
 import Experience from '@/components/Experience'
+import SocialProfiles from '@/components/SocialProfiles'
 
 export default function Home() {
   return (
@@ -43,7 +44,7 @@ export default function Home() {
 
         <div id="profiles">
           <h3>Social Profiles</h3>
-          <Example />
+          <SocialProfiles />
         </div>
       </main>
     </>
