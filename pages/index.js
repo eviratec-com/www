@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Head>
         <title>Callan Milne &#12296;@eviratec&#12297;</title>
-        <meta name="description" content="Callan Milne: Full-stack Developer" />
+        <meta name="description" content="TypeScript, React.js, Next.js, MongoDB/MySQL, PHP, and AWS" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="rgba(77,0,153,1)" />
