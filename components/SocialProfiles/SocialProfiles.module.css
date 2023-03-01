@@ -15,10 +15,17 @@
 
 ol.link-list {
   list-style-type: none;
+  border-radius: 8px;
+  border: 1px solid rgba(var(--text-rgb), 0.5);
+
 }
 
 ol.link-list li {
+  border-bottom: 1px solid rgba(var(--text-rgb), 0.5);
+}
 
+ol.link-list li:last-of-type {
+  border-bottom: none;
 }
 
 /* Tablet & Desktop */
@@ -35,12 +42,12 @@ ol.link-list li {
 /* Mobile */
 @media screen and (max-width: 700px) {
   ._ {
-
+    display: flex;
+    flex-direction: column;
   }
 
   .col {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    width: auto;
+    margin: 0 -1rem 1rem;
   }
 }

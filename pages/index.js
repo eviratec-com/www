@@ -27,27 +27,17 @@ export default function Home() {
       <Hero />
 
       <main className={styles.main}>
-        <div id="about">
+        <div className={styles.section} id="about">
           <h3>About</h3>
           <About />
         </div>
 
-        <div id="contact">
-          <h3>Contact</h3>
-          <Example />
-        </div>
-
-        <div id="folio">
-          <h3>Port Folio</h3>
-          <Example />
-        </div>
-
-        <div id="experience">
+        <div className={styles.section} id="experience">
           <h3>Experience</h3>
           <Experience />
         </div>
 
-        <div id="profiles">
+        <div className={styles.section} id="profiles">
           <h3>Social Profiles</h3>
           <SocialProfiles />
         </div>

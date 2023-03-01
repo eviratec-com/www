@@ -14,12 +14,12 @@ export default function Hero() {
     label: 'About',
     link: '#about',
   }, {
-    label: 'Contact',
-    link: '#contact',
-  }, {
-    label: 'Port Folio',
-    link: '#folio',
-  }, {
+  //   label: 'Contact',
+  //   link: '#contact',
+  // }, {
+  //   label: 'Port Folio',
+  //   link: '#folio',
+  // }, {
     label: 'Experience',
     link: '#experience',
   }, {

@@ -11,9 +11,9 @@ interface Opt {
 export default function ProfileLink({ profile }: Opt) {
   return (
     <div className={styles._}>
-      <span>{profile.service.name}</span>
+      <span className={styles.service}>{profile.service.name}</span>
       <a href={profile.link} target="_blank" rel="noreferrer">
-        {profile.name}
+        <span className={styles['screen-name']}>{profile.name}</span>
       </a>
     </div>
   )

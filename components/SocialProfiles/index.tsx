@@ -35,7 +35,7 @@ export default function SocialProfiles() {
     service: {
       icon: '',
       link: 'https://www.instagram.com',
-      name: 'Instgram',
+      name: 'Instagram',
     },
     link: 'https://www.facebook.com/callan.milne',
     name: 'callan.milne'
@@ -45,7 +45,7 @@ export default function SocialProfiles() {
       link: 'https://www.twitter.com',
       name: 'Twitter',
     },
-    link: 'https://www.facebook.com/eviratec',
+    link: 'https://www.twitter.com/eviratec',
     name: '@eviratec'
   }])
 
