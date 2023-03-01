@@ -21,7 +21,7 @@ export default function Home() {
         <meta property="og:description" content="TypeScript, React.js, Next.js, MongoDB/MySQL, PHP, and AWS" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.eviratec.com.au" />
-        <meta property="og:image" content="https://www.eviratec.com.au/og.jpg" />
+        <meta property="og:image" content="https://www.eviratec.com.au/og.png" />
       </Head>
 
       <Hero />
