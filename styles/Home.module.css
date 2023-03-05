@@ -26,6 +26,11 @@
   .main {
     padding: 0 2rem 2rem;
   }
+
+  .section h3 {
+    font-size: 2rem;
+    text-align: center;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
