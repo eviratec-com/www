@@ -40,9 +40,9 @@
 }
 
 .details .period .period-duration {
-  color: rgba(255,255,255,1);
+  color: rgba(255,255,255,0.9);
   font-weight: 200;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 /* Mobile */
@@ -60,6 +60,10 @@
   }
 
   .details .period {
+    font-size: 0.9rem;
+  }
+
+  .details .period .period-duration {
     font-size: 0.9rem;
   }
 }
