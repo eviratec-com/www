@@ -20,6 +20,7 @@
   font-size: 1.3rem;
   font-weight: 200;
   margin-bottom: 0.5rem;
+  color: rgba(255,255,255,0.7);
 }
 
 .details {
@@ -36,6 +37,12 @@
 
 .details .period span {
   margin-right: 0.5rem;
+}
+
+.details .period .period-duration {
+  color: rgba(255,255,255,1);
+  font-weight: 200;
+  font-size: 1rem;
 }
 
 /* Mobile */

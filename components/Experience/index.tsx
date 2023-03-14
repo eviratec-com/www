@@ -15,7 +15,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('July 1 2022'),
-      end: new Date('Jan 1 2023')
+      end: new Date('Jan 1 2023'),
+      duration: '6 months'
     }
   }, {
     title: 'Web Developer',
@@ -24,7 +25,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('December 1 2021'),
-      end: new Date('May 1 2022')
+      end: new Date('May 1 2022'),
+      duration: '6 months'
     }
   }, {
     title: 'Integration Engineer',
@@ -33,7 +35,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('June 1 2021'),
-      end: new Date('November 1 2021')
+      end: new Date('November 1 2021'),
+      duration: '5 months'
     }
   }, {
     title: 'WordPress Developer',
@@ -42,7 +45,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('June 1 2020'),
-      end: new Date('August 1 2020')
+      end: new Date('August 1 2020'),
+      duration: '3 months'
     }
   }, {
     title: 'Web Developer',
@@ -51,7 +55,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('August 1 2019'),
-      end: new Date('March 1 2020')
+      end: new Date('March 1 2020'),
+      duration: '8 months'
     }
   }, {
     title: 'Web Developer',
@@ -60,7 +65,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('November 1 2018'),
-      end: new Date('February 1 2019')
+      end: new Date('February 1 2019'),
+      duration: '4 months'
     }
   }, {
     title: 'Senior Engineer',
@@ -69,7 +75,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('February 1 2016'),
-      end: new Date('August 1 2016')
+      end: new Date('August 1 2016'),
+      duration: '7 months'
     }
   }, {
     title: 'Senior Software Developer',
@@ -78,7 +85,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('February 1 2015'),
-      end: new Date('February 1 2016')
+      end: new Date('February 1 2016'),
+      duration: '1 year'
     }
   }, {
     title: 'Technical Lead',
@@ -87,7 +95,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('July 1 2014'),
-      end: new Date('January 1 2015')
+      end: new Date('January 1 2015'),
+      duration: '7 months'
     }
   }, {
     title: 'Frontend Developer',
@@ -96,7 +105,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('March 1 2014'),
-      end: new Date('June 1 2014')
+      end: new Date('June 1 2014'),
+      duration: '4 months'
     }
   }, {
     title: 'PHP Developer',
@@ -105,7 +115,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('November 1 2013'),
-      end: new Date('February 1 2014')
+      end: new Date('February 1 2014'),
+      duration: '4 months'
     }
   }, {
     title: 'Web Developer',
@@ -114,7 +125,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('April 1 2013'),
-      end: new Date('September 1 2013')
+      end: new Date('September 1 2013'),
+      duration: '6 months'
     }
   }, {
     title: 'Frontend Developer',
@@ -123,7 +135,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('February 1 2013'),
-      end: new Date('April 1 2013')
+      end: new Date('April 1 2013'),
+      duration: '3 months'
     }
   }, {
     title: 'Web Developer',
@@ -132,7 +145,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('January 1 2011'),
-      end: new Date('February 1 2013')
+      end: new Date('February 1 2013'),
+      duration: '2 years'
     }
   }, {
     title: 'Web Developer',
@@ -141,7 +155,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('February 1 2010'),
-      end: new Date('October 1 2010')
+      end: new Date('October 1 2010'),
+      duration: '9 months'
     }
   }, {
     title: 'PHP Developer',
@@ -150,7 +165,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('March 1 2007'),
-      end: new Date('January 1 2010')
+      end: new Date('January 1 2010'),
+      duration: '3 years'
     }
   }, {
     title: 'Webmaster',
@@ -159,7 +175,8 @@ export default function Experience() {
     },
     period: {
       start: new Date('June 1 2003'),
-      end: new Date('January 1 2004')
+      end: new Date('January 1 2004'),
+      duration: '7 months'
     }
   }]
 

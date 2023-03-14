@@ -30,6 +30,7 @@ export default function JobCard({ job }: Props) {
           <span className={styles['period-start']}>{periodStart}</span>
           <span>-</span>
           <span className={styles['period-end']}>{periodEnd}</span>
+            <span className={styles['period-duration']}>{job.period.duration}</span>
         </span>
       </div>
     </div>
