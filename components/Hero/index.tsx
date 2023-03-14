@@ -51,10 +51,6 @@ export default function Hero() {
           </ol>
         </div>
       </div>
-
-      <div className={styles.next}>
-        &#8595; &nbsp; About Me &nbsp; &#8595;
-      </div>
     </div>
   )
 }
