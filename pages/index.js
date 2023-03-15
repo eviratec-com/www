@@ -4,6 +4,7 @@ import styles from '@/styles/Home.module.css'
 
 import Hero from '@/components/Hero'
 import About from '@/components/About'
+import Footer from '@/components/Footer'
 import Example from '@/components/Example'
 import PortFolio from '@/components/PortFolio'
 import Experience from '@/components/Experience'
@@ -48,6 +49,8 @@ export default function Home() {
           <SocialProfiles />
         </div>
       </main>
+
+      <Footer />
     </>
   )
 }
