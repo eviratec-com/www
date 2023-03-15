@@ -5,6 +5,7 @@ import styles from '@/styles/Home.module.css'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Example from '@/components/Example'
+import PortFolio from '@/components/PortFolio'
 import Experience from '@/components/Experience'
 import SocialProfiles from '@/components/SocialProfiles'
 
@@ -30,6 +31,11 @@ export default function Home() {
         <div className={styles.section} id="about">
           <h3>About</h3>
           <About />
+        </div>
+
+        <div className={styles.section} id="port-folio">
+          <h3>Port Folio</h3>
+          <PortFolio />
         </div>
 
         <div className={styles.section} id="experience">

@@ -48,6 +48,6 @@ ol.link-list li:last-of-type {
 
   .col {
     width: auto;
-    margin: 0 -1rem 1rem;
+    margin: 0 0 1rem;
   }
 }
