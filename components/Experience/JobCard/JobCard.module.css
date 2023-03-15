@@ -1,7 +1,7 @@
 ._ {
   display: flex;
   flex-direction: row;
-  background: linear-gradient(to bottom right, rgba(102, 0, 204,1) 0%, rgba(77,0,153,1) 100%);
+  background: linear-gradient(to bottom right, rgba(0,0,0,0) 0%, rgba(102, 0, 204,1) 100%);
   flex: 1;
   border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.1);
@@ -43,6 +43,12 @@
   color: rgba(255,255,255,0.7);
   font-weight: 200;
   font-size: 1.1rem;
+}
+
+@media (prefers-color-scheme: light) {
+  ._ {
+    background: linear-gradient(to bottom right, rgba(102, 0, 204,1) 0%, rgba(77,0,153,1) 100%);
+  }
 }
 
 /* Mobile */
