@@ -16,6 +16,7 @@ export default function ProjectCard({ project }: Props) {
     <div className={styles._}>
       <Image
         src={project.image}
+        alt={`Screenshot of ${project.title}`}
         fill
         sizes="(max-width: 768px) 50vw,
                 33vw"
