@@ -26,6 +26,13 @@ export default function JobCard({ job }: Props) {
       <div className={styles.details}>
         <span className={styles.title}>{job.title}</span>
         <span className={styles.employer}>{job.employer.name}</span>
+        <ul className={styles.tech}>
+          {job.tech.map((tech: string, i: number): void => (
+            <li key={i}>
+              {tech}
+            </li>
+          ))}
+        </ul>
         <span className={styles.period}>
           <span className={styles['period-start']}>{periodStart}</span>
           <span>-</span>

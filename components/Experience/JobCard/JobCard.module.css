@@ -23,6 +23,23 @@
   color: rgba(255,255,255,0.7);
 }
 
+ul.tech {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+
+ul.tech li {
+  background-color: rgba(77,77,190,1);
+  line-height: 1rem;
+  font-size: 0.9rem;
+  padding: 0.1rem 0.3rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+}
+
 .details {
   line-height: 1;
   display: flex;
@@ -48,6 +65,11 @@
 @media (prefers-color-scheme: light) {
   ._ {
     background: linear-gradient(to bottom right, rgba(102, 0, 204,1) 0%, rgba(77,0,153,1) 100%);
+  }
+
+  ul.tech li {
+    background-color: #fff;
+    color: rgba(77,77,190,1);
   }
 }
 

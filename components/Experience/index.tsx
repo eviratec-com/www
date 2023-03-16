@@ -10,6 +10,7 @@ export default function Experience() {
   const jobs: Job[] = [
     {
     title: 'Full Stack Engineer',
+    tech: ['React', 'TypeScript', 'Next.js'],
     employer: {
       name: 'Nova Entertainment'
     },
@@ -20,6 +21,7 @@ export default function Experience() {
     }
   }, {
     title: 'Web Developer',
+    tech: ['React', 'TypeScript', 'Next.js', 'Web3'],
     employer: {
       name: 'Block Ape Scissors'
     },
@@ -30,6 +32,7 @@ export default function Experience() {
     }
   }, {
     title: 'Integration Engineer',
+    tech: ['React', 'TypeScript', 'Next.js'],
     employer: {
       name: 'LOKE'
     },
@@ -40,6 +43,7 @@ export default function Experience() {
     }
   }, {
     title: 'WordPress Developer',
+    tech: ['WordPress', 'PHP', 'JavaScript'],
     employer: {
       name: 'Private Media'
     },
@@ -50,6 +54,7 @@ export default function Experience() {
     }
   }, {
     title: 'Web Developer',
+    tech: ['Node.js', 'PHP', 'MySQL'],
     employer: {
       name: 'Crocmedia Pty Ltd'
     },
@@ -60,6 +65,7 @@ export default function Experience() {
     }
   }, {
     title: 'Web Developer',
+    tech: ['WordPress', 'PHP', 'JavaScript'],
     employer: {
       name: 'Volume New Media'
     },
@@ -70,6 +76,7 @@ export default function Experience() {
     }
   }, {
     title: 'Senior Engineer',
+    tech: ['AngularJS', 'Node.js', 'Java'],
     employer: {
       name: 'Versent'
     },
@@ -80,6 +87,7 @@ export default function Experience() {
     }
   }, {
     title: 'Senior Software Developer',
+    tech: ['AngularJS', 'Node.js', 'PHP', 'MySQL'],
     employer: {
       name: 'Rapid Finance'
     },
@@ -90,6 +98,7 @@ export default function Experience() {
     }
   }, {
     title: 'Technical Lead',
+    tech: ['AngularJS', 'Node.js', 'MySQL'],
     employer: {
       name: 'LOKE'
     },
@@ -100,6 +109,7 @@ export default function Experience() {
     }
   }, {
     title: 'Frontend Developer',
+    tech: ['JavaScript'],
     employer: {
       name: 'Deepend Digital (Melbourne)'
     },
@@ -110,6 +120,7 @@ export default function Experience() {
     }
   }, {
     title: 'PHP Developer',
+    tech: ['PHP', 'MySQL', 'Greenplum'],
     employer: {
       name: 'SMSGlobal'
     },
@@ -120,6 +131,7 @@ export default function Experience() {
     }
   }, {
     title: 'Web Developer',
+    tech: ['Backbone.js', 'Node.js', 'PHP', 'MySQL'],
     employer: {
       name: 'DPHOTO'
     },
@@ -130,6 +142,7 @@ export default function Experience() {
     }
   }, {
     title: 'Frontend Developer',
+    tech: ['Backbone.js'],
     employer: {
       name: 'Sportsbet'
     },
@@ -140,6 +153,7 @@ export default function Experience() {
     }
   }, {
     title: 'Web Developer',
+    tech: ['Backbone.js', 'Node.js', 'PHP', 'MySQL'],
     employer: {
       name: 'DPHOTO'
     },
@@ -150,6 +164,7 @@ export default function Experience() {
     }
   }, {
     title: 'Web Developer',
+    tech: ['JavaScript', 'PHP', 'MySQL'],
     employer: {
       name: 'Network Video'
     },
@@ -160,6 +175,7 @@ export default function Experience() {
     }
   }, {
     title: 'PHP Developer',
+    tech: ['JavaScript', 'PHP', 'MySQL'],
     employer: {
       name: '247ads Pty Ltd'
     },
@@ -170,6 +186,7 @@ export default function Experience() {
     }
   }, {
     title: 'Webmaster',
+    tech: ['PHP', 'MySQL'],
     employer: {
       name: 'TheSims2Revolution'
     },

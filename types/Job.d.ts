@@ -3,6 +3,7 @@ import type TimePeriod from './TimePeriod'
 
 export type Job = {
   title: string
+  tech: string[]
   employer: Employer
   period: TimePeriod
 }
