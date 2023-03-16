@@ -6,7 +6,7 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Footer from '@/components/Footer'
 import Example from '@/components/Example'
-import PortFolio from '@/components/PortFolio'
+import Portfolio from '@/components/Folio'
 import Experience from '@/components/Experience'
 import SocialProfiles from '@/components/SocialProfiles'
 
@@ -34,9 +34,9 @@ export default function Home() {
           <About />
         </div>
 
-        <div className={styles.section} id="port-folio">
-          <h3>Port Folio</h3>
-          <PortFolio />
+        <div className={styles.section} id="portfolio">
+          <h3>Portfolio</h3>
+          <Portfolio />
         </div>
 
         <div className={styles.section} id="experience">

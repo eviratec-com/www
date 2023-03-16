@@ -2,11 +2,11 @@ import React from 'react'
 
 import ProjectCard from './ProjectCard'
 
-import styles from './PortFolio.module.css'
+import styles from './Folio.module.css'
 
 import type Project from '@/types/Folio'
 
-export default function PortFolio() {
+export default function Portfolio() {
   const projects: Project[] = [{
     title: 'AJAX Contact WP Plugin',
     tech: ['WordPress', 'PHP', 'JavaScript'],

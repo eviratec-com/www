@@ -17,8 +17,8 @@ export default function Hero() {
   //   label: 'Contact',
   //   link: '#contact',
   // }, {
-    label: 'Port Folio',
-    link: '#port-folio',
+    label: 'Portfolio',
+    link: '#portfolio',
   }, {
     label: 'Experience',
     link: '#experience',
