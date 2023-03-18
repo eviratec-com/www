@@ -66,11 +66,6 @@ ul.tech li {
   ._ {
     background: linear-gradient(to bottom right, rgba(102, 0, 204,1) 0%, rgba(77,0,153,1) 100%);
   }
-
-  ul.tech li {
-    background-color: #fff;
-    color: rgba(77,77,190,1);
-  }
 }
 
 /* Mobile */

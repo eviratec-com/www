@@ -6,10 +6,16 @@ export default function About() {
   return (
     <div className={styles._}>
       <p>
-        My name is Callan Milne. I have been working professionally as a
-        software developer for over fifteen years. I have extensive experience
-        with state-of-the-art web development technologies including: Next.js,
-        React.js, TypeScript, Cypress, Jest, Storybook, and AWS.
+        My name is Callan Milne. I’m a full-stack web development expert from
+        Australia. I have been developing full-stack websites and web
+        applications full-time since 2007. I started developing single-page
+        applications (SPAs), and web APIs in 2011.
+      </p>
+
+      <p>
+        I love science, video games, computers, and programming; and was
+        a hobbyist programmer before I started as a PHP Developer in
+        March 2007.
       </p>
 
       <p>
@@ -20,11 +26,23 @@ export default function About() {
       </p>
 
       <p>
-        Since 2003: I have created numerous web applications, user interfaces,
-        web APIs, and software packages. I have spent hundreds of hours
-        contributing to open source software, and have published multiple
-        pieces of open-source software. My first public open-source
-        contribution was published on SourceForge in 2006.
+        Since then, I have created numerous web applications, user interfaces,
+        web APIs, and software packages. I love to contribute to open source
+        software. My first public contribution was published on SourceForge
+        in 2006. I now keep my public contributions on GitHub, and I have
+        packages published on NPM, and Bower.
+      </p>
+
+      <p>
+        I like to keep my skills up-to-date, and have extensive experience with
+        state-of-the-art web development technologies including: Next.js,
+        React.js, TypeScript, Cypress, Jest, Storybook, and AWS.
+      </p>
+
+      <p>
+        I am passionate about test automation, and test driven development
+        (TDD), with strong experience in developing tests using Node.js,
+        Jasmine, Cypress, and Jest.
       </p>
     </div>
   )
