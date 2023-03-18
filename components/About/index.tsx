@@ -14,7 +14,7 @@ export default function About() {
 
       <p>
         I love science, video games, computers, and programming; and was
-        a hobbyist programmer before I started as a PHP Developer in
+        a hobbyist programmer before I started working as a PHP Developer in
         March 2007.
       </p>
 
