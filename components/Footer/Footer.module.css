@@ -30,6 +30,18 @@
   color: rgba(255,255,255,0.8);
 }
 
+@media (prefers-color-scheme: light) {
+  ._ {
+    background: rgba(255,255,255,1);
+    border-top: 1px solid rgba(0,0,0,0.1);
+    color: #000;
+  }
+
+  .copyright {
+    color: rgba(0,0,0,0.8);
+  }
+}
+
 /* Mobile */
 @media screen and (max-width: 700px) {
   ._ {
