@@ -3,15 +3,15 @@ import { useState } from 'react'
 
 import styles from './JobCard.module.css'
 
-import type Job from '@/types/Job'
+import { type Job } from '@/types/Job'
 
 interface Props {
   job: Job
 }
 
 export default function JobCard({ job }: Props) {
-  const [periodStart]: string = useState<string>(renderDate(job.period.start))
-  const [periodEnd]: string = useState<string>(renderDate(job.period.end))
+  const [periodStart] = useState<string>(renderDate(job.period.start))
+  const [periodEnd] = useState<string>(renderDate(job.period.end))
 
   function renderDate (input: Date): string {
     const dateString: string = input.toDateString()
@@ -27,7 +27,7 @@ export default function JobCard({ job }: Props) {
         <span className={styles.title}>{job.title}</span>
         <span className={styles.employer}>{job.employer.name}</span>
         <ul className={styles.tech}>
-          {job.tech.map((tech: string, i: number): void => (
+          {job.tech.map((tech: string, i: number) => (
             <li key={i}>
               {tech}
             </li>

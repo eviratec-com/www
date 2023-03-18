@@ -1,13 +1,14 @@
 import React from 'react'
+import { useState } from 'react'
 
 import ProjectCard from './ProjectCard'
 
 import styles from './Folio.module.css'
 
-import type Project from '@/types/Folio'
+import { type Project } from '@/types/Folio'
 
 export default function Portfolio() {
-  const projects: Project[] = [{
+  const [projects] = useState<Project[]>([{
     title: 'AJAX Contact WP Plugin',
     tech: ['WordPress', 'PHP', 'JavaScript'],
     image: '/folio/2012-ajax-contact.jpg',
@@ -79,11 +80,11 @@ export default function Portfolio() {
     image: '/folio/2019-myjournal.jpeg',
     description: '',
     year: 2019
-  }].reverse()
+  }].reverse())
 
   return (
     <div className={styles._}>
-      {projects.map((project: Job, i: number) => {
+      {projects.map((project: Project, i: number) => {
         return (
           <div className={styles.project} key={i}>
             <ProjectCard project={project} />

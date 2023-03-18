@@ -1,14 +1,14 @@
 import React from 'react'
+import { useState } from 'react'
 
 import JobCard from './JobCard'
 
 import styles from './Experience.module.css'
 
-import type Job from '@/types/Job'
+import { type Job } from '@/types/Job'
 
 export default function Experience() {
-  const jobs: Job[] = [
-    {
+  const [jobs] = useState<Job[]>([{
     title: 'Full Stack Engineer',
     tech: ['React', 'TypeScript', 'Next.js'],
     employer: {
@@ -195,7 +195,7 @@ export default function Experience() {
       end: new Date('January 1 2004'),
       duration: '7 months'
     }
-  }]
+  }])
 
   return (
     <div className={styles._}>

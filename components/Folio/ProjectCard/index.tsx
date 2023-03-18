@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 import styles from './ProjectCard.module.css'
 
-import type Project from '@/types/Folio'
+import { type Project } from '@/types/Folio'
 
 interface Props {
   project: Project
@@ -29,7 +29,7 @@ export default function ProjectCard({ project }: Props) {
         <span className={styles.title}>{project.title} ({project.year})</span>
         <div className={styles.tech}>
           <ul>
-            {project.tech.map((tech: string[], i: number) => {
+            {project.tech.map((tech: string, i: number) => {
               return (
                 <li key={i}>
                   {tech}
