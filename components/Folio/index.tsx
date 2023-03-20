@@ -9,27 +9,9 @@ import { type Project } from '@/types/Folio'
 
 export default function Portfolio() {
   const [projects] = useState<Project[]>([{
-    title: 'AJAX Contact WP Plugin',
-    tech: ['WordPress', 'PHP', 'JavaScript'],
-    image: '/folio/2012-ajax-contact.jpg',
-    description: '',
-    year: 2012
-  }, {
-    title: 'AJAX Contact WP Plugin',
-    tech: ['WordPress', 'PHP', 'JavaScript'],
-    image: '/folio/2012-ajax-contact-config.jpg',
-    description: '',
-    year: 2012
-  }, {
     title: 'Ministry of Style',
     tech: ['WordPress', 'PHP', 'JavaScript'],
     image: '/folio/2015-mos-www.jpeg',
-    description: '',
-    year: 2015
-  }, {
-    title: 'Ministry of Style',
-    tech: ['WordPress', 'PHP'],
-    image: '/folio/2015-mos-store.jpeg',
     description: '',
     year: 2015
   }, {
@@ -80,6 +62,24 @@ export default function Portfolio() {
     image: '/folio/2019-myjournal.jpeg',
     description: '',
     year: 2019
+  }, {
+    title: 'BAS dApp Dev',
+    tech: ['Web3', 'React', 'TypeScript', 'Next.js'],
+    image: '/folio/2021-bas.jpg',
+    description: '',
+    year: 2021
+  }, {
+    title: 'BAS dApp Dev',
+    tech: ['Web3', 'React', 'TypeScript', 'Next.js'],
+    image: '/folio/2021-bas-lab.jpg',
+    description: '',
+    year: 2021
+  }, {
+    title: 'BAS dApp Dev',
+    tech: ['Web3', 'React', 'TypeScript', 'Next.js'],
+    image: '/folio/2021-bas-genesis.jpg',
+    description: '',
+    year: 2021
   }].reverse())
 
   return (
