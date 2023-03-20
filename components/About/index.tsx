@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Link from 'next/link'
+
 import styles from './About.module.css'
 
 export default function About() {
@@ -19,18 +21,18 @@ export default function About() {
       </p>
 
       <p>
-        I first started working with software engineering tools in 1998 as a
-        hobbyist. My first programming experience was with Microsoft Visual
-        Basic, and C++. I started working with web technology in 2001, and
-        published my first PHP-Nuke CMS powered website in 2003.
+        I <em>first</em> started working with software engineering tools in 1998; My
+        first programming experience was with Microsoft Visual Basic, and C++.
+        I started working with web technology in 2001, and published my first
+        PHP-Nuke CMS powered website in 2003.
       </p>
 
       <p>
         Since then, I have created numerous web applications, user interfaces,
         web APIs, and software packages. I love to contribute to open source
         software. My first public contribution was published on SourceForge
-        in 2006. I now keep my public contributions on GitHub, and I have
-        packages published on NPM, and Bower.
+        in 2006. I now keep my public contributions on <Link href="https://github.com/eviratec">GitHub</Link>,
+        and I have packages published on <Link href="https://www.npmjs.com/~luminous-patterns">NPM</Link>.
       </p>
 
       <p>
