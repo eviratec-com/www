@@ -18,6 +18,9 @@ export default async function handler(
     res.status(200).json(s)
   }
   catch (err) {
-    res.status(400).json(err)
+    res.status(400).json({
+      name: 'LOGIN_ERR',
+      message: 'Invalid Login'
+    })
   }
 }

@@ -2,10 +2,7 @@ import React, { useCallback, useId, useState } from 'react'
 
 import styles from './LoginForm.module.css'
 
-interface Credentials {
-  username: string
-  password: string
-}
+import type { Credentials, Session } from '@/types/Session'
 
 export default function LoginForm() {
   const usernameInputId: string = useId()
@@ -13,37 +10,61 @@ export default function LoginForm() {
 
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [success, setSuccess] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
 
   const handleSubmit = useCallback((event): void => {
     event.preventDefault()
 
-    const form = event.target
-    const formData = new FormData(form)
+    setError('')
 
-    const _c: any = Object.fromEntries(formData.entries())
     const c: Credentials = {
-      username: _c.username,
-      password: _c.password,
+      username: username,
+      password: password,
     }
-
-    console.log(c)
 
     setUsername(c.username)
     setPassword(c.password)
-  }, [setUsername, setPassword])
+
+    fetch('/api/login', { method: 'POST', body: JSON.stringify(c), headers: {'Content-Type': 'application/json'} })
+      .then((result) => {
+        if (400 === result.status) {
+          return result.json().then(json => {
+            setSuccess(false)
+            setError(json.message)
+          })
+        }
+        setSuccess(true)
+      })
+      .catch((err) => {
+        setSuccess(false)
+        setError(err.message)
+      })
+  }, [username, password])
 
   return (
     <div className={styles._}>
       <div className={styles['form-wrapper']}>
-        <form onSubmit={handleSubmit}>
+        <form name="login" onSubmit={handleSubmit}>
           <div className={styles['input-field']}>
             <label htmlFor={usernameInputId}>Username:</label>
-            <input id={usernameInputId} name="username" />
+            <input
+              id={usernameInputId}
+              value={username}
+              name="username"
+              onChange={e => setUsername(e.target.value)}
+            />
           </div>
 
           <div className={styles['input-field']}>
             <label htmlFor={passwordInputId}>Password:</label>
-            <input id={passwordInputId} name="password" type="password" />
+            <input
+              id={passwordInputId}
+              value={password}
+              name="password"
+              type="password"
+              onChange={e => setPassword(e.target.value)}
+            />
           </div>
 
           <div className={styles['submit-button']}>
@@ -52,8 +73,12 @@ export default function LoginForm() {
         </form>
       </div>
 
-      {'' !== username && (
-        <p>Login attempted: {username}:{password}</p>
+      {success && (
+        <p>Login success! Redirecting...</p>
+      )}
+
+      {error && (
+        <p>Error: {error}</p>
       )}
     </div>
   )
