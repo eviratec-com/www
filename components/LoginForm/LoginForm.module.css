@@ -1,0 +1,42 @@
+._ {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+
+._ .form-wrapper {
+  background-color: rgba(var(--background-end-rgb), 1);
+  color: rgb(var(--foreground-rgb));
+  padding: 1.5rem;
+  box-shadow: 0px 1px 25px 0px rgba(0,0,0,0.25);
+  border-radius: 2px;
+}
+
+._ form {
+  display: flex;
+  flex-direction: column;
+}
+
+._ form .input-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+._ form .submit-button {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+._ form .submit-button button {
+  line-height: 2rem;
+}
+
+/* Mobile */
+@media screen and (max-width: 700px) {
+  ._ {
+    width: 100%;
+  }
+}
