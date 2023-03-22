@@ -23,8 +23,8 @@ CREATE TABLE public.sessions (
     "id" integer NOT NULL,
     "user" integer NOT NULL,
     "token" text NOT NULL,
-    "created" timestamp without time zone NOT NULL,
-    "expiry" timestamp without time zone
+    "created" timestamptz NOT NULL,
+    "expiry" timestamptz
 );
 
 ALTER TABLE public.sessions OWNER TO callanmilne;
@@ -52,8 +52,8 @@ CREATE TABLE public.posts (
     "author" integer NOT NULL,
     "content" text NOT NULL,
     "link" character varying(255) NOT NULL,
-    "created" timestamp without time zone NOT NULL,
-    "deleted" timestamp without time zone
+    "created" timestamptz NOT NULL,
+    "deleted" timestamptz
 );
 
 ALTER TABLE public.posts OWNER TO callanmilne;
@@ -81,8 +81,8 @@ CREATE TABLE public.replies (
     "post" integer NOT NULL,
     "author" integer NOT NULL,
     "content" text NOT NULL,
-    "created" timestamp without time zone NOT NULL,
-    "deleted" timestamp without time zone
+    "created" timestamptz NOT NULL,
+    "deleted" timestamptz
 );
 
 ALTER TABLE public.replies OWNER TO callanmilne;
@@ -109,8 +109,8 @@ CREATE TABLE public.feeds (
     "id" integer NOT NULL,
     "name" character varying(60) NOT NULL,
     "slug" character varying(100) NOT NULL,
-    "created" timestamp without time zone NOT NULL,
-    "deleted" timestamp without time zone
+    "created" timestamptz NOT NULL,
+    "deleted" timestamptz
 );
 
 ALTER TABLE public.feeds OWNER TO callanmilne;
@@ -162,7 +162,7 @@ ALTER SEQUENCE public.roles_id_seq OWNED BY public.roles.id;
 CREATE TABLE public.feed_posts (
     "feed" integer NOT NULL,
     "post" integer NOT NULL,
-    "published" timestamp without time zone NOT NULL
+    "published" timestamptz NOT NULL
 );
 
 ALTER TABLE public.feed_posts OWNER TO callanmilne;
@@ -177,7 +177,7 @@ CREATE TABLE public.user_feeds (
     "user" integer NOT NULL,
     "feed" integer NOT NULL,
     "role" integer NOT NULL,
-    "granted" timestamp without time zone NOT NULL
+    "granted" timestamptz NOT NULL
 );
 
 ALTER TABLE public.user_feeds OWNER TO callanmilne;
@@ -191,7 +191,7 @@ ALTER TABLE public.user_feeds OWNER TO callanmilne;
 CREATE TABLE public.user_roles (
     "user" integer NOT NULL,
     "role" integer NOT NULL,
-    "granted" timestamp without time zone NOT NULL
+    "granted" timestamptz NOT NULL
 );
 
 ALTER TABLE public.user_roles OWNER TO callanmilne;
@@ -207,8 +207,8 @@ CREATE TABLE public.users (
     "username" character varying(60) NOT NULL,
     "password" character varying(128) NOT NULL,
     "email" character varying(255) NOT NULL,
-    "created" timestamp without time zone NOT NULL,
-    "modified" timestamp without time zone
+    "created" timestamptz NOT NULL,
+    "modified" timestamptz
 );
 
 ALTER TABLE public.users OWNER TO callanmilne;
@@ -271,6 +271,9 @@ ALTER TABLE ONLY public.users
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_username_key UNIQUE ("username");
+
+ALTER TABLE ONLY public.sessions
+    ADD CONSTRAINT sessions_token_key UNIQUE ("token");
 
 
 ALTER TABLE ONLY public.user_feeds

@@ -7,6 +7,6 @@ export type Session = {
 }
 
 export type Credentials = {
-  username: number
-  password: number
+  username: string
+  password: string
 }
