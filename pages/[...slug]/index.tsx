@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import { InferGetServerSidePropsType } from 'next'
 import { GetServerSideProps } from 'next'
 import type { NextPage } from 'next'
@@ -12,6 +12,8 @@ import fetchPostsByFeedSlug from '@/functions/fetchPostsByFeedSlug'
 import Footer from '@/components/Footer'
 import PostForm from '@/components/PostForm'
 
+import SessionContext from '@/contexts/SessionContext'
+
 import type { Post } from '@/types/Post'
 
 interface Props {
@@ -22,6 +24,8 @@ const Feed: NextPage<Props> = ({ posts }: InferGetServerSidePropsType<typeof get
   const router = useRouter()
   const slug = (router.query.slug as string[]) || []
 
+  const session = useContext(SessionContext)
+
   const [allPosts, setAllPosts] = useState<Post[]>(posts)
 
   function postDate (input: number): string {
@@ -31,8 +35,17 @@ const Feed: NextPage<Props> = ({ posts }: InferGetServerSidePropsType<typeof get
   }
 
   const onNewPost = useCallback((newPost: Post): void => {
-    setAllPosts([newPost, ...posts])
-  }, [posts, setAllPosts]);
+    setAllPosts([
+      {
+        id: newPost.id,
+        author: newPost.author,
+        content: newPost.content,
+        created: newPost.created,
+        published: newPost.published,
+      },
+      ...allPosts
+    ])
+  }, [allPosts, setAllPosts]);
 
   return (
     <>
@@ -52,9 +65,11 @@ const Feed: NextPage<Props> = ({ posts }: InferGetServerSidePropsType<typeof get
       <main className={styles.main}>
         <h1>Feed {slug.join('/')}</h1>
 
-        <div className={styles['post-form-wrapper']}>
-          <PostForm onNewPost={onNewPost} />
-        </div>
+        {session.currentSession && session.currentSession.token &&
+          <div className={styles['post-form-wrapper']}>
+            <PostForm feed={slug.join('/')} onNewPost={onNewPost} />
+          </div>
+        }
 
         <div className={styles.posts}>
           {allPosts.map((post: Post, i: number) => {

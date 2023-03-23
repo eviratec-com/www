@@ -8,16 +8,17 @@ export default async function fetchPostsByFeedSlug(slug: string): Promise<Post[]
 
     client.connect()
 
-    const query = `SELECT "posts".* FROM "feeds" `
+    const query = `SELECT "posts".*, "feed_posts"."published" FROM "feeds" `
       + `LEFT JOIN "feed_posts" ON "feeds"."id" = "feed_posts"."feed" `
       + `JOIN "posts" ON "posts"."id" = "feed_posts"."post" `
-      + `WHERE "slug" = $1::text`
+      + `WHERE "slug" = $1::text ORDER BY "feed_posts"."published" DESC`
 
     client.query(query, [slug], (err, res) => {
       if (err) return reject(err)
 
       resolve(res.rows.map(row => {
         row.created = (new Date(row.created)).getTime()
+        row.published = (new Date(row.published)).getTime()
         delete row.deleted
         return row
       }))

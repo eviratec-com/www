@@ -8,7 +8,6 @@ import fetchUserByUsername from './fetchUserByUsername'
 export default async function attemptLogin(c: Credentials): Promise<Session> {
   // Fetch user by username
   const user: User = await fetchUserByUsername(c.username)
-  console.log(user)
 
   // Check password matches hash
   const match: boolean = await compareHash(c.password, user.password)

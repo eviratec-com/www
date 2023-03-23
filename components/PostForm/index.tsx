@@ -1,20 +1,30 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 import React from 'react'
 
 import styles from './PostForm.module.css'
 
+import SessionContext from '@/contexts/SessionContext'
+
 import type { Post } from '@/types/Post'
 
 interface NewPost {
+  feed: string
   content: string
-  link: string
 }
 
 interface Props {
+  feed: string
   onNewPost: (newPost: Post) => void
 }
 
-export default function PostForm({ onNewPost }: Props) {
+interface ApiReqHeaders {
+  'X-Eviratec-Token': string
+  'Content-Type': string
+}
+
+export default function PostForm({ feed, onNewPost }: Props) {
+  const session = useContext(SessionContext)
+
   const [content, setContent] = useState<string>('')
   const [link, setLink] = useState<string>('about:blank')
   const [success, setSuccess] = useState<boolean>(false)
@@ -24,11 +34,16 @@ export default function PostForm({ onNewPost }: Props) {
     event.preventDefault()
 
     const c: NewPost = {
+      feed: feed,
       content: content,
-      link: link,
     }
 
-    fetch('/api/post', { method: 'POST', body: JSON.stringify(c), headers: {'Content-Type': 'application/json'} })
+    const headers = {
+      'X-Eviratec-Token': session.currentSession.token,
+      'Content-Type': 'application/json',
+    }
+
+    fetch('/api/post', { method: 'POST', body: JSON.stringify(c), headers: headers })
       .then((result) => {
         if (400 === result.status) {
           return result.json().then(json => {
@@ -39,7 +54,7 @@ export default function PostForm({ onNewPost }: Props) {
         setSuccess(true)
         setContent('')
         setLink('about:blank')
-        
+
         result.json().then(json => {
           onNewPost(json)
         })
@@ -49,13 +64,17 @@ export default function PostForm({ onNewPost }: Props) {
         setError(err.message)
       })
 
-  }, [link, content])
+  }, [feed, link, content, session])
 
   return (
     <div className={styles._}>
       <form onSubmit={handleSubmit}>
-        <textarea name="content" value={content} onChange={e => setContent(e.target.value)} />
-        <input type="hidden" name="link" value={link} />
+        <textarea
+          name="content"
+          value={content}
+          onChange={e => setContent(e.target.value)}
+          placeholder="Start writing ..."
+        />
         <button type="submit">Post</button>
       </form>
     </div>

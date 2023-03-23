@@ -1,10 +1,17 @@
-import React, { useCallback, useId, useState } from 'react'
+import React, { useCallback, useContext, useId, useState } from 'react'
+import { useRouter } from 'next/navigation';
 
 import styles from './LoginForm.module.css'
+
+import SessionContext from '@/contexts/SessionContext'
 
 import type { Credentials, Session } from '@/types/Session'
 
 export default function LoginForm() {
+  const router = useRouter()
+
+  const session = useContext(SessionContext)
+
   const usernameInputId: string = useId()
   const passwordInputId: string = useId()
 
@@ -34,13 +41,18 @@ export default function LoginForm() {
             setError(json.message)
           })
         }
-        setSuccess(true)
+
+        result.json().then(json => {
+          setSuccess(true)
+          session.login(json)
+          router.push('/calmilne')
+        })
       })
       .catch((err) => {
         setSuccess(false)
         setError(err.message)
       })
-  }, [username, password])
+  }, [username, password, session])
 
   return (
     <div className={styles._}>

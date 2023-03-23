@@ -19,6 +19,9 @@
 ._ form textarea {
   flex: 1;
   display: flex;
+  font-size: 1rem;
+  font-weight: 200;
+  border: none;
 }
 
 ._ form button {
