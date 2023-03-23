@@ -45,7 +45,7 @@ export default function LoginForm() {
         result.json().then(json => {
           setSuccess(true)
           session.login(json)
-          router.push('/calmilne')
+          router.push('/feeds')
         })
       })
       .catch((err) => {
