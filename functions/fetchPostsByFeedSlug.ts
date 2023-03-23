@@ -8,9 +8,11 @@ export default async function fetchPostsByFeedSlug(slug: string): Promise<Post[]
 
     client.connect()
 
-    const query = `SELECT "posts".*, "feed_posts"."published" FROM "feeds" `
+    const query = `SELECT "posts".*, "feed_posts"."published", `
+      + `"users"."display_name", "users"."link" AS "user_link" FROM "feeds" `
       + `LEFT JOIN "feed_posts" ON "feeds"."id" = "feed_posts"."feed" `
       + `JOIN "posts" ON "posts"."id" = "feed_posts"."post" `
+      + `JOIN "users" ON "users"."id" = "posts"."author" `
       + `WHERE "slug" = $1::text ORDER BY "feed_posts"."published" DESC`
 
     client.query(query, [slug], (err, res) => {
@@ -19,6 +21,11 @@ export default async function fetchPostsByFeedSlug(slug: string): Promise<Post[]
       resolve(res.rows.map(row => {
         row.created = (new Date(row.created)).getTime()
         row.published = (new Date(row.published)).getTime()
+        row.author = {
+          id: row.author,
+          link: row.user_link,
+          display_name: row.display_name,
+        }
         delete row.deleted
         return row
       }))

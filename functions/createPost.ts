@@ -1,8 +1,11 @@
+import type { UserProfile } from '@/types/User'
 import type { Post } from '@/types/Post'
 
 import { v4 as uuidv4 } from 'uuid'
 
 import dbClient from '@/db'
+
+import fetchUserProfileById from './fetchUserProfileById'
 
 export interface NewPost {
   feed: number
@@ -35,6 +38,7 @@ export default async function createPost(d: NewPost): Promise<Post> {
 }
 
 async function insertPost(d: NewPost): Promise<Post> {
+  const a: UserProfile = await fetchUserProfileById(d.author)
   const p: Promise<Post> = new Promise((resolve, reject) => {
     const client: any = dbClient()
     const query: string = `INSERT INTO "posts" ("author", "content", "created") `
@@ -46,7 +50,11 @@ async function insertPost(d: NewPost): Promise<Post> {
     client.query(query, [d.author, d.content], (err, res) => {
       if (err) return reject(err)
 
-      resolve(res.rows[0])
+      const result = {...res.rows[0]}
+
+      result.author = a
+
+      resolve(result)
 
       client.end()
     })

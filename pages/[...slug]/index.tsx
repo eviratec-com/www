@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { InferGetServerSidePropsType } from 'next'
 import { GetServerSideProps } from 'next'
 import type { NextPage } from 'next'
@@ -12,6 +12,7 @@ import fetchPostsByFeedSlug from '@/functions/fetchPostsByFeedSlug'
 
 import Footer from '@/components/Footer'
 import PostForm from '@/components/PostForm'
+import AuthorLink from '@/components/AuthorLink'
 
 import SessionContext from '@/contexts/SessionContext'
 
@@ -50,18 +51,23 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
     ])
   }, [allPosts, setAllPosts]);
 
+  useEffect(() => {
+    setAllPosts([...posts])
+  }, [posts])
+
   return (
     <>
       <Head>
         <title>{feed.name} - Eviratec</title>
-        <meta name="description" content="TypeScript, React.js, Next.js, MongoDB/MySQL, PHP, and AWS" />
+        <meta name="description" content={`${feed.name} on Eviratec`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="rgba(77,0,153,1)" />
-        <meta property="og:title" content="Callan Milne: Full-stack Developer" />
-        <meta property="og:description" content="TypeScript, React.js, Next.js, MongoDB/MySQL, PHP, and AWS" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.eviratec.com.au" />
+        <meta property="og:site_name" content="Eviratec" />
+        <meta property="og:title" content={feed.name} />
+        <meta property="og:description" content={`${feed.name} on Eviratec`} />
+        <meta property="og:type" content="profile" />
+        <meta property="og:url" content={`https://www.eviratec.com.au/${slug.join('/')}`} />
         <meta property="og:image" content="https://www.eviratec.com.au/og.png" />
       </Head>
 
@@ -79,7 +85,9 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
             return (
               <div className={styles.post} key={i}>
                 <div>{post.content}</div>
-                <div className={styles['post-date']}>{postDate(post.created)}</div>
+                <div className={styles['post-date']}>
+                  {postDate(post.created)} | <AuthorLink author={post.author} />
+                </div>
               </div>
             )
           })}
