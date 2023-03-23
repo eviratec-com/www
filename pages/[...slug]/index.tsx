@@ -7,6 +7,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Feed.module.css'
 
+import fetchFeedBySlug from '@/functions/fetchFeedBySlug'
 import fetchPostsByFeedSlug from '@/functions/fetchPostsByFeedSlug'
 
 import Footer from '@/components/Footer'
@@ -15,12 +16,14 @@ import PostForm from '@/components/PostForm'
 import SessionContext from '@/contexts/SessionContext'
 
 import type { Post } from '@/types/Post'
+import type { Feed } from '@/types/Feed'
 
 interface Props {
   posts: Post[]
+  feed: Feed
 }
 
-const Feed: NextPage<Props> = ({ posts }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter()
   const slug = (router.query.slug as string[]) || []
 
@@ -50,7 +53,7 @@ const Feed: NextPage<Props> = ({ posts }: InferGetServerSidePropsType<typeof get
   return (
     <>
       <Head>
-        <title>Callan Milne &#12296;@eviratec&#12297;</title>
+        <title>{feed.name} - Eviratec</title>
         <meta name="description" content="TypeScript, React.js, Next.js, MongoDB/MySQL, PHP, and AWS" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -63,7 +66,7 @@ const Feed: NextPage<Props> = ({ posts }: InferGetServerSidePropsType<typeof get
       </Head>
 
       <main className={styles.main}>
-        <h1>Feed {slug.join('/')}</h1>
+        <h1>{feed.name}</h1>
 
         {session.currentSession && session.currentSession.token &&
           <div className={styles['post-form-wrapper']}>
@@ -88,12 +91,12 @@ const Feed: NextPage<Props> = ({ posts }: InferGetServerSidePropsType<typeof get
   )
 }
 
-export const getServerSideProps: GetServerSideProps<{ posts: Post[] }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<{ feed: Feed, posts: Post[] }> = async (context) => {
   const slug: string[] = context.params.slug as string[] || []
 
-  const posts: Post[] = await fetchPostsByFeedSlug(slug.join('/'))
+  const feed: Feed = await fetchFeedBySlug(slug.join('/'))
 
-  if (!posts || posts.length < 1) {
+  if (!feed) {
     return {
       redirect: {
         destination: '/',
@@ -102,8 +105,13 @@ export const getServerSideProps: GetServerSideProps<{ posts: Post[] }> = async (
     }
   }
 
+  const posts: Post[] = await fetchPostsByFeedSlug(slug.join('/'))
+
+  feed.created = (new Date(feed.created)).getTime()
+
   return {
     props: {
+      feed,
       posts,
     },
   }
