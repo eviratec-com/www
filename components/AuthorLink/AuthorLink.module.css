@@ -1,0 +1,22 @@
+._ {
+  display: inline-block;
+}
+
+._ a {
+  font-weight: 300;
+  text-decoration: underline;
+  color: rgba(177,117,234,1);
+}
+
+@media (prefers-color-scheme: light) {
+  ._ a {
+    color: rgba(77,0,153,1);
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 700px) {
+  ._ {
+
+  }
+}
