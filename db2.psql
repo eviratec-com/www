@@ -208,6 +208,8 @@ CREATE TABLE public.users (
     "username" character varying(60) NOT NULL,
     "password" character varying(128) NOT NULL,
     "email" character varying(255) NOT NULL,
+    "display_name" character varying(100),
+    "link" character varying(255),
     "created" timestamptz NOT NULL,
     "modified" timestamptz
 );
