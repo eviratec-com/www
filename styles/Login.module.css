@@ -13,11 +13,15 @@
     rgb(var(--background-start-rgb));
 }
 
-
 /* Mobile */
 @media screen and (max-width: 700px) {
   .main {
+    min-height: 60vh;
     padding: 2rem 1rem 2rem;
+  }
+
+  .posts {
+    width: 100%;
   }
 }
 

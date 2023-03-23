@@ -1,0 +1,37 @@
+._ {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  width: 100%;
+}
+
+._ form {
+  flex: 1;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+._ form textarea {
+  flex: 1;
+  display: flex;
+}
+
+._ form button {
+  display: flex;
+  width: 100px;
+  min-width: 80px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile */
+@media screen and (max-width: 700px) {
+  ._ {
+
+  }
+}
