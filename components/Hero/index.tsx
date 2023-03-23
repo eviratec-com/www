@@ -1,6 +1,9 @@
+import { useContext } from 'react'
 import React from 'react'
 
 import Link from 'next/link'
+
+import SessionContext from '@/contexts/SessionContext'
 
 import styles from './Hero.module.css'
 
@@ -10,6 +13,8 @@ type MenuItem = {
 }
 
 export default function Hero() {
+  const session = useContext(SessionContext)
+
   const menu: MenuItem[] = [{
     label: 'About',
     link: '#about',
@@ -39,6 +44,14 @@ export default function Hero() {
 
         <div className={styles.navigation}>
           <ol>
+            {session.currentSession && session.currentSession.token &&
+              <li>
+                <Link href={'/feeds'} scroll={false}>
+                  Feeds
+                </Link>
+              </li>
+            }
+            
             {menu.map((item: MenuItem, index: number) => {
               return (
                 <li key={index}>
