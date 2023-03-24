@@ -8,7 +8,7 @@ export default function Toolbar() {
   return (
     <div className={styles._}>
       <div className={styles.logo}>
-        CM
+        <Link href='/' scroll={true}>Eviratec</Link>
       </div>
 
       <div className={styles.spacer}></div>

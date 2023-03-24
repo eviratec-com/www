@@ -17,6 +17,20 @@
 
 .logo {
   font-size: 2rem;
+  background: url("/icon.png") no-repeat;
+  height: 32px;
+  background-size: contain;
+  background-position: left;
+  margin: 9px 0;
+}
+
+.logo a {
+  padding-left: 40px;
+  display: flex;
+  line-height: 32px;
+  font-size: 1.4rem;
+  font-weight: 200;
+  color: rgba(255,255,255,0.9);
 }
 
 .spacer {

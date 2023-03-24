@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import styles from '@/styles/Feed.module.css'
+import styles from '@/styles/Feeds.module.css'
 
 import fetchFeeds from '@/functions/fetchFeeds'
 
@@ -35,7 +35,7 @@ const Feed: NextPage<Props> = ({ feeds }: InferGetServerSidePropsType<typeof get
   return (
     <>
       <Head>
-        <title>Callan Milne &#12296;@eviratec&#12297;</title>
+        <title>Eviratec Feeds</title>
         <meta name="description" content="TypeScript, React.js, Next.js, MongoDB/MySQL, PHP, and AWS" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -50,10 +50,10 @@ const Feed: NextPage<Props> = ({ feeds }: InferGetServerSidePropsType<typeof get
       <main className={styles.main}>
         <h1>Feeds</h1>
 
-        <div className={styles.posts}>
+        <div className={styles.feeds}>
           {allFeeds.map((feed: Feed, i: number) => {
             return (
-              <div className={styles.post} key={i}>
+              <div className={styles.feed} key={i}>
                 <Link href={`/${feed.slug}`}>{feed.name}</Link>
               </div>
             )

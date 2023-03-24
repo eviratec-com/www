@@ -23,11 +23,26 @@
   flex: 1;
 }
 
-.copyright {
+.rhs {
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
   font-size: 0.9rem;
   font-weight: 200;
+}
+
+.copyright {
+  display: flex;
   color: rgba(255,255,255,0.8);
+}
+
+.login {
+
+}
+
+.login a {
+  text-decoration: underline;
 }
 
 @media (prefers-color-scheme: light) {
