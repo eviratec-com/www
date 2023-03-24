@@ -25,12 +25,12 @@ const Feed: NextPage<Props> = ({ feeds }: InferGetServerSidePropsType<typeof get
   const session = useContext(SessionContext)
 
   const [allFeeds, setAllFeeds] = useState<Feed[]>(feeds)
-
-  useEffect(() => {
-    if (!session.currentSession || !session.currentSession.token) {
-      router.push('/login')
-    }
-  }, [session])
+  // 
+  // useEffect(() => {
+  //   if (!session.currentSession || !session.currentSession.token) {
+  //     router.push('/login')
+  //   }
+  // }, [session])
 
   return (
     <>
