@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(77,0,153,1);
+  background: rgba(var(--toolbar-rgb), 1);
   border-bottom: 1px solid rgba(255,255,255,0.2);
   box-shadow: 0 1px 20px 5px rgba(0,0,0,0.25);
   padding: 0 6rem;

@@ -11,17 +11,10 @@
 }
 
 ._ p a {
-  color: rgba(177,117,234,1);
+  color: rgba(var(--link-rgb),1);
   font-weight: 400;
   text-decoration: underline;
 }
-
-@media (prefers-color-scheme: light) {
-  ._ p a {
-    color: rgba(77,0,153,1);
-  }
-}
-
 
 /* Mobile */
 @media screen and (max-width: 700px) {
