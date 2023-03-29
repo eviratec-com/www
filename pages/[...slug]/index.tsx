@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { ReactNode, useCallback, useContext, useEffect, useState } from 'react'
 import { InferGetServerSidePropsType } from 'next'
 import { GetServerSideProps } from 'next'
 import type { NextPage } from 'next'
@@ -40,13 +40,7 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
 
   const onNewPost = useCallback((newPost: Post): void => {
     setAllPosts([
-      {
-        id: newPost.id,
-        author: newPost.author,
-        content: newPost.content,
-        created: newPost.created,
-        published: newPost.published,
-      },
+      newPost,
       ...allPosts
     ])
   }, [allPosts, setAllPosts]);
@@ -75,7 +69,7 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
         <h1>{feed.name}</h1>
 
         {session.currentSession && session.currentSession.token &&
-          <div className={styles['post-form-wrapper']}>
+          <div className={styles.postFormWrapper}>
             <PostForm feed={slug.join('/')} onNewPost={onNewPost} />
           </div>
         }
@@ -84,8 +78,32 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
           {allPosts.map((post: Post, i: number) => {
             return (
               <div className={styles.post} key={i}>
-                <div>{post.content}</div>
-                <div className={styles['post-date']}>
+                <div className={styles.postContent}>{post.content}</div>
+
+                {post.images && post.images.length > 0 &&
+                  <div className={`${styles.postImages} ${1 === post.images.length ? styles.fullSize : ''}`}>
+                    {post.images.map((imageUrl: string, i: number): ReactNode => {
+                      return (
+                        <div className={`${styles.postImage}`} key={i}>
+                          <div>
+                            <Image
+                              src={imageUrl}
+                              alt={`User photo upload`}
+                              fill
+                              sizes={post.images.length > 2 ? `(max-width: 768px) 50vw,
+                                400px` : '800px'}
+                              style={{
+                                objectFit: 'cover',
+                              }}
+                            />
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                }
+
+                <div className={styles.postDate}>
                   {postDate(post.created)} | <AuthorLink author={post.author} />
                 </div>
               </div>

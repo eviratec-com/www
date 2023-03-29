@@ -5,7 +5,7 @@ import verifyReqUser from '@/functions/verifyReqUser'
 import fetchFeedBySlug from '@/functions/fetchFeedBySlug'
 
 import type { User } from '@/types/User'
-import type { Post } from '@/types/Post'
+import type { Post, NewPostWithId } from '@/types/Post'
 import type { Feed } from '@/types/Feed'
 
 export default async function handler(
@@ -24,11 +24,21 @@ export default async function handler(
 
     const f: Feed = await fetchFeedBySlug(req.body.feed)
 
-    const p: Post = await createPost({
+    const d: NewPostWithId = {
       feed: f.id,
       author: u.id,
       content: req.body.content,
-    })
+    }
+
+    if (req.body.images && req.body.images.length > 0) {
+      d.images = req.body.images
+    }
+
+    if (req.body.link && req.body.link.length > 0) {
+      d.link = req.body.link
+    }
+
+    const p: Post = await createPost(d)
 
     res.status(200).json(p)
   }

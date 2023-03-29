@@ -13,12 +13,12 @@
     rgb(var(--background-start-rgb));
 }
 
-.post-form-wrapper,
+.postFormWrapper,
 .posts {
   margin-top: 3rem;
 }
 
-.post-form-wrapper {
+.postFormWrapper {
   background-color: rgba(var(--background-end-rgb), 1);
   color: rgb(var(--foreground-rgb));
   padding: 0;
@@ -42,11 +42,43 @@
   margin-bottom: 0.5rem;
 }
 
-.post div {
+.post div.postImages {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0.25rem;
+  background-color: rgba(var(--background-start-rgb), 1);
+  margin: 0.75rem -1rem 0.75rem;
+}
+
+.post div.postImages div.postImage {
+  display: flex;
+  width: 50%;
+  padding: 0.25rem;
+  height: 300px;
+  position: relative;
+}
+
+.post div.postImages.fullSize div.postImage {
+  width: 100%;
+  height: 600px;
+}
+
+.post div.postImages div.postImage div {
+  display: flex;
+  position: relative;
+  flex: 1;
+  background-color: rgba(var(--foreground-rgb), 0.1);
+}
+
+.post div.postContent,
+.post div.postDate {
   font-weight: 200;
 }
 
-.post div.post-date {
+.post div.postDate {
   font-size: 0.8rem;
   color: rgba(var(--foreground-rgb), 0.5);
 }
@@ -57,7 +89,7 @@
     padding: 2rem 1rem 2rem;
   }
 
-  .post-form-wrapper,
+  .postFormWrapper,
   .posts {
     margin-top: 1rem;
     width: 100%;
@@ -65,6 +97,15 @@
 
   .main h1 {
     margin-top: 2rem;
+  }
+
+  .post div.postImages.fullSize div.postImage {
+    width: 100%;
+    height: 40vh;
+  }
+
+  .post div.postImages div.postImage {
+    height: 20vh;
   }
 }
 

@@ -1,17 +1,11 @@
 import type { UserProfile } from '@/types/User'
-import type { Post } from '@/types/Post'
+import type { Post, NewPostWithId } from '@/types/Post'
 
 import { v4 as uuidv4 } from 'uuid'
 
 import dbClient from '@/db'
 
 import fetchUserProfileById from './fetchUserProfileById'
-
-export interface NewPost {
-  feed: number
-  author: number
-  content: string
-}
 
 interface NewFeedPost {
   post: number
@@ -24,7 +18,7 @@ interface FeedPost {
   published: number
 }
 
-export default async function createPost(d: NewPost): Promise<Post> {
+export default async function createPost(d: NewPostWithId): Promise<Post> {
   const p: Post = await insertPost(d)
   const feedPost: FeedPost = await insertFeedPost({
     post: p.id,
@@ -37,22 +31,47 @@ export default async function createPost(d: NewPost): Promise<Post> {
   return p
 }
 
-async function insertPost(d: NewPost): Promise<Post> {
+async function insertPost(d: NewPostWithId): Promise<Post> {
   const a: UserProfile = await fetchUserProfileById(d.author)
   const p: Promise<Post> = new Promise((resolve, reject) => {
     const client: any = dbClient()
-    const query: string = `INSERT INTO "posts" ("author", "content", "created") `
-      + `VALUES ($1::integer, $2::text, CURRENT_TIMESTAMP) `
-      + `RETURNING *`
 
+    const fields: ([string, string, (string|number)]|[string, string, number])[] = [
+      ["author", "integer", d.author],
+      ["content", "text", d.content],
+    ]
+
+    if (d.images) {
+      fields.push(["images", "text", d.images.join("\n")])
+    }
+
+    if (d.link) {
+      fields.push(["link", "text", d.link])
+    }
+
+    const query: string = 'INSERT INTO "posts" ('
+      + fields.map((f, i) => `"${f[0]}"`).join(', ')
+      + `, "created") VALUES (`
+      + fields.map((f, i) => `$${i+1}::${f[1]}`).join(', ')
+      + `, CURRENT_TIMESTAMP) `
+      + `RETURNING *`
+    
     client.connect()
 
-    client.query(query, [d.author, d.content], (err, res) => {
+    client.query(query, [...fields.map(f => f[2])], (err, res) => {
       if (err) return reject(err)
 
       const result = {...res.rows[0]}
 
       result.author = a
+
+      if (!result.link)
+        delete result.link
+
+      if (!result.images)
+        delete result.images
+      else
+        result.images = result.images.split(/\n/)
 
       resolve(result)
 

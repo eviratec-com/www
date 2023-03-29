@@ -6,12 +6,7 @@ import styles from './PostForm.module.css'
 
 import SessionContext from '@/contexts/SessionContext'
 
-import type { Post } from '@/types/Post'
-
-interface NewPost {
-  feed: string
-  content: string
-}
+import type { Post, NewPost } from '@/types/Post'
 
 interface NewFiles {
   files: File[]
@@ -56,6 +51,10 @@ export default function PostForm({ feed, onNewPost }: Props) {
       'Content-Type': 'application/json',
     }
 
+    if (imageUrls.length > 0) {
+      c.images = [...imageUrls]
+    }
+
     fetch('/api/post', { method: 'POST', body: JSON.stringify(c), headers: headers })
       .then((result) => {
         if (400 === result.status) {
@@ -66,6 +65,7 @@ export default function PostForm({ feed, onNewPost }: Props) {
         }
         setSuccess(true)
         setContent('')
+        setImageUrls([])
         setLink('about:blank')
 
         result.json().then(json => {
@@ -77,7 +77,7 @@ export default function PostForm({ feed, onNewPost }: Props) {
         setError(err.message)
       })
 
-  }, [feed, link, content, session])
+  }, [feed, link, content, imageUrls, session])
 
   const addFiles = useCallback((newFiles: File[]): void => {
     setFiles([...newFiles, ...files])
@@ -193,29 +193,31 @@ export default function PostForm({ feed, onNewPost }: Props) {
       {PostFormTab.ImageUpload === activeTab &&
         <form>
           <div className={styles.imageUploader}>
-            <div className={styles.uploaderForm}>
-              <input
-                className={styles.fileUpload}
-                name="upload"
-                type="file"
-                accept="image/*"
-                onChange={onSelectFiles}
-                multiple
-              />
+            {files.length < 1 &&
+              <div className={styles.uploaderForm}>
+                <input
+                  className={styles.fileUpload}
+                  name="upload"
+                  type="file"
+                  accept="image/*"
+                  onChange={onSelectFiles}
+                  multiple
+                />
 
-              <div className={styles.instructions}>
-                <p>Drop files here, or click to select.</p>
+                <div className={styles.instructions}>
+                  <p>Drop files here, or click to select.</p>
+                </div>
               </div>
-            </div>
+            }
 
             {files && files.length > 0 &&
               <>
-                <p>Uploading...</p>
+                <div className={styles.notice}><p>Uploading...</p></div>
                 <div className={styles.fileList}>
                   {files.map((file: File, i: number): ReactNode => {
                     return (
                       <div className={styles.fileListItem} key={i}>
-                        <img src={URL.createObjectURL(file)} height="100" />
+                        <img src={URL.createObjectURL(file)} height="100" alt="User upload" />
                       </div>
                     )
                   })}
