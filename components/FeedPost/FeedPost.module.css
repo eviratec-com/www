@@ -1,0 +1,69 @@
+._ {
+  background-color: rgba(var(--background-end-rgb), 1);
+  color: rgb(var(--foreground-rgb));
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(var(--foreground-rgb), 0.2);
+  box-shadow: 0px 1px 25px 0px rgba(0,0,0,0.25);
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+._ div.postImages {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0.25rem;
+  background-color: rgba(var(--background-start-rgb), 1);
+  margin: 0.75rem -1rem 0.75rem;
+}
+
+._ div.postImages div.postImage {
+  display: flex;
+  width: 50%;
+  padding: 0.25rem;
+  height: 300px;
+  position: relative;
+}
+
+._ div.postImages.fullSize div.postImage {
+  width: 100%;
+  height: 600px;
+}
+
+._ div.postImages div.postImage div {
+  display: flex;
+  position: relative;
+  flex: 1;
+  background-color: rgba(var(--foreground-rgb), 0.1);
+}
+
+._ div.postContent,
+._ div.postDate {
+  font-weight: 200;
+}
+
+._ div.postDate {
+  font-size: 0.8rem;
+  color: rgba(var(--foreground-rgb), 0.5);
+}
+
+._ div.postImages {
+}
+
+/* Mobile */
+@media screen and (max-width: 700px) {
+  ._ {
+    
+  }
+
+  ._ div.postImages.fullSize div.postImage {
+    width: 100%;
+    height: 40vh;
+  }
+
+  ._ div.postImages div.postImage {
+    height: 20vh;
+  }
+}

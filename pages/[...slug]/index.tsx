@@ -11,8 +11,9 @@ import fetchFeedBySlug from '@/functions/fetchFeedBySlug'
 import fetchPostsByFeedSlug from '@/functions/fetchPostsByFeedSlug'
 
 import Footer from '@/components/Footer'
+import FeedPost from '@/components/FeedPost'
 import PostForm from '@/components/PostForm'
-import AuthorLink from '@/components/AuthorLink'
+import FeedPageHeading from '@/components/FeedPageHeading'
 
 import SessionContext from '@/contexts/SessionContext'
 
@@ -32,12 +33,6 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
 
   const [allPosts, setAllPosts] = useState<Post[]>(posts)
 
-  function postDate (input: number): string {
-    const d = new Date(input)
-
-    return `${d.getDate()}/${d.getMonth()}/${d.getFullYear()} at ${d.getHours()}:${d.getMinutes()}`
-  }
-
   const onNewPost = useCallback((newPost: Post): void => {
     setAllPosts([
       newPost,
@@ -52,7 +47,7 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
   return (
     <>
       <Head>
-        <title>{feed.name} - Eviratec</title>
+        <title>{`${feed.name} - Eviratec`}</title>
         <meta name="description" content={`${feed.name} on Eviratec`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -66,7 +61,9 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
       </Head>
 
       <main className={styles.main}>
-        <h1>{feed.name}</h1>
+        <FeedPageHeading>
+          {feed.name}
+        </FeedPageHeading>
 
         {session.currentSession && session.currentSession.token &&
           <div className={styles.postFormWrapper}>
@@ -77,35 +74,8 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
         <div className={styles.posts}>
           {allPosts.map((post: Post, i: number) => {
             return (
-              <div className={styles.post} key={i}>
-                <div className={styles.postContent}>{post.content}</div>
-
-                {post.images && post.images.length > 0 &&
-                  <div className={`${styles.postImages} ${1 === post.images.length ? styles.fullSize : ''}`}>
-                    {post.images.map((imageUrl: string, i: number): ReactNode => {
-                      return (
-                        <div className={`${styles.postImage}`} key={i}>
-                          <div>
-                            <Image
-                              src={imageUrl}
-                              alt={`User photo upload`}
-                              fill
-                              sizes={post.images.length > 2 ? `(max-width: 768px) 50vw,
-                                400px` : '800px'}
-                              style={{
-                                objectFit: 'cover',
-                              }}
-                            />
-                          </div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                }
-
-                <div className={styles.postDate}>
-                  {postDate(post.created)} | <AuthorLink author={post.author} />
-                </div>
+              <div className={styles.postWrapper} key={i}>
+                <FeedPost post={post} />
               </div>
             )
           })}

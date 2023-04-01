@@ -52,7 +52,7 @@ export default function LoginForm() {
         setSuccess(false)
         setError(err.message)
       })
-  }, [username, password, session])
+  }, [username, password, session, router])
 
   return (
     <div className={styles._}>

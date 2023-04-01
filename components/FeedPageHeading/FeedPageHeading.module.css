@@ -1,0 +1,10 @@
+._ {
+  font-weight: 200;
+}
+
+/* Mobile */
+@media screen and (max-width: 700px) {
+  ._ {
+    margin-top: 2rem;
+  }
+}

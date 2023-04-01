@@ -31,7 +31,7 @@ export default function PostForm({ feed, onNewPost }: Props) {
   const session = useContext(SessionContext)
 
   const [content, setContent] = useState<string>('')
-  const [link, setLink] = useState<string>('about:blank')
+  const [link, setLink] = useState<string>('')
   const [success, setSuccess] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [files, setFiles] = useState<File[]>([])
@@ -55,6 +55,10 @@ export default function PostForm({ feed, onNewPost }: Props) {
       c.images = [...imageUrls]
     }
 
+    if (link.length > 0) {
+      c.link = link
+    }
+
     fetch('/api/post', { method: 'POST', body: JSON.stringify(c), headers: headers })
       .then((result) => {
         if (400 === result.status) {
@@ -66,7 +70,7 @@ export default function PostForm({ feed, onNewPost }: Props) {
         setSuccess(true)
         setContent('')
         setImageUrls([])
-        setLink('about:blank')
+        setLink('')
 
         result.json().then(json => {
           onNewPost(json)
@@ -77,7 +81,7 @@ export default function PostForm({ feed, onNewPost }: Props) {
         setError(err.message)
       })
 
-  }, [feed, link, content, imageUrls, session])
+  }, [feed, link, content, imageUrls, session, onNewPost])
 
   const addFiles = useCallback((newFiles: File[]): void => {
     setFiles([...newFiles, ...files])
@@ -127,7 +131,7 @@ export default function PostForm({ feed, onNewPost }: Props) {
         setSuccess(false)
         setError(err.message)
       })
-  }, [files, imageUrls])
+  }, [addFiles, imageUrls, session.currentSession.token])
 
   const tabClass = useCallback((tab: PostFormTab): string => {
     const isSelected: boolean = activeTab === tab
