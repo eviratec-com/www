@@ -56,10 +56,10 @@ export default function LoginForm() {
 
   return (
     <div className={styles._}>
-      <div className={styles['form-wrapper']}>
+      <div className={styles.formWrapper}>
         <form name="login" onSubmit={handleSubmit}>
-          <div className={styles['input-field']}>
-            <label htmlFor={usernameInputId}>Username:</label>
+          <div className={styles.inputField}>
+            <label htmlFor={usernameInputId}>Username</label>
             <input
               id={usernameInputId}
               value={username}
@@ -68,8 +68,8 @@ export default function LoginForm() {
             />
           </div>
 
-          <div className={styles['input-field']}>
-            <label htmlFor={passwordInputId}>Password:</label>
+          <div className={styles.inputField}>
+            <label htmlFor={passwordInputId}>Password</label>
             <input
               id={passwordInputId}
               value={password}
@@ -79,7 +79,7 @@ export default function LoginForm() {
             />
           </div>
 
-          <div className={styles['submit-button']}>
+          <div className={styles.submitButtonWrapper}>
             <button type="submit">Login</button>
           </div>
         </form>

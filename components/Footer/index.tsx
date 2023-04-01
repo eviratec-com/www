@@ -11,8 +11,16 @@ export default function Footer() {
 
   return (
     <div className={styles._}>
-      <div className={styles.developer}>
-        Created by <Link href="https://www.eviratec.com.au">Callan Milne</Link>
+      <div className={styles.lhs}>
+        <div className={styles.links}>
+          <Link href={`/recent`}>Recent Posts</Link>
+          <span className={styles.linkSeparator}> | </span>
+          <Link href={`/feeds`}>Browse Topics</Link>
+        </div>
+
+        <div className={styles.developer}>
+          Created by <Link href="https://www.eviratec.com.au">Callan Milne</Link>
+        </div>
       </div>
 
       <div className={styles.spacer}></div>

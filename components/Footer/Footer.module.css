@@ -8,14 +8,42 @@
   color: #fff;
 }
 
-.developer {
+.lhs {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   font-size: 0.9rem;
   font-weight: 200;
 }
 
-.developer a {
+.links,
+.copyright {
+  margin-bottom: 0.35rem;
+}
+
+.lhs .developer {
+  display: flex;
+  flex-direction: row;
+}
+
+.lhs .developer a {
   margin-left: 0.3rem;
+  color: rgb(var(--link-rgb));
+}
+
+.lhs .links {
+  display: flex;
+  flex-direction: row;
+}
+
+.lhs .links a {
+  text-decoration: underline;
+  color: rgb(var(--link-rgb));
+}
+
+.lhs .links .linkSeparator {
+  margin: 0 0.35rem;
 }
 
 .spacer {
@@ -43,6 +71,7 @@
 
 .login a {
   text-decoration: underline;
+  color: rgb(var(--link-rgb));
 }
 
 @media (prefers-color-scheme: light) {

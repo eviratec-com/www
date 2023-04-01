@@ -13,6 +13,10 @@
     rgb(var(--background-start-rgb));
 }
 
+.main h1 {
+  font-weight: 200;
+}
+
 /* Mobile */
 @media screen and (max-width: 700px) {
   .main {
