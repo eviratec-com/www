@@ -10,6 +10,34 @@ interface Props {
   post: Post
 }
 
+function postImageLoader({ src, width, quality }) {
+  if (!src) {
+    return src
+  }
+
+  const size: string = width <= 100 ? 'thumbnail'
+    : width <= 200 ? 'small'
+    : width <= 400 ? 'medium'
+    : 'large'
+
+  const [
+    protocol,
+    domain,
+    container,
+    user,
+    year,
+    month,
+    day,
+    filename
+  ] = src.replace(/\/\//g, '/').split('/')
+
+  if (!year || Number(`${year}${month}${day}`) < 20230409) {
+    return src
+  }
+
+  return src.replace('/eviratec-photos-ar/', `/${size}/`)
+}
+
 export default function FeedPost({ post }: Props) {
   function postDate (input: number): string {
     const d = new Date(input)
@@ -28,6 +56,7 @@ export default function FeedPost({ post }: Props) {
               <div className={`${styles.postImage}`} key={i}>
                 <div>
                   <Image
+                    loader={postImageLoader}
                     src={imageUrl}
                     alt={`User photo upload`}
                     fill

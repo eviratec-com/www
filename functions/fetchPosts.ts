@@ -20,8 +20,6 @@ export default async function fetchPosts(limit?: number): Promise<Post[]> {
     client.query(query, [_l], (err, res) => {
       if (err) return reject(err)
 
-      resolve(res.rows)
-
       resolve(res.rows.map(row => {
         if (!row.link)
           delete row.link
