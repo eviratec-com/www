@@ -11,6 +11,7 @@ interface Props {
 }
 
 function postImageLoader({ src, width, quality }) {
+  console.log(width)
   if (!src) {
     return src
   }
@@ -31,11 +32,11 @@ function postImageLoader({ src, width, quality }) {
     filename
   ] = src.replace(/\/\//g, '/').split('/')
 
-  if (!year || Number(`${year}${month}${day}`) < 20230409) {
+  if (!year || Number(`${year}${month.padStart(2, '0')}${day.padStart(2, '0')}`) < 20230409) {
     return src
   }
 
-  return src.replace('/eviratec-photos-ar/', `/${size}/`)
+  return src.replace(/\/eviratec\-photos\-ar\//, `/${size}`)
 }
 
 export default function FeedPost({ post }: Props) {
