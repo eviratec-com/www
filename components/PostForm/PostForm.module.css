@@ -61,6 +61,8 @@
 }
 
 ._ form div.postFields button {
+  background: rgb(var(--link-rgb));
+  border: none;
   display: flex;
   width: 100px;
   min-width: 80px;

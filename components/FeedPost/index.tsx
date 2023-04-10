@@ -32,7 +32,7 @@ function postImageLoader({ src, width, quality }) {
     filename
   ] = src.replace(/\/\//g, '/').split('/')
 
-  if (!year || Number(`${year}${month.padStart(2, '0')}${day.padStart(2, '0')}`) < 20230409) {
+  if (!year || Number(`${year}${month.padStart(2, '0')}${day.padStart(2, '0')}`) < 20230410) {
     return src
   }
 
