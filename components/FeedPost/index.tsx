@@ -43,7 +43,14 @@ export default function FeedPost({ post }: Props) {
   function postDate (input: number): string {
     const d = new Date(input)
 
-    return `${d.getDate()}/${d.getMonth()}/${d.getFullYear()} at ${d.getHours()}:${d.getMinutes()}`
+    const _date: string = String(d.getDate())
+    const _month: string = String(d.getMonth()+1)
+    const _year: string = String(d.getFullYear())
+
+    const _hours: string = String(d.getHours()).padStart(2, '0')
+    const _minutes: string = String(d.getMinutes()).padStart(2, '0')
+
+    return `${_date}/${_month}/${_year} at ${_hours}:${_minutes}`
   }
 
   return (
