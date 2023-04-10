@@ -68,7 +68,7 @@ export default function FeedPost({ post }: Props) {
                     src={imageUrl}
                     alt={`User photo upload`}
                     fill
-                    sizes={post.images.length > 2 ? `(max-width: 768px) 50vw,
+                    sizes={post.images.length >= 2 ? `(max-width: 768px) 50vw,
                       400px` : '800px'}
                     style={{
                       objectFit: 'cover',
