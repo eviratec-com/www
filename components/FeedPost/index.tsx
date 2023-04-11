@@ -58,10 +58,11 @@ export default function FeedPost({ post, showFeedLink }: Props) {
   return (
     <article className={styles._}>
       <header className={styles.postHeader}>
+        <h2>{post.content}</h2>
+        
         {true === showFeedLink &&
           <FeedLink feed={post.feed} />
         }
-        <h2>{post.content}</h2>
       </header>
 
       {post.images && post.images.length > 0 &&

@@ -75,7 +75,7 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
           {allPosts.map((post: Post, i: number) => {
             return (
               <div className={styles.postWrapper} key={i}>
-                <FeedPost post={post} showFeedLink={`/${feed.slug}` !== post.author.link} />
+                <FeedPost post={post} showFeedLink={false} />
               </div>
             )
           })}

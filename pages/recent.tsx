@@ -58,7 +58,7 @@ const RecentPostsPage: NextPage<Props> = ({ posts }: InferGetServerSidePropsType
           {allPosts.map((post: Post, i: number) => {
             return (
               <div className={styles.postWrapper} key={i}>
-                <FeedPost post={post} />
+                <FeedPost post={post} showFeedLink={true} />
               </div>
             )
           })}

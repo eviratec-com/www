@@ -42,6 +42,7 @@
 ._ header.postHeader,
 ._ footer.postFooter {
   font-weight: 200;
+  font-size: 0.8rem;
 }
 
 ._ header.postHeader h2 {
