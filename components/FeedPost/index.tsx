@@ -2,12 +2,14 @@ import React, { ReactNode } from 'react'
 import Image from 'next/image'
 import styles from './FeedPost.module.css'
 
+import FeedLink from '@/components/FeedLink'
 import AuthorLink from '@/components/AuthorLink'
 
 import type { Post } from '@/types/Post'
 
 interface Props {
   post: Post
+  showFeedLink?: boolean
 }
 
 function postImageLoader({ src, width, quality }) {
@@ -39,7 +41,7 @@ function postImageLoader({ src, width, quality }) {
   return src.replace(/\/eviratec\-photos\-ar\//, `/${size}`)
 }
 
-export default function FeedPost({ post }: Props) {
+export default function FeedPost({ post, showFeedLink }: Props) {
   function postDate (input: number): string {
     const d = new Date(input)
 
@@ -56,6 +58,9 @@ export default function FeedPost({ post }: Props) {
   return (
     <article className={styles._}>
       <header className={styles.postHeader}>
+        {true === showFeedLink &&
+          <FeedLink feed={post.feed} />
+        }
         <h2>{post.content}</h2>
       </header>
 

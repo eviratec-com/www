@@ -1,4 +1,5 @@
 import type { UserProfile } from './User'
+import type { Feed } from './Feed'
 
 export type NewPost = {
   feed: string
@@ -22,5 +23,6 @@ export type Post = {
   created: number
   images?: string[]
   link?: string
+  feed?: Feed
   published: number|null
 }
