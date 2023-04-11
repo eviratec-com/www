@@ -54,11 +54,13 @@ export default function FeedPost({ post }: Props) {
   }
 
   return (
-    <div className={styles._}>
-      <div className={styles.postContent}>{post.content}</div>
+    <article className={styles._}>
+      <header className={styles.postHeader}>
+        <h2>{post.content}</h2>
+      </header>
 
       {post.images && post.images.length > 0 &&
-        <div className={`${styles.postImages} ${1 === post.images.length ? styles.fullSize : ''}`}>
+        <section className={`${styles.postImages} ${1 === post.images.length ? styles.fullSize : ''}`}>
           {post.images.map((imageUrl: string, i: number): ReactNode => {
             return (
               <div className={`${styles.postImage}`} key={i}>
@@ -78,12 +80,16 @@ export default function FeedPost({ post }: Props) {
               </div>
             )
           })}
-        </div>
+        </section>
       }
 
-      <div className={styles.postDate}>
-        {postDate(post.created)} | <AuthorLink author={post.author} />
-      </div>
-    </div>
+      <footer className={styles.postFooter}>
+        <time dateTime={(new Date(post.created)).toISOString()}>
+          {postDate(post.created)}
+        </time>
+        <span>&nbsp;|&nbsp;</span>
+        <AuthorLink author={post.author} />
+      </footer>
+    </article>
   )
 }

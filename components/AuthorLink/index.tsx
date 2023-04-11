@@ -11,8 +11,8 @@ export interface Props {
 
 export default function AuthorLink({ author }: Props) {
   return (
-    <div className={styles._}>
+    <address className={styles._}>
       By <Link href={author.link}>{author.display_name}</Link>
-    </div>
+    </address>
   )
 }
