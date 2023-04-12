@@ -8,7 +8,7 @@ export default async function handler(
   res: NextApiResponse<Reply[]|Error>
 ) {
   try {
-    res.status(200).json(await fetchRepliesByPost(req.query.post))
+    res.status(200).json(await fetchRepliesByPost(Number(`${req.query.post}`)))
   }
   catch (err) {
     res.status(400).json({
