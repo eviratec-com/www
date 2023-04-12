@@ -1,9 +1,9 @@
 ._ {
   background-color: rgba(var(--background-end-rgb), 1);
   color: rgb(var(--foreground-rgb));
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 1rem 0rem;
   border: 1px solid rgba(var(--foreground-rgb), 0.2);
-  box-shadow: 0px 1px 25px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.25);
   margin-bottom: 0.5rem;
   width: 100%;
 }
@@ -53,10 +53,73 @@
 ._ footer.postFooter {
   font-size: 0.8rem;
   color: rgba(var(--foreground-rgb), 0.5);
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-bottom: 0.8rem;
 }
 
-._ footer.postFooter {
+._ footer.postFooter div.commentButtons {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
+
+._ footer.postFooter div.commentButtons button.toggleCommentForm {
+  height: 26px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 0.4rem;
+  font-size: 0.9rem;
+  line-height: 24px;
+  font-weight: 200;
+  background: linear-gradient(to bottom, #fafafa 0%, #eee 100%);
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+._ section.commentForm {
+  margin: 1rem -1rem -1rem;
+}
+
+._ section.comments {
+  border-top: 4px solid rgba(var(--foreground-rgb), 0.25);
+  margin: 1rem -1rem 0rem;
+  padding: 0.5rem 1rem 1.5rem;
+  background-color: #fafafa;
+}
+
+._ section.comments div.comment {
+  border-top: 4px solid rgba(var(--foreground-rgb), 0.25);
+  margin-top: 1rem;
+}
+
+._ div.loadingReplies,
+._ div.noticeNoReplies {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 200;
+}
+
+._ div.loadingReplies > * {
+  margin: 0 0.5rem;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  ._ {
+
+  }
+
+  ._ footer.postFooter button.toggleCommentForm {
+    border: 1px solid #333;
+    background: linear-gradient(to bottom, #222 0%, #111 100%);
+  }
+}
+
 
 /* Mobile */
 @media screen and (max-width: 700px) {

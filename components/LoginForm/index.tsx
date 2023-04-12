@@ -94,7 +94,7 @@ export default function LoginForm() {
         </div>
       )}
 
-      {!error && (
+      {error && (
         <div className={styles.loginResult}>
           <p className={styles.loginError}>Error: {error}</p>
         </div>

@@ -1,11 +1,17 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
 import styles from './FeedPost.module.css'
 
+import fetchRepliesByPost from '@/functions/fetchRepliesByPost'
+
 import FeedLink from '@/components/FeedLink'
+import PostReply from '@/components/PostReply'
+import ReplyForm from '@/components/ReplyForm'
 import AuthorLink from '@/components/AuthorLink'
+import ProgressBar from '@/components/ProgressBar'
 
 import type { Post } from '@/types/Post'
+import type { Reply } from '@/types/Reply'
 
 interface Props {
   post: Post
@@ -13,7 +19,6 @@ interface Props {
 }
 
 function postImageLoader({ src, width, quality }) {
-  console.log(width)
   if (!src) {
     return src
   }
@@ -42,6 +47,29 @@ function postImageLoader({ src, width, quality }) {
 }
 
 export default function FeedPost({ post, showFeedLink }: Props) {
+  const [replies, setReplies] = useState<Reply[]>([])
+
+  const [commentsLoaded, setCommentsLoaded] = useState<boolean>(false)
+  const [commentsVisible, setCommentsVisible] = useState<boolean>(false)
+  const [commentFormVisible, setCommentFormVisible] = useState<boolean>(false)
+
+  const toggleCommentForm = useCallback((event): void => {
+    event.preventDefault()
+    setCommentFormVisible(!commentFormVisible)
+  }, [commentFormVisible, setCommentFormVisible]);
+
+  const toggleComments = useCallback((event): void => {
+    event.preventDefault()
+    setCommentsVisible(!commentsVisible)
+  }, [commentsVisible, setCommentsVisible]);
+
+  const handleNewReply = useCallback((newReply: Reply): void => {
+    setReplies([
+      newReply,
+      ...replies,
+    ])
+  }, [replies, setReplies])
+
   function postDate (input: number): string {
     const d = new Date(input)
 
@@ -55,11 +83,38 @@ export default function FeedPost({ post, showFeedLink }: Props) {
     return `${_date}/${_month}/${_year} at ${_hours}:${_minutes}`
   }
 
+  useEffect((): void => {
+    if (true !== commentsVisible)
+      return
+
+    if (replies.length > 0)
+      return
+
+    fetch(`/api/posts/${post.id}/replies`, { method: 'GET' })
+      .then((result) => {
+        if (400 === result.status) {
+          return result.json().then(json => {
+            console.log(`http/1.1 400 on fetch: /api/posts/${post.id}/replies`)
+            console.log(json)
+          })
+        }
+
+        result.json().then(replies => {
+          setReplies([...replies])
+          setCommentsLoaded(true)
+        })
+      })
+      .catch((err) => {
+        console.log(`error on fetch: /api/posts/${post.id}/replies`)
+        console.log(err)
+      })
+  }, [replies.length, post.id, commentsVisible])
+
   return (
     <article className={styles._}>
       <header className={styles.postHeader}>
         <h2>{post.content}</h2>
-        
+
         {true === showFeedLink &&
           <FeedLink feed={post.feed} />
         }
@@ -95,7 +150,55 @@ export default function FeedPost({ post, showFeedLink }: Props) {
         </time>
         <span>&nbsp;|&nbsp;</span>
         <AuthorLink author={post.author} />
+
+        <span style={{
+          display: 'flex',
+          flex: '1',
+        }}></span>
+
+        <div className={styles.commentButtons}>
+          <button className={styles.toggleCommentForm}
+            onClick={toggleComments}>
+            {commentsVisible ? 'Hide Replies' : 'Show Replies'}
+          </button>
+
+          <button className={styles.toggleCommentForm}
+            onClick={toggleCommentForm}>
+            {commentFormVisible ? 'Discard Reply' : 'Reply'}
+          </button>
+        </div>
       </footer>
+
+      {commentFormVisible &&
+        <section className={styles.commentForm}>
+          <ReplyForm post={post} onNewReply={handleNewReply} />
+        </section>
+      }
+
+      {commentsVisible &&
+        <section className={styles.comments}>
+          {replies.length > 0 && replies.map((reply: Reply, i: number) => {
+            return (
+              <div className={styles.comment} key={i}>
+                <PostReply reply={reply} />
+              </div>
+            )
+          })}
+
+          {!commentsLoaded &&
+            <div className={styles.loadingReplies}>
+              <ProgressBar />
+              <p>Loading replies...</p>
+            </div>
+          }
+
+          {commentsLoaded && replies.length === 0 &&
+            <div className={styles.noticeNoReplies}>
+              <p>No replies, yet.</p>
+            </div>
+          }
+        </section>
+      }
     </article>
   )
 }
