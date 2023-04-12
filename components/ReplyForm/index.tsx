@@ -72,7 +72,7 @@ export default function PostForm({ post, onNewReply }: Props) {
               name="content"
               value={content}
               onChange={e => setContent(e.target.value)}
-              placeholder="Start writing ..."
+              placeholder={`Reply to ${post.author.display_name} ...`}
             />
 
             <button type="submit">Reply</button>

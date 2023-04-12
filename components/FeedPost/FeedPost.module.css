@@ -61,8 +61,8 @@
 
 ._ footer.postFooter div.commentButtons {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: -4px;
+  right: -8px;
 }
 
 ._ footer.postFooter div.commentButtons button.toggleCommentForm {
@@ -80,7 +80,8 @@
 }
 
 ._ section.commentForm {
-  margin: 1rem -1rem -1rem;
+  margin: 1rem -1rem 0rem;
+  padding-bottom: 0;
 }
 
 ._ section.comments {
@@ -114,9 +115,13 @@
 
   }
 
-  ._ footer.postFooter button.toggleCommentForm {
+  ._ footer.postFooter div.commentButtons button.toggleCommentForm {
     border: 1px solid #333;
     background: linear-gradient(to bottom, #222 0%, #111 100%);
+  }
+
+  ._ section.comments {
+    background-color: #1a1a1a;
   }
 }
 
