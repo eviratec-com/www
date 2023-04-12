@@ -1,6 +1,8 @@
 import React, { useCallback, useContext, useId, useState } from 'react'
 import { useRouter } from 'next/navigation';
 
+import ProgressBar from '@/components/ProgressBar'
+
 import styles from './LoginForm.module.css'
 
 import SessionContext from '@/contexts/SessionContext'
@@ -86,11 +88,16 @@ export default function LoginForm() {
       </div>
 
       {success && (
-        <p>Login success! Redirecting...</p>
+        <div className={styles.loginResult}>
+          <ProgressBar />
+          <p className={styles.loginSuccess}>Login success! Redirecting...</p>
+        </div>
       )}
 
-      {error && (
-        <p>Error: {error}</p>
+      {!error && (
+        <div className={styles.loginResult}>
+          <p className={styles.loginError}>Error: {error}</p>
+        </div>
       )}
     </div>
   )

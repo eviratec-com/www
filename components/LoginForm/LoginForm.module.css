@@ -29,6 +29,7 @@
 ._ .formWrapper form .inputField input:focus,
 ._ .formWrapper form .inputField input:active {
   outline: none;
+  font-size: 1rem;
 }
 
 ._ .formWrapper form .inputField label {
@@ -62,6 +63,27 @@
   font-size: 1rem;
   font-weight: 200;
   line-height: 2.4rem;
+}
+
+._ .loginResult {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  font-weight: 200;
+}
+
+._ .loginResult > * {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+._ .loginResult p.loginSuccess {
+
+}
+
+._ .loginResult p.loginError {
+
 }
 
 /* Mobile */
