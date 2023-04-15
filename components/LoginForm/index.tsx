@@ -19,6 +19,7 @@ export default function LoginForm() {
 
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
@@ -26,6 +27,7 @@ export default function LoginForm() {
     event.preventDefault()
 
     setError('')
+    setLoading(true)
 
     const c: Credentials = {
       username: username,
@@ -39,18 +41,21 @@ export default function LoginForm() {
       .then((result) => {
         if (400 === result.status) {
           return result.json().then(json => {
+            setLoading(false)
             setSuccess(false)
             setError(json.message)
           })
         }
 
         result.json().then(json => {
+          setLoading(false)
           setSuccess(true)
           session.login(json)
           router.push('/feeds')
         })
       })
       .catch((err) => {
+        setLoading(false)
         setSuccess(false)
         setError(err.message)
       })
@@ -86,6 +91,12 @@ export default function LoginForm() {
           </div>
         </form>
       </div>
+
+      {loading && (
+        <div className={styles.loginResult}>
+          <ProgressBar />
+        </div>
+      )}
 
       {success && (
         <div className={styles.loginResult}>
