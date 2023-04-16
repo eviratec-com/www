@@ -1,14 +1,18 @@
+import bcrypt from 'bcrypt'
+
 export default async function compareHash(input: string, hash: string): Promise<boolean> {
+  // Check if input matches hash
+  const inputMatchesHash: boolean = await bcrypt.compare(input, hash)
 
-  // 1. Check if input matches hash
-    // return early with boolean true if input matches hash
+  // return early with boolean true if input matches hash
+  if (true === inputMatchesHash) {
+    return true
+  }
 
-  // 2. Assume hash might be a plain-text password
-    // Create hash from input (input-hash)
-    // Check if hash matches input-hash
-      // return with boolean true
+  // Assume hash might be a plain-text password
+  // Do the same check but in reverse
+  // Create hash from input (input-hash)
+  const tmpHash: string = await bcrypt.hash(input, 10)
 
-  // return boolean false
-
-  return input == hash
+  return await bcrypt.compare(hash, tmpHash)
 }

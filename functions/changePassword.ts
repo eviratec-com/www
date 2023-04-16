@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
+import bcrypt from 'bcrypt'
 
 import dbClient from '@/db'
 
@@ -6,6 +7,7 @@ export default async function changePassword(
   user: number,
   newPassword: string
 ): Promise<boolean> {
+  const newPasswordHash: string = await bcrypt.hash(newPassword, 10)
   const result: Promise<boolean> = new Promise((resolve, reject) => {
     const client: any = dbClient()
 
@@ -14,7 +16,7 @@ export default async function changePassword(
 
     client.connect()
 
-    client.query(query, [user, newPassword], (err, res) => {
+    client.query(query, [user, newPasswordHash], (err, res) => {
       if (err) return reject(err)
 
       resolve(true)
