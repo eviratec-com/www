@@ -17,7 +17,7 @@ export default async function createSession(d: NewSession): Promise<Session> {
 
     client.connect()
 
-    client.query(query, [d.user, uuidv4()], (err, res) => {
+    client.query(query, [d.user, complexSessionToken(d.user)], (err, res) => {
       if (err) return reject(err)
 
       resolve(res.rows[0])
@@ -29,4 +29,8 @@ export default async function createSession(d: NewSession): Promise<Session> {
   const result: Session = await p
 
   return result
+}
+
+function complexSessionToken(user: number): string {
+  return `v1.0/${user}/${Date.now()}/${uuidv4()}`
 }

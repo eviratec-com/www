@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 
 import Link from 'next/link'
 
+import LogoutLink from '@/components/LogoutLink'
+
 import SessionContext from '@/contexts/SessionContext'
 
 import styles from './Footer.module.css'
@@ -42,7 +44,7 @@ export default function Footer() {
               <>
                 <Link href={`/change-password`}>Change Password</Link>
                 <span>&nbsp; | &nbsp;</span>
-                <Link href={`/logout`}>Logout</Link>
+                <LogoutLink />
               </>
             }
           </>

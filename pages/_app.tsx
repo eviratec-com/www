@@ -16,10 +16,15 @@ function App({ Component, pageProps }: AppProps) {
     setCurrentSession(session)
   }, [setCurrentSession])
 
+  const logout = useCallback(() => {
+    setCurrentSession(null)
+  }, [setCurrentSession])
+
   const contextValue = useMemo(() => ({
     currentSession,
-    login
-  }), [currentSession, login])
+    login,
+    logout,
+  }), [currentSession, login, logout])
 
   return (
     <>

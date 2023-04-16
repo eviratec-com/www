@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useId, useState } from 'react'
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation'
 
 import ProgressBar from '@/components/ProgressBar'
 
