@@ -44,14 +44,12 @@ export default function Hero() {
 
         <div className={styles.navigation}>
           <ol>
-            {session.currentSession && session.currentSession.token &&
-              <li>
-                <Link href={'/feeds'} scroll={false}>
-                  Feeds
-                </Link>
-              </li>
-            }
-            
+            <li>
+              <Link href={'/feeds'} scroll={false}>
+                Feeds
+              </Link>
+            </li>
+
             {menu.map((item: MenuItem, index: number) => {
               return (
                 <li key={index}>
