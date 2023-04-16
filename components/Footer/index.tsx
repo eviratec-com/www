@@ -39,7 +39,11 @@ export default function Footer() {
 
           <>
             {session.currentSession && session.currentSession.token &&
-              <Link href={`/`}>Logout</Link>
+              <>
+                <Link href={`/change-password`}>Change Password</Link>
+                <span>&nbsp; | &nbsp;</span>
+                <Link href={`/logout`}>Logout</Link>
+              </>
             }
           </>
         </div>

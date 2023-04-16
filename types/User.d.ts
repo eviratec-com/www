@@ -6,6 +6,7 @@ export type User = {
   display_name: string
   link: string
   created: number
+  modified?: number
 }
 
 export type UserProfile = {
