@@ -74,7 +74,7 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
         <div className={styles.posts}>
           {allPosts.map((post: Post, i: number) => {
             return (
-              <div className={styles.postWrapper} key={i}>
+              <div className={styles.postWrapper} key={post.id}>
                 <FeedPost post={post} showFeedLink={false} />
               </div>
             )
