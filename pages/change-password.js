@@ -17,7 +17,7 @@ export default function ChangePassword() {
         <meta property="og:title" content="Login - Eviratec" />
         <meta property="og:description" content="Eviratec Social Feed Change Password Form" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.eviratec.com.au" />
+        <meta property="og:url" content="https://www.eviratec.com.au/change-password" />
         <meta property="og:image" content="https://www.eviratec.com.au/og.png" />
       </Head>
 

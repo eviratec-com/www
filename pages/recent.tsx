@@ -45,7 +45,7 @@ const RecentPostsPage: NextPage<Props> = ({ posts }: InferGetServerSidePropsType
         <meta property="og:title" content="Recent Posts - Eviratec" />
         <meta property="og:description" content="Recent posts on Eviratec" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.eviratec.com.au" />
+        <meta property="og:url" content="https://www.eviratec.com.au/recent" />
         <meta property="og:image" content="https://www.eviratec.com.au/og.png" />
       </Head>
 

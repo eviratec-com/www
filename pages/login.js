@@ -17,7 +17,7 @@ export default function Home() {
         <meta property="og:title" content="Login - Eviratec" />
         <meta property="og:description" content="Eviratec Social Feed Login Form" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.eviratec.com.au" />
+        <meta property="og:url" content="https://www.eviratec.com.au/login" />
         <meta property="og:image" content="https://www.eviratec.com.au/og.png" />
       </Head>
 

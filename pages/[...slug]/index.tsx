@@ -55,7 +55,7 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
         <meta property="og:site_name" content="Eviratec" />
         <meta property="og:title" content={feed.name} />
         <meta property="og:description" content={`${feed.name} on Eviratec`} />
-        <meta property="og:type" content="profile" />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://www.eviratec.com.au/${slug.join('/')}`} />
         <meta property="og:image" content="https://www.eviratec.com.au/og.png" />
       </Head>
