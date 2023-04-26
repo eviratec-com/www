@@ -40,13 +40,14 @@
 /* Mobile */
 @media screen and (max-width: 700px) {
   .main {
-    padding: 2rem 1rem 2rem;
+    padding: 2rem 0rem 2rem;
   }
 
   .postFormWrapper,
   .posts {
     margin-top: 1rem;
     width: 100%;
+    border: 0;
   }
 }
 

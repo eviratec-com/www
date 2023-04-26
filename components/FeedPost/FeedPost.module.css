@@ -57,6 +57,7 @@
   flex-direction: row;
   position: relative;
   margin-bottom: 0.8rem;
+  min-height: 30px;
 }
 
 ._ footer.postFooter div.commentButtons {
@@ -129,7 +130,7 @@
 /* Mobile */
 @media screen and (max-width: 700px) {
   ._ {
-
+    border: 0;
   }
 
   ._ section.postImages.fullSize div.postImage {
