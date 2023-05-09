@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 
@@ -47,6 +48,43 @@ export default function Home() {
         <div className={styles.section} id="profiles">
           <h3>Social Profiles</h3>
           <SocialProfiles />
+        </div>
+
+        <div className={`${styles.section} ${styles.contact}`} id="contact">
+          <h3>Contact</h3>
+          <p>
+            MILNE, CALLAN PETER<br />
+            ABN 62 842 988 455
+          </p>
+
+          <h4>By Phone</h4>
+          <p>
+            <Link href={`tel:+61482465983`}>
+              +61 482 465 983
+            </Link>
+          </p>
+
+          <h4>By Email</h4>
+          <p>
+            <Link href={`mailto:info@eviratec.com.au`}>
+              info@eviratec.com.au
+            </Link>
+          </p>
+
+          <h4>In Person</h4>
+          <p>
+            21 CASTOR STREET,<br />
+            CLIFTON BEACH, QLD<br />
+            AUSTRALIA 4879
+          </p>
+        </div>
+
+        <div className={`${styles.section} ${styles.contact}`} id="legal">
+          <h3>Legal</h3>  
+          <ul>
+            <li><Link href={`/terms`}>Terms of Use</Link></li>
+            <li><Link href={`/privacy`}>Privacy Policy</Link></li>
+          </ul>
         </div>
       </main>
 

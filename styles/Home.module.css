@@ -22,6 +22,28 @@
   font-weight: 200;
 }
 
+.section.contact {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  font-size: 4vh;
+  font-weight: 200;
+}
+
+.section.contact p {
+  margin-bottom: 2rem;
+}
+
+.section.contact ul {
+  padding-left: 2rem;
+}
+
+.section.contact a {
+  color: rgba(var(--link-rgb),1);
+  font-weight: 400;
+  text-decoration: underline;
+}
+
 /* Mobile */
 @media screen and (max-width: 700px) {
   .main {
@@ -36,6 +58,10 @@
     font-size: 2rem;
     text-align: left;
     margin-bottom: 1rem;
+  }
+
+  .section.contact {
+    font-size: 1.2rem;
   }
 }
 
