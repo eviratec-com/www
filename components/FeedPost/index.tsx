@@ -1,7 +1,9 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 import styles from './FeedPost.module.css'
 
+import postImageLoader from '@/functions/postImageLoader'
 import fetchRepliesByPost from '@/functions/fetchRepliesByPost'
 
 import FeedLink from '@/components/FeedLink'
@@ -10,47 +12,28 @@ import ReplyForm from '@/components/ReplyForm'
 import AuthorLink from '@/components/AuthorLink'
 import ProgressBar from '@/components/ProgressBar'
 
+import Heading from './Heading'
+import Permalink from './Permalink'
+
 import type { Post } from '@/types/Post'
 import type { Reply } from '@/types/Reply'
 
 interface Props {
   post: Post
+  data?: {
+    replies?: Reply[]
+  }
+  linkToPost?: boolean
   showFeedLink?: boolean
 }
 
-function postImageLoader({ src, width, quality }) {
-  if (!src) {
-    return src
-  }
+export default function FeedPost({ post, data, linkToPost, showFeedLink }: Props) {
+  const [replies, setReplies] = useState<Reply[]>(data && data.replies || [])
 
-  const size: string = width <= 100 ? 'thumbnail'
-    : width <= 200 ? 'small'
-    : width <= 400 ? 'medium'
-    : 'large'
+  const [canHideComments, setCanHideComments] = useState<boolean>(data && data.replies ? false : true)
 
-  const [
-    protocol,
-    domain,
-    container,
-    user,
-    year,
-    month,
-    day,
-    filename
-  ] = src.replace(/\/\//g, '/').split('/')
-
-  if (!year || Number(`${year}${month.padStart(2, '0')}${day.padStart(2, '0')}`) < 20230410) {
-    return src
-  }
-
-  return src.replace(/\/eviratec\-photos\-ar\//, `/${size}`)
-}
-
-export default function FeedPost({ post, showFeedLink }: Props) {
-  const [replies, setReplies] = useState<Reply[]>([])
-
-  const [commentsLoaded, setCommentsLoaded] = useState<boolean>(false)
-  const [commentsVisible, setCommentsVisible] = useState<boolean>(false)
+  const [commentsLoaded, setCommentsLoaded] = useState<boolean>(data && data.replies ? true : false)
+  const [commentsVisible, setCommentsVisible] = useState<boolean>(!canHideComments)
   const [commentFormVisible, setCommentFormVisible] = useState<boolean>(false)
 
   const toggleCommentForm = useCallback((event): void => {
@@ -110,22 +93,61 @@ export default function FeedPost({ post, showFeedLink }: Props) {
       })
   }, [replies.length, post.id, commentsVisible])
 
+  function imageClassName (imageUrl: string): string {
+    if (!imageIsGif(imageUrl)) {
+      return styles.postImage
+    }
+
+    return `${styles.postImage} ${styles.wideImage}`
+  }
+
+  function imageIsGif (imageUrl: string): boolean {
+    return !!imageUrl.match(/\.gif/i)
+  }
+
   return (
     <article className={styles._}>
       <header className={styles.postHeader}>
-        <h2>{post.content}</h2>
-
-        {true === showFeedLink &&
-          <FeedLink feed={post.feed} />
+        {false === linkToPost &&
+          <h2>
+            <Heading post={post} />
+          </h2>
         }
+
+        {false !== linkToPost &&
+          <h2>
+            <Link href={`/post/${post.id}`}><Heading post={post} /></Link>
+          </h2>
+        }
+
+          <div className={styles.headerLinks}>
+            <Permalink post={post} />
+
+            {true === showFeedLink &&
+              <>
+                <span>&nbsp;|&nbsp;</span>
+                <FeedLink feed={post.feed} />
+              </>
+            }
+          </div>
       </header>
 
       {post.images && post.images.length > 0 &&
         <section className={`${styles.postImages} ${1 === post.images.length ? styles.fullSize : ''}`}>
           {post.images.map((imageUrl: string, i: number): ReactNode => {
-            return (
-              <div className={`${styles.postImage}`} key={i}>
-                <div>
+            const isGif: boolean = imageIsGif(imageUrl)
+
+            return false === isGif && (
+              <div className={`${imageClassName(imageUrl)}`} key={`${post.id}/img/${i}`}>
+                <div style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                  <div style={{display: 'flex', flex: 'none'}}>
+                    <ProgressBar
+                      bgClassName={styles.progressBg}
+                      fgClassName={styles.progressFg}
+                    />
+                  </div>
+                </div>
+                <figure>
                   <Image
                     loader={postImageLoader}
                     src={imageUrl}
@@ -137,7 +159,29 @@ export default function FeedPost({ post, showFeedLink }: Props) {
                       objectFit: 'cover',
                     }}
                   />
+                </figure>
+              </div>
+            ) || (
+              <div className={`${imageClassName(imageUrl)}`} key={`${post.id}/img/${i}`}>
+                <div style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                  <div style={{display: 'flex', flex: 'none'}}>
+                    <ProgressBar
+                      bgClassName={styles.progressBg}
+                      fgClassName={styles.progressFg}
+                    />
+                  </div>
                 </div>
+                <figure>
+                  <Image
+                    src={imageUrl}
+                    alt={`User photo upload`}
+                    fill
+                    unoptimized
+                    style={{
+                      objectFit: 'cover',
+                    }}
+                  />
+                </figure>
               </div>
             )
           })}
@@ -149,7 +193,7 @@ export default function FeedPost({ post, showFeedLink }: Props) {
           {postDate(post.created)}
         </time>
         <span>&nbsp;|&nbsp;</span>
-        <AuthorLink author={post.author} />
+        <AuthorLink author={post.author} prefix="By" />
 
         <span style={{
           display: 'flex',
@@ -157,10 +201,12 @@ export default function FeedPost({ post, showFeedLink }: Props) {
         }}></span>
 
         <div className={styles.commentButtons}>
-          <button className={styles.toggleCommentForm}
-            onClick={toggleComments}>
-            {commentsVisible ? 'Hide Replies' : 'Show Replies'}
-          </button>
+          {canHideComments &&
+            <button className={styles.toggleCommentForm}
+              onClick={toggleComments}>
+              {commentsVisible ? 'Hide Replies' : 'Show Replies'}
+            </button>
+          }
 
           <button className={styles.toggleCommentForm}
             onClick={toggleCommentForm}>

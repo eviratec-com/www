@@ -3,7 +3,11 @@
   color: rgb(var(--foreground-rgb));
   padding: 0.8rem 1rem 0rem;
   border: 1px solid rgba(var(--foreground-rgb), 0.2);
+  border-top-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
   box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.25);
+  border-radius: 3px;
   margin-bottom: 0.5rem;
   width: 100%;
 }
@@ -15,7 +19,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   padding: 0.25rem;
-  background-color: rgba(var(--background-start-rgb), 1);
+  background-color: rgba(0,0,0, 1);
   margin: 0.75rem -1rem 0.75rem;
 }
 
@@ -23,20 +27,38 @@
   display: flex;
   width: 50%;
   padding: 0.25rem;
-  height: 300px;
   position: relative;
+  aspect-ratio: 4/3;
 }
 
 ._ section.postImages.fullSize div.postImage {
   width: 100%;
-  height: 600px;
 }
 
-._ section.postImages div.postImage div {
+._ section.postImages.fullSize div.postImage.wideImage {
+  aspect-ratio: 16/9;
+}
+
+._ section.postImages div.postImage > div,
+._ section.postImages div.postImage figure {
   display: flex;
   position: relative;
   flex: 1;
   background-color: rgba(var(--foreground-rgb), 0.1);
+}
+
+._ section.postImages div.postImage .progressBg {
+  background-color: #000;
+}
+
+._ section.postImages div.postImage .progressFg {
+  display: block;
+  background: conic-gradient(rgba(0,0,0,1) 0%, rgba(var(--link-rgb),0) 75%);
+  background: repeating-conic-gradient(
+    rgba(0,0,0,0) 0%,
+    rgba(var(--link-rgb),0.6) 90%,
+    rgba(var(--link-rgb),1) 100%
+  );
 }
 
 ._ header.postHeader,
@@ -50,6 +72,17 @@
   font-weight: 300;
 }
 
+._ header.postHeader div.headerLinks {
+  display: flex;
+  flex-direction: row;
+  line-height: 1;
+  margin-top: 0.25rem;
+}
+
+._ header.postHeader div.headerLinks > * {
+  margin-right: 0.25rem;
+}
+
 ._ footer.postFooter {
   font-size: 0.8rem;
   color: rgba(var(--foreground-rgb), 0.5);
@@ -57,7 +90,6 @@
   flex-direction: row;
   position: relative;
   margin-bottom: 0.8rem;
-  min-height: 30px;
 }
 
 ._ footer.postFooter div.commentButtons {
@@ -130,15 +162,37 @@
 /* Mobile */
 @media screen and (max-width: 700px) {
   ._ {
-    border: 0;
+    border-radius: 0;
   }
 
   ._ section.postImages.fullSize div.postImage {
     width: 100%;
-    height: 40vh;
+  }
+
+  ._ section.postImages.fullSize div.postImage.wideImage {
+
   }
 
   ._ section.postImages div.postImage {
-    height: 20vh;
+
+  }
+}
+
+/* landscape mobile */
+@media screen and (max-width: 700px) and (orientation: landscape) {
+  ._ {
+
+  }
+
+  ._ section.postImages.fullSize div.postImage {
+
+  }
+
+  ._ section.postImages.fullSize div.postImage.wideImage {
+
+  }
+
+  ._ section.postImages div.postImage {
+
   }
 }
