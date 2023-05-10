@@ -392,7 +392,7 @@ export default function SignupForm() {
               <Link href={`/privacy`} legacyBehavior>
                 <a target="_blank">Privacy Policy</a>
               </Link>
-              for MyPornFeed.com.
+              for Eviratec.com.au.
             </label>
 
             {touched(tosAcceptInputId) && true !== acceptLegal &&
