@@ -87,7 +87,7 @@ export default function LoginForm() {
           </div>
 
           <div className={styles.submitButtonWrapper}>
-            <button type="submit">Login</button>
+            <button type="submit" disabled={loading}>Login</button>
           </div>
         </form>
       </div>
