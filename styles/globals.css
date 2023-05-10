@@ -15,6 +15,7 @@
 
   --toolbar-rgb: 77, 0, 153;
   --link-rgb: 77, 0, 153;
+  --link-alt-rgb: 0, 191, 255;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,6 +27,7 @@
     --text-rgb: 255, 255, 255;
 
     --link-rgb: 177, 117, 234;
+    --link-alt-rgb: 0, 191, 255;
   }
 }
 

@@ -37,6 +37,25 @@
   width: 100%;
 }
 
+.pageInfo {
+  margin-top: 1rem;
+  font-weight: 200;
+}
+
+.noPostsFound {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  font-weight: 200;
+  padding: 0.75rem;
+}
+
+.noPostsFound p {
+  text-align: center;
+}
+
 /* Mobile */
 @media screen and (max-width: 700px) {
   .main {
@@ -47,6 +66,9 @@
   .posts {
     margin-top: 1rem;
     width: 100%;
+  }
+
+  .postFormWrapper {
     border: 0;
   }
 }
