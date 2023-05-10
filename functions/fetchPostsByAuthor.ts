@@ -2,21 +2,30 @@ import type { Post } from '@/types/Post'
 
 import dbClient from '@/db'
 
-export default async function fetchPostsByFeedSlug(slug: string): Promise<Post[]> {
+export default async function fetchPostsByAuthor(id: number): Promise<Post[]> {
   const client: any = await dbClient() // check out a single client
   const p: Promise<Post[]> = new Promise((resolve, reject) => {
     const query = `SELECT "posts".*, "feed_posts"."published", `
       + `"feeds"."id" AS "f_id", "feeds"."name" AS "f_name", `
       + `"feeds"."slug" AS "f_slug", "feeds"."created" AS "f_created", `
-      + `"users"."display_name", "users"."link" AS "user_link" FROM "feeds" `
-      + `LEFT JOIN "feed_posts" ON "feeds"."id" = "feed_posts"."feed" `
-      + `JOIN "posts" ON "posts"."id" = "feed_posts"."post"`
-      + `JOIN "users" ON "users"."id" = "posts"."author" `
-      + `WHERE "slug" = $1::text AND "posts"."deleted" IS NULL `
-      + `ORDER BY "feed_posts"."published" DESC `
-      + `LIMIT 200 `
+      + `"users"."display_name", "users"."link" AS "user_link" `
 
-    client.query(query, [slug], (err, res) => {
+      // + `FROM "feeds" `
+      // + `LEFT JOIN "feed_posts" ON "feeds"."id" = "feed_posts"."feed" `
+      // + `JOIN "posts" ON "posts"."id" = "feed_posts"."post"`
+      // + `JOIN "users" ON "users"."id" = "posts"."author" `
+
+      // + `, COUNT(DISTINCT("feeds"."id")) AS "reposts" `
+      + `FROM "users" `
+      + `LEFT JOIN "posts" ON "posts"."author" = "users"."id" `
+      + `JOIN "feed_posts" ON "feed_posts"."post" = "posts"."id" `
+      + `JOIN "feeds" ON "feeds"."id" = "feed_posts"."feed" `
+
+      + `WHERE "users"."id" = $1::integer AND "posts"."deleted" IS NULL `
+      + `ORDER BY "feed_posts"."published" DESC `
+      + `LIMIT 100`
+
+    client.query(query, [id], (err, res) => {
       if (err) {
         reject(err)
         client.release() // release the client

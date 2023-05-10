@@ -2,21 +2,23 @@ import type { Post } from '@/types/Post'
 
 import dbClient from '@/db'
 
-export default async function fetchPostsByFeedSlug(slug: string): Promise<Post[]> {
+export default async function fetchFeaturedPosts(type: number, limit: number): Promise<Post[]> {
   const client: any = await dbClient() // check out a single client
   const p: Promise<Post[]> = new Promise((resolve, reject) => {
     const query = `SELECT "posts".*, "feed_posts"."published", `
       + `"feeds"."id" AS "f_id", "feeds"."name" AS "f_name", `
       + `"feeds"."slug" AS "f_slug", "feeds"."created" AS "f_created", `
-      + `"users"."display_name", "users"."link" AS "user_link" FROM "feeds" `
-      + `LEFT JOIN "feed_posts" ON "feeds"."id" = "feed_posts"."feed" `
-      + `JOIN "posts" ON "posts"."id" = "feed_posts"."post"`
+      + `"users"."display_name", "users"."link" AS "user_link" `
+      + `FROM "features" `
+      + `JOIN "posts" ON "posts"."id" = "features"."post" `
       + `JOIN "users" ON "users"."id" = "posts"."author" `
-      + `WHERE "slug" = $1::text AND "posts"."deleted" IS NULL `
-      + `ORDER BY "feed_posts"."published" DESC `
-      + `LIMIT 200 `
+      + `JOIN "feed_posts" ON "posts"."id" = "feed_posts"."post" `
+      + `JOIN "feeds" ON "feeds"."id" = "feed_posts"."feed" `
+      + `WHERE "features"."type" = $1::integer `
+      + `ORDER BY "features"."added" DESC `
+      + `LIMIT $2::integer`
 
-    client.query(query, [slug], (err, res) => {
+    client.query(query, [type, limit], (err, res) => {
       if (err) {
         reject(err)
         client.release() // release the client

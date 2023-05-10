@@ -20,7 +20,7 @@ export default async function attemptLogin(c: Credentials): Promise<Session> {
   const session: Session = await createSession({
     user: user.id
   })
-  console.log(session)
 
+  // Return session
   return session
 }

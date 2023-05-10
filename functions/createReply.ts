@@ -13,9 +13,9 @@ export default async function createReply(d: NewReplyWithAuthor): Promise<Reply>
 
 async function insertReply(d: NewReplyWithAuthor): Promise<Reply> {
   const a: UserProfile = await fetchUserProfileById(d.author)
-  const r: Promise<Reply> = new Promise((resolve, reject) => {
-    const client: any = dbClient()
 
+  const client: any = await dbClient() // check out a single client
+  const r: Promise<Reply> = new Promise((resolve, reject) => {
     const fields: ([string, string, (string|number)]|[string, string, number])[] = [
       ["post", "integer", d.post],
       ["author", "integer", d.author],
@@ -29,10 +29,12 @@ async function insertReply(d: NewReplyWithAuthor): Promise<Reply> {
       + `, CURRENT_TIMESTAMP) `
       + `RETURNING *`
 
-    client.connect()
-
     client.query(query, [...fields.map(f => f[2])], (err, res) => {
-      if (err) return reject(err)
+      if (err) {
+        reject(err)
+        client.release() // release the client
+        return
+      }
 
       const result = {...res.rows[0]}
 
@@ -44,7 +46,7 @@ async function insertReply(d: NewReplyWithAuthor): Promise<Reply> {
 
       resolve(result)
 
-      client.end()
+      client.release() // release the client
     })
   })
 

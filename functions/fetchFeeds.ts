@@ -3,17 +3,16 @@ import type { Feed } from '@/types/Feed'
 import dbClient from '@/db'
 
 export default async function fetchFeeds(): Promise<Feed[]> {
+  const client: any = await dbClient() // check out a single client
   const p: Promise<Feed[]> = new Promise((resolve, reject) => {
-    const client: any = dbClient()
-
-    client.connect()
-
-    const query = `SELECT * FROM "feeds" WHERE "deleted" IS NULL ORDER BY "created" DESC`
+    const query = `SELECT * FROM "feeds" WHERE "deleted" IS NULL ORDER BY "name" ASC`
 
     client.query(query, (err, res) => {
-      if (err) return reject(err)
-
-      resolve(res.rows)
+      if (err) {
+        reject(err)
+        client.release() // release the client
+        return
+      }
 
       resolve(res.rows.map(row => {
         row.created = (new Date(row.created)).getTime()
@@ -21,7 +20,7 @@ export default async function fetchFeeds(): Promise<Feed[]> {
         return row
       }))
 
-      client.end()
+      client.release() // release the client
     })
   })
 

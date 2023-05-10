@@ -2,21 +2,21 @@ import type { Session } from '@/types/Session'
 
 import dbClient from '@/db'
 
-export default async function fetchSessionByToken(input: string): Promise<Session> {
+export default async function extendSessionById(
+  session: number
+): Promise<Session> {
   const client: any = await dbClient() // check out a single client
   const p: Promise<Session> = new Promise((resolve, reject) => {
-    const query = `SELECT * FROM "sessions" WHERE "expiry" > `
-      + `CURRENT_TIMESTAMP AND "token" = $1::text`
+    const query = `UPDATE "sessions" SET "expiry" = `
+      + `CURRENT_TIMESTAMP + INTERVAL '72 hours', "renewed" = CURRENT_TIMESTAMP `
+      + `WHERE "id" = $1::integer RETURNING *`
 
-    client.query(query, [input], (err, res) => {
+    client.query(query, [session], (err, res) => {
       if (err) {
         reject(err)
         client.release() // release the client
         return
       }
-
-      res.rows[0].created = (new Date(res.rows[0].created)).getTime()
-      res.rows[0].expiry = (new Date(res.rows[0].expiry)).getTime()
 
       delete res.rows[0].renewed
 

@@ -19,23 +19,31 @@ interface FeedPost {
 }
 
 export default async function createPost(d: NewPostWithId): Promise<Post> {
-  const p: Post = await insertPost(d)
-  const feedPost: FeedPost = await insertFeedPost({
-    post: p.id,
-    feed: d.feed,
-  })
+  const client: any = await dbClient() // check out a single client
 
-  p.created = (new Date(p.created)).getTime()
-  p.published = (new Date(feedPost.published)).getTime()
+  try {
+    const p: Post = await insertPost(d, client)
+    const feedPost: FeedPost = await insertFeedPost({
+      post: p.id,
+      feed: d.feed,
+    }, client)
 
-  return p
+    p.created = (new Date(p.created)).getTime()
+    p.published = (new Date(feedPost.published)).getTime()
+
+    await client.release()
+  
+    return p
+  }
+  catch (err) {
+    await client.release()
+    throw err
+  }
 }
 
-async function insertPost(d: NewPostWithId): Promise<Post> {
+async function insertPost(d: NewPostWithId, client: any): Promise<Post> {
   const a: UserProfile = await fetchUserProfileById(d.author)
   const p: Promise<Post> = new Promise((resolve, reject) => {
-    const client: any = dbClient()
-
     const fields: ([string, string, (string|number)]|[string, string, number])[] = [
       ["author", "integer", d.author],
       ["content", "text", d.content],
@@ -55,8 +63,6 @@ async function insertPost(d: NewPostWithId): Promise<Post> {
       + fields.map((f, i) => `$${i+1}::${f[1]}`).join(', ')
       + `, CURRENT_TIMESTAMP) `
       + `RETURNING *`
-    
-    client.connect()
 
     client.query(query, [...fields.map(f => f[2])], (err, res) => {
       if (err) return reject(err)
@@ -74,8 +80,6 @@ async function insertPost(d: NewPostWithId): Promise<Post> {
         result.images = result.images.split(/\n/)
 
       resolve(result)
-
-      client.end()
     })
   })
 
@@ -84,21 +88,15 @@ async function insertPost(d: NewPostWithId): Promise<Post> {
   return result
 }
 
-async function insertFeedPost(d: NewFeedPost): Promise<FeedPost> {
+async function insertFeedPost(d: NewFeedPost, client: any): Promise<FeedPost> {
   const p: Promise<FeedPost> = new Promise((resolve, reject) => {
-    const client: any = dbClient()
     const query: string = `INSERT INTO "feed_posts" ("feed", "post", "published") `
       + `VALUES ($1::integer, $2::integer, CURRENT_TIMESTAMP) `
       + `RETURNING *`
 
-    client.connect()
-
     client.query(query, [d.feed, d.post], (err, res) => {
       if (err) return reject(err)
-
       resolve(res.rows[0])
-
-      client.end()
     })
   })
 

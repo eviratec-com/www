@@ -2,11 +2,11 @@ import type { UserProfile } from '@/types/User'
 
 import dbClient from '@/db'
 
-export default async function fetchUserProfileById(input: number): Promise<UserProfile> {
+export default async function fetchUserProfileByUsername(input: string): Promise<UserProfile> {
   const client: any = await dbClient() // check out a single client
   const p: Promise<UserProfile> = new Promise((resolve, reject) => {
     const query = `SELECT "id", "dob", "link", "status", "display_name" FROM "users" `
-      + `WHERE "id" = $1::integer`
+      + `WHERE "username" = $1::varchar`
 
     client.query(query, [input], (err, res) => {
       if (err) {

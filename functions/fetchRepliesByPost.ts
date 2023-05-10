@@ -3,19 +3,21 @@ import type { Reply } from '@/types/Reply'
 import dbClient from '@/db'
 
 export default async function fetchRepliesByPost(id: number): Promise<Reply[]> {
+  const client: any = await dbClient() // check out a single client
   const r: Promise<Reply[]> = new Promise((resolve, reject) => {
-    const client: any = dbClient()
-
-    client.connect()
-
     const query = `SELECT "replies".*, "users"."display_name", `
       + `"users"."link" AS "user_link" FROM "replies" `
       + `JOIN "users" ON "users"."id" = "replies"."author" `
       + `WHERE "post" = $1::integer AND "replies"."deleted" IS NULL `
-      + `ORDER BY "replies"."created" DESC`
+      + `ORDER BY "replies"."created" ASC `
+      + `LIMIT 200 `
 
     client.query(query, [id], (err, res) => {
-      if (err) return reject(err)
+      if (err) {
+        reject(err)
+        client.release() // release the client
+        return
+      }
 
       resolve(res.rows.map(row => {
         row.created = (new Date(row.created)).getTime()
@@ -34,7 +36,7 @@ export default async function fetchRepliesByPost(id: number): Promise<Reply[]> {
         return row
       }))
 
-      client.end()
+      client.release() // release the client
     })
   })
 

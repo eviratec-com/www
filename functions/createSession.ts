@@ -9,20 +9,23 @@ export interface NewSession {
 }
 
 export default async function createSession(d: NewSession): Promise<Session> {
+  const client: any = await dbClient() // check out a single client
   const p: Promise<Session> = new Promise((resolve, reject) => {
-    const client: any = dbClient()
     const query: string = `INSERT INTO "sessions" ("user", "token", "created", "expiry") `
-      + `VALUES ($1::integer, $2::text, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + interval '24 hours') `
+      + `VALUES ($1::integer, $2::text, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP + interval '72 hours') `
       + `RETURNING *`
 
-    client.connect()
-
     client.query(query, [d.user, complexSessionToken(d.user)], (err, res) => {
-      if (err) return reject(err)
+      if (err) {
+        reject(err)
+        client.release() // release the client
+        return
+      }
+
+      delete res.rows[0].renewed
 
       resolve(res.rows[0])
-
-      client.end()
+      client.release() // release the client
     })
   })
 

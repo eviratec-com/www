@@ -3,18 +3,18 @@ import bcrypt from 'bcrypt'
 
 import dbClient from '@/db'
 
-export default async function changePassword(
+export default async function hideUserAttribute(
   user: number,
-  newPassword: string
+  attribute: number
 ): Promise<boolean> {
-  const newPasswordHash: string = await bcrypt.hash(newPassword, 10)
   const client: any = await dbClient() // check out a single client
   const result: Promise<boolean> = new Promise((resolve, reject) => {
+    const query: string = 'UPDATE "user_attributes" '
+      + 'SET "hidden" = CURRENT_TIMESTAMP, "updated" = CURRENT_TIMESTAMP '
+      + 'WHERE "user" = $1::integer AND "attribute" = $2::integer '
+      + 'RETURNING *'
 
-    const query: string = 'UPDATE "users" SET "password" = $2::text, '
-      + '"modified" = CURRENT_TIMESTAMP WHERE "id" = $1::integer RETURNING *'
-
-    client.query(query, [user, newPasswordHash], (err, res) => {
+    client.query(query, [user, attribute], (err, res) => {
       if (err) {
         reject(err)
         client.release() // release the client

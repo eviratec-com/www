@@ -5,11 +5,8 @@ import dbClient from '@/db'
 export default async function fetchPosts(limit?: number): Promise<Post[]> {
   const _l: number = limit ? limit : 10
 
+  const client: any = await dbClient() // check out a single client
   const p: Promise<Post[]> = new Promise((resolve, reject) => {
-    const client: any = dbClient()
-
-    client.connect()
-
     const query = `SELECT "posts".*, "feed_posts"."published", `
       + `"feeds"."id" AS "f_id", "feeds"."name" AS "f_name", `
       + `"feeds"."slug" AS "f_slug", "feeds"."created" AS "f_created", `
@@ -21,7 +18,11 @@ export default async function fetchPosts(limit?: number): Promise<Post[]> {
       + `LIMIT $1::integer`
 
     client.query(query, [_l], (err, res) => {
-      if (err) return reject(err)
+      if (err) {
+        reject(err)
+        client.release() // release the client
+        return
+      }
 
       resolve(res.rows.map(row => {
         if (!row.link)
@@ -49,7 +50,7 @@ export default async function fetchPosts(limit?: number): Promise<Post[]> {
         }
 
         delete row.deleted
-        
+
         delete row.f_id
         delete row.f_name
         delete row.f_slug
@@ -58,7 +59,7 @@ export default async function fetchPosts(limit?: number): Promise<Post[]> {
         return row
       }))
 
-      client.end()
+      client.release() // release the client
     })
   })
 
