@@ -23,9 +23,10 @@ import type { Feed } from '@/types/Feed'
 interface Props {
   posts: Post[]
   feed: Feed
+  uploadUrl: string
 }
 
-const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Feed: NextPage<Props> = ({ feed, posts, uploadUrl }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter()
   const slug = (router.query.slug as string[]) || []
 
@@ -67,19 +68,31 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
 
         {session.currentSession && session.currentSession.token &&
           <div className={styles.postFormWrapper}>
-            <PostForm feed={slug.join('/')} onNewPost={onNewPost} />
+            <PostForm
+              uploadUrl={uploadUrl}
+              feed={slug.join('/')}
+              onNewPost={onNewPost}
+            />
           </div>
         }
 
-        <div className={styles.posts}>
-          {allPosts.map((post: Post, i: number) => {
-            return (
-              <div className={styles.postWrapper} key={post.id}>
-                <FeedPost post={post} showFeedLink={false} />
-              </div>
-            )
-          })}
-        </div>
+        {allPosts.length > 0 &&
+          <div className={styles.posts}>
+            {allPosts.map((post: Post, i: number) => {
+              return (
+                <div className={styles.postWrapper} key={post.id}>
+                  <FeedPost post={post} showFeedLink={false} />
+                </div>
+              )
+            })}
+          </div>
+        }
+
+        {0 === allPosts.length &&
+          <div className={styles.noPostsFound}>
+            <p>There haven&apos;t been any posts in {feed.name}, yet.</p>
+          </div>
+        }
       </main>
 
       <Footer />
@@ -87,7 +100,7 @@ const Feed: NextPage<Props> = ({ feed, posts }: InferGetServerSidePropsType<type
   )
 }
 
-export const getServerSideProps: GetServerSideProps<{ feed: Feed, posts: Post[] }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<{ feed: Feed, posts: Post[], uploadUrl: string }> = async (context) => {
   const slug: string[] = context.params.slug as string[] || []
 
   const feed: Feed = await fetchFeedBySlug(slug.join('/'))
@@ -105,10 +118,13 @@ export const getServerSideProps: GetServerSideProps<{ feed: Feed, posts: Post[] 
 
   feed.created = (new Date(feed.created)).getTime()
 
+  const uploadUrl: string = `${process.env.NEXT_PUBLIC_UPLOAD_API_BASE}/upload`
+
   return {
     props: {
       feed,
       posts,
+      uploadUrl,
     },
   }
 }
