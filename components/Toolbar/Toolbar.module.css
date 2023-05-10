@@ -7,12 +7,63 @@
   left: 0;
   right: 0;
   background: rgba(var(--toolbar-rgb), 1);
-  border-bottom: 1px solid rgba(255,255,255,0.2);
   box-shadow: 0 1px 20px 5px rgba(0,0,0,0.25);
   padding: 0 6rem;
   color: #fff;
   text-shadow: 0px 0px 25px rgba(0,0,0,0.25);
   z-index: 1;
+}
+
+._ .pageLoadingAnimation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  z-index: 10;
+  /* background: #ee7a35; */
+  /* background: linear-gradient(to right, #ee7a35 0%, #fff 100%);
+  animation: roll 3000ms infinite; */
+}
+
+._ .pageLoadingAnimation .loader {
+  animation: slide 3000ms infinite ease-in;
+  position: absolute;
+  height: 4px;
+  width: 50%;
+  left: -100%;
+  top: 0%;
+  background: linear-gradient(to right, rgba(238,122,53,0) 0%, rgba(238,122,53,1) 50%, rgba(238,122,53,0) 100%);
+  /* background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); */
+}
+
+@keyframes slide {
+  default {
+    left: -50%;
+  }
+
+  0% {
+    left: -50%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes roll {
+  default {
+    background: linear-gradient(to right, #ee7a35 0%, #fff 100%);
+  }
+
+  0% {
+    background: linear-gradient(to right, #fff 0%, #ee7a35 100%);
+  }
+
+  100% {
+    background: linear-gradient(to right, #ee7a35 0%, #fff 100%);
+  }
 }
 
 .logo {
@@ -38,15 +89,67 @@
   flex: 1;
 }
 
-.menu-btn {
+.menu-btn,
+.messages-btn,
+.closeMenuBtn {
   font-size: 32px;
-  line-height: 45px;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.menu-btn a,
+.messages-btn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.menu-btn a {
+  flex-direction: column;
+}
+
+.menu-btn a div {
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
+  width: 26px;
+}
+
+.closeMenuBtn a div {
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
+  width: 26px;
+}
+
+.closeMenuBtn a div:nth-of-type(1) {
+  transform: rotate(45deg);
+  transform-origin: left;
+}
+
+.closeMenuBtn a div:nth-of-type(2) {
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
+
+.menuWrapper {
+  position: fixed;
+  top: 0;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -1;
 }
 
 /* Mobile */
 @media screen and (max-width: 700px) {
   ._ {
-    padding: 0 1rem;
+    padding: 0 0.5rem 0 1rem;
   }
 
   .logo {
