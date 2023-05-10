@@ -1,12 +1,17 @@
-import { ReactNode, useCallback, useContext, useState } from 'react'
-import React from 'react'
+import React, { ReactNode, useCallback, useContext, useState } from 'react'
 import Image from 'next/image'
+
+import postImageLoader from '@/functions/postImageLoader'
+
+import ProgressBar from '@/components/ProgressBar'
 
 import styles from './PostForm.module.css'
 
 import SessionContext from '@/contexts/SessionContext'
 
 import type { Post, NewPost } from '@/types/Post'
+
+const UPLOAD_LIMIT_BYTES = 50 * 1000 * 1024
 
 interface NewFiles {
   files: File[]
@@ -15,6 +20,7 @@ interface NewFiles {
 interface Props {
   feed: string
   onNewPost: (newPost: Post) => void
+  uploadUrl: string
 }
 
 interface ApiReqHeaders {
@@ -27,11 +33,13 @@ enum PostFormTab {
   ImageUpload,
 }
 
-export default function PostForm({ feed, onNewPost }: Props) {
+export default function PostForm({ feed, onNewPost, uploadUrl }: Props) {
   const session = useContext(SessionContext)
 
   const [content, setContent] = useState<string>('')
   const [link, setLink] = useState<string>('')
+
+  const [submitting, setSubmitting] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [files, setFiles] = useState<File[]>([])
@@ -40,6 +48,14 @@ export default function PostForm({ feed, onNewPost }: Props) {
 
   const handleSubmit = useCallback((event): void => {
     event.preventDefault()
+
+    // Prevent duplicate submissions
+    if (true === submitting) {
+      return
+    }
+
+    // Disable submit button
+    setSubmitting(true)
 
     const c: NewPost = {
       feed: feed,
@@ -65,12 +81,14 @@ export default function PostForm({ feed, onNewPost }: Props) {
           return result.json().then(json => {
             setSuccess(false)
             setError(json.message)
+            setSubmitting(false)
           })
         }
         setSuccess(true)
         setContent('')
         setImageUrls([])
         setLink('')
+        setSubmitting(false)
 
         result.json().then(json => {
           onNewPost(json)
@@ -79,17 +97,31 @@ export default function PostForm({ feed, onNewPost }: Props) {
       .catch((err) => {
         setSuccess(false)
         setError(err.message)
+        setSubmitting(false)
       })
 
-  }, [feed, link, content, imageUrls, session, onNewPost])
+  }, [feed, link, content, imageUrls, session, submitting, onNewPost])
 
   const addFiles = useCallback((newFiles: File[]): void => {
     setFiles([...newFiles, ...files])
   }, [files, setFiles])
 
+  const exceedsUploadLimit = (f: File[]): boolean => {
+    const uploadSize: number = [...f].reduce((accumulator, currentValue) => {
+      accumulator += currentValue.size
+      return accumulator
+    }, 0)
+
+    return uploadSize >= UPLOAD_LIMIT_BYTES
+  }
+
   const onSelectFiles = useCallback((event): void => {
     const f: File[] = event.target.files
     const formData: FormData = new FormData()
+
+    if (exceedsUploadLimit(f)) {
+      return alert(`Max upload size: ${UPLOAD_LIMIT_BYTES/1024000}MB`)
+    }
 
     addFiles(f) // for upload preview
 
@@ -102,11 +134,6 @@ export default function PostForm({ feed, onNewPost }: Props) {
     const headers = {
       'X-Eviratec-Token': session.currentSession.token,
     }
-
-    const uploadUrl: string =
-      `${process.env.NEXT_PUBLIC_UPLOAD_API_BASE}/upload`
-
-    console.log(uploadUrl)
 
     // Post the multipart/form-data (including the files)
     fetch(uploadUrl, { method: 'POST', body: formData, headers: headers })
@@ -131,7 +158,7 @@ export default function PostForm({ feed, onNewPost }: Props) {
         setSuccess(false)
         setError(err.message)
       })
-  }, [addFiles, imageUrls, session.currentSession.token])
+  }, [addFiles, imageUrls, session.currentSession.token, uploadUrl])
 
   const tabClass = useCallback((tab: PostFormTab): string => {
     const isSelected: boolean = activeTab === tab
@@ -141,6 +168,18 @@ export default function PostForm({ feed, onNewPost }: Props) {
 
     return className
   }, [activeTab])
+
+  function imageClassName (imageUrl: string): string {
+    if (!imageIsGif(imageUrl)) {
+      return styles.postImage
+    }
+
+    return `${styles.postImage} ${styles.wideImage}`
+  }
+
+  function imageIsGif (imageUrl: string): boolean {
+    return !!imageUrl.match(/\.gif/i)
+  }
 
   return (
     <div className={styles._}>
@@ -161,15 +200,32 @@ export default function PostForm({ feed, onNewPost }: Props) {
           {imageUrls && imageUrls.length > 0 &&
             <div className={`${styles.postImages} ${1 === imageUrls.length ? styles.fullSize : ''}`}>
               {imageUrls.map((imageUrl: string, i: number): ReactNode => {
-                return (
-                  <div className={`${styles.postImage}`} key={i}>
+                const isGif: boolean = imageIsGif(imageUrl)
+
+                return false === isGif && (
+                  <div className={`${imageClassName(imageUrl)}`} key={`newpost/img/${i}`}>
+                    <div>
+                      <Image
+                        loader={postImageLoader}
+                        src={imageUrl}
+                        alt={`User photo upload`}
+                        fill
+                        sizes={imageUrls.length >= 2 ? `(max-width: 768px) 50vw,
+                          400px` : '800px'}
+                        style={{
+                          objectFit: 'cover',
+                        }}
+                      />
+                    </div>
+                  </div>
+                ) || (
+                  <div className={`${imageClassName(imageUrl)}`} key={`newpost/img/${i}`}>
                     <div>
                       <Image
                         src={imageUrl}
                         alt={`User photo upload`}
                         fill
-                        sizes={imageUrls.length > 2 ? `(max-width: 768px) 50vw,
-                          33vw` : '100vw'}
+                        unoptimized
                         style={{
                           objectFit: 'cover',
                         }}
@@ -189,7 +245,18 @@ export default function PostForm({ feed, onNewPost }: Props) {
               placeholder="Start writing ..."
             />
 
-            <button type="submit">Post</button>
+            <button type="submit" disabled={true === submitting}>
+              {true === submitting &&
+                <ProgressBar
+                  bgClassName={styles.progressBg}
+                  fgClassName={styles.progressFg}
+                />
+              }
+
+              {false === submitting &&
+                <>Post</>
+              }
+            </button>
           </div>
         </form>
       }
@@ -209,7 +276,12 @@ export default function PostForm({ feed, onNewPost }: Props) {
                 />
 
                 <div className={styles.instructions}>
-                  <p>Drop files here, or click to select.</p>
+                  <p>
+                    Drop files here, or click to select.<br />
+                    <span className={styles.limit}>
+                      Limit: {UPLOAD_LIMIT_BYTES / 1024000}MB per upload
+                    </span>
+                  </p>
                 </div>
               </div>
             }
