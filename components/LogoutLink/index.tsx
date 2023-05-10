@@ -17,7 +17,7 @@ export default function LogoutLink() {
   }, [session, router])
 
   return (
-    <Link href={`/logout`} className={styles._} onClick={logout}>
+    <Link prefetch={false} href={`/`} className={styles._} onClick={logout}>
       Logout
     </Link>
   )
