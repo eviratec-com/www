@@ -2,11 +2,17 @@ import React from 'react'
 
 import styles from './ProgressBar.module.css'
 
-export default function ProgressBar() {
+interface Props {
+  bgClassName?: string
+  fgClassName?: string
+}
+
+export default function ProgressBar({ bgClassName, fgClassName }: Props) {
+
   return (
     <div className={styles._}>
-      <div className={styles.circle}>
-        <div></div>
+      <div className={`${styles.circle} ${fgClassName || ''}`}>
+        <div className={bgClassName || ''}></div>
       </div>
     </div>
   )
