@@ -5,6 +5,7 @@ import Link from 'next/link'
 import styles from './ReplyForm.module.css'
 
 import LoginLink from '@/components/LoginLink'
+import ProgressBar from '@/components/ProgressBar'
 
 import SessionContext from '@/contexts/SessionContext'
 
@@ -26,12 +27,21 @@ interface ApiReqHeaders {
 export default function PostForm({ post, onNewReply }: Props) {
   const session = useContext(SessionContext)
 
+  const [submitting, setSubmitting] = useState<boolean>(false)
   const [content, setContent] = useState<string>('')
   const [success, setSuccess] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
   const handleSubmit = useCallback((event): void => {
     event.preventDefault()
+
+    // Prevent duplicate submissions
+    if (true === submitting) {
+      return
+    }
+
+    // Disable submit button
+    setSubmitting(true)
 
     const c: NewReply = {
       post: post.id,
@@ -49,19 +59,22 @@ export default function PostForm({ post, onNewReply }: Props) {
           return result.json().then(json => {
             setSuccess(false)
             setError(json.message)
+            setSubmitting(false)
           })
         }
         setSuccess(true)
         setContent('')
+        setSubmitting(false)
 
         result.json().then(json => onNewReply(json))
       })
       .catch((err) => {
         setSuccess(false)
         setError(err.message)
+        setSubmitting(false)
       })
 
-  }, [post, content, session, onNewReply])
+  }, [post, content, session, submitting, onNewReply])
 
   return (
     <div className={styles._}>
@@ -75,7 +88,18 @@ export default function PostForm({ post, onNewReply }: Props) {
               placeholder={`Reply to ${post.author.display_name} ...`}
             />
 
-            <button type="submit">Reply</button>
+            <button type="submit" disabled={true === submitting}>
+              {true === submitting &&
+                <ProgressBar
+                  bgClassName={styles.progressBg}
+                  fgClassName={styles.progressFg}
+                />
+              }
+
+              {false === submitting &&
+                <>Reply</>
+              }
+            </button>
           </div>
         </form>
       }
