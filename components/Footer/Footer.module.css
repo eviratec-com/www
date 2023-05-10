@@ -17,7 +17,7 @@
   font-weight: 200;
 }
 
-.links,
+.developer,
 .copyright {
   margin-bottom: 0.35rem;
 }
@@ -28,21 +28,20 @@
 }
 
 .lhs .developer a {
-  margin-left: 0.3rem;
   color: rgb(var(--link-rgb));
 }
 
-.lhs .links {
+.links {
   display: flex;
   flex-direction: row;
 }
 
-.lhs .links a {
+.links a {
   text-decoration: underline;
   color: rgb(var(--link-rgb));
 }
 
-.lhs .links .linkSeparator {
+.linkSeparator {
   margin: 0 0.35rem;
 }
 
@@ -58,6 +57,10 @@
   justify-content: flex-end;
   font-size: 0.9rem;
   font-weight: 200;
+}
+
+.rhs .links {
+  align-items: flex-end;
 }
 
 .copyright {
@@ -91,5 +94,18 @@
   ._ {
     padding: 1rem;
     line-height: 1;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .links a {
+    line-height: 1.5rem;
+  }
+
+  .linkSeparator {
+    display: none;
   }
 }

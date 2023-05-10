@@ -14,14 +14,14 @@ export default function Footer() {
   return (
     <div className={styles._}>
       <div className={styles.lhs}>
-        <div className={styles.links}>
-          <Link href={`/recent`}>Recent Posts</Link>
-          <span className={styles.linkSeparator}> | </span>
-          <Link href={`/feeds`}>Browse Topics</Link>
+        <div className={styles.developer}>
+          Made by <Link prefetch={false} href="mailto:info@eviratec.com">Callan Milne</Link>
         </div>
 
-        <div className={styles.developer}>
-          Created by <Link href="https://www.eviratec.com.au">Callan Milne</Link>
+        <div className={styles.links}>
+          <Link prefetch={false} href={`/recent`}>Recent Posts</Link>
+          <span className={styles.linkSeparator}> | </span>
+          <Link prefetch={false} href={`/feeds`}>Browse Topics</Link>
         </div>
       </div>
 
@@ -33,21 +33,27 @@ export default function Footer() {
         </div>
 
         <div className={styles.login}>
-          <>
-            {(!session.currentSession || !session.currentSession.token) &&
-              <Link href={`/login`}>Login</Link>
-            }
-          </>
+          <div className={styles.links}>
+            <>
+              {(!session.currentSession || !session.currentSession.token) &&
+                <>
+                  <Link prefetch={false} href={`/login`}>Login</Link>
+                  <span className={styles.linkSeparator}> | </span>
+                  <Link prefetch={false} href={`/join`}>Create Account</Link>
+                </>
+              }
+            </>
 
-          <>
-            {session.currentSession && session.currentSession.token &&
-              <>
-                <Link href={`/change-password`}>Change Password</Link>
-                <span>&nbsp; | &nbsp;</span>
-                <LogoutLink />
-              </>
-            }
-          </>
+            <>
+              {session.currentSession && session.currentSession.token &&
+                <>
+                  <Link prefetch={false} href={`/change-password`}>Change Password</Link>
+                  <span className={styles.linkSeparator}> | </span>
+                  <LogoutLink />
+                </>
+              }
+            </>
+          </div>
         </div>
       </div>
     </div>
