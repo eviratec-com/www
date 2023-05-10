@@ -12,7 +12,7 @@ interface Props {
 export default function FeedLink({ feed }: Props) {
   return (
     <div className={styles._}>
-      <Link href={`/${feed.slug}`}>{feed.name}</Link>
+      <Link prefetch={false} href={`/${feed.slug}`}>{feed.name}</Link>
     </div>
   )
 }
