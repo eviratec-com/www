@@ -12,7 +12,9 @@ export default async function handler(
 
     res.status(200).json({
       id: u.id,
+      dob: u.dob,
       link: u.link,
+      status: u.status,
       display_name: u.display_name,
     })
   }
