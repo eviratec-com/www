@@ -1,7 +1,10 @@
-import { useContext } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 import Link from 'next/link'
+
+import LogoutLink from '@/components/LogoutLink'
 
 import SessionContext from '@/contexts/SessionContext'
 
@@ -12,48 +15,96 @@ type MenuItem = {
   link: string
 }
 
-export default function Hero() {
+const ANON_MENU_ITEMS: MenuItem[] = [{
+  label: 'Login',
+  link: '/login',
+}, {
+  label: 'Sign-up',
+  link: '/join',
+}]
+
+const USER_MENU_ITEMS: MenuItem[] = [{
+  label: 'Messages',
+  link: '/conversations',
+}]
+
+const MENU_ITEMS: MenuItem[] = [{
+  label: 'Recent Posts',
+  link: '/recent',
+}, {
+  label: 'Browse Topics',
+  link: '/feeds',
+}]
+
+interface Props {
+  onClick?: (e: any) => void
+}
+
+export default function Hero({ onClick }: Props) {
+  const router = useRouter()
+  const [loggedIn, setLoggedIn] = useState<boolean>(false)
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([...MENU_ITEMS])
   const session = useContext(SessionContext)
 
-  const menu: MenuItem[] = [{
-    label: 'About',
-    link: '#about',
-  }, {
-  //   label: 'Contact',
-  //   link: '#contact',
-  // }, {
-    label: 'Portfolio',
-    link: '#portfolio',
-  }, {
-    label: 'Experience',
-    link: '#experience',
-  }, {
-    label: 'Social Profiles',
-    link: '#profiles',
-  }]
+  const logout = useCallback((event) => {
+    event.preventDefault()
+    session.logout()
+    router.push('/')
+  }, [session, router])
+
+  useEffect(() => {
+    const _loggedIn: boolean = session && session.currentSession
+      && session.currentSession.token
+
+    setLoggedIn(_loggedIn)
+
+    if (_loggedIn) {
+      const userMenuItems: MenuItem[] = [
+        ...USER_MENU_ITEMS,
+        {
+          label: 'My Profile',
+          link: '/me',
+        },
+      ]
+
+      return setMenuItems([
+        ...userMenuItems,
+        ...MENU_ITEMS,
+      ])
+    }
+
+    setMenuItems([
+      ...ANON_MENU_ITEMS,
+      ...MENU_ITEMS,
+    ])
+  }, [session, setLoggedIn])
 
   return (
     <div className={styles._}>
       <div className={styles.main}>
+        <div className={styles.logo}></div>
+
         <div className={styles.text}>
-          <p className={styles.primary}>Callan<br/>Milne</p>
-          <p className={styles.secondary}>Full-stack<br/>Developer</p>
+          <p className={styles.primary}>Eviratec</p>
+          <p className={styles.secondary}>Social Media</p>
         </div>
 
         <div style={{flex: '1'}}></div>
 
         <div className={styles.navigation}>
           <ol>
-            <li>
-              <Link href={'/feeds'} scroll={false}>
-                Feeds
-              </Link>
-            </li>
+            {loggedIn &&
+              <li>
+                <Link prefetch={false} href={`/`} scroll={false} onClick={e => { logout(e); onClick && onClick(e) }}>
+                  Logout
+                </Link>
+              </li>
+            }
 
-            {menu.map((item: MenuItem, index: number) => {
+            {menuItems.map((item: MenuItem, index: number) => {
               return (
-                <li key={index}>
-                  <Link href={item.link} scroll={false}>
+                <li key={`menuitem-${index}`}>
+                  <Link prefetch={false} href={item.link} scroll={false} onClick={e => onClick && onClick(e)}>
                     {item.label}
                   </Link>
                 </li>
