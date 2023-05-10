@@ -14,7 +14,7 @@ export default function ChangePassword() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="rgba(77,0,153,1)" />
-        <meta property="og:title" content="Login - Eviratec" />
+        <meta property="og:title" content="Change Password - Eviratec" />
         <meta property="og:description" content="Eviratec Social Feed Change Password Form" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.eviratec.com.au/change-password" />

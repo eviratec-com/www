@@ -41,8 +41,8 @@ const RecentPostsPage: NextPage<Props> = ({ posts }: InferGetServerSidePropsType
         <meta name="description" content="Recent posts on Eviratec" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="rgba(77,0,153,1)" />
-        <meta property="og:title" content="Recent Posts - Eviratec" />
+        <meta name="theme-color" content="rgba(33,33,33,1)" />
+        <meta property="og:title" content="Eviratec Recent Posts" />
         <meta property="og:description" content="Recent posts on Eviratec" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.eviratec.com.au/recent" />

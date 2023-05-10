@@ -30,13 +30,13 @@ const FeedsPage: NextPage<Props> = ({ feeds }: InferGetServerSidePropsType<typeo
   return (
     <>
       <Head>
-        <title>Eviratec Feeds</title>
-        <meta name="description" content="TypeScript, React.js, Next.js, MongoDB/MySQL, PHP, and AWS" />
+        <title>Browse Feeds - Eviratec</title>
+        <meta name="description" content="List of popular feeds on Eviratec" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="rgba(77,0,153,1)" />
-        <meta property="og:title" content="Callan Milne: Full-stack Developer" />
-        <meta property="og:description" content="TypeScript, React.js, Next.js, MongoDB/MySQL, PHP, and AWS" />
+        <meta name="theme-color" content="rgba(33,33,33,1)" />
+        <meta property="og:title" content="Browse Feeds on Eviratec" />
+        <meta property="og:description" content="List of popular feeds on Eviratec" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.eviratec.com.au/feeds" />
         <meta property="og:image" content="https://www.eviratec.com.au/og.png" />
@@ -44,14 +44,22 @@ const FeedsPage: NextPage<Props> = ({ feeds }: InferGetServerSidePropsType<typeo
 
       <main className={styles.main}>
         <FeedPageHeading>
-          Feeds
+          Browse Feeds
         </FeedPageHeading>
 
         <div className={styles.feeds}>
+          <div className={styles.feed}>
+            <Link prefetch={false} href={`/announcements`}>Announcements</Link>
+          </div>
+
           {allFeeds.map((feed: Feed, i: number) => {
+            if ('announcements' === feed.slug) {
+              return
+            }
+
             return (
-              <div className={styles.feed} key={i}>
-                <Link href={`/${feed.slug}`}>{feed.name}</Link>
+              <div className={styles.feed} key={feed.id}>
+                <Link prefetch={false} href={`/${feed.slug}`}>{feed.name}</Link>
               </div>
             )
           })}
