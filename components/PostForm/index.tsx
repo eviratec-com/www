@@ -206,12 +206,10 @@ export default function PostForm({ feed, onNewPost, uploadUrl }: Props) {
                   <div className={`${imageClassName(imageUrl)}`} key={`newpost/img/${i}`}>
                     <div>
                       <Image
-                        loader={postImageLoader}
                         src={imageUrl}
                         alt={`User photo upload`}
                         fill
-                        sizes={imageUrls.length >= 2 ? `(max-width: 768px) 50vw,
-                          400px` : '800px'}
+                        unoptimized
                         style={{
                           objectFit: 'cover',
                         }}
