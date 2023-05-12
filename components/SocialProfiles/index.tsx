@@ -15,16 +15,16 @@ export default function SocialProfiles() {
       link: 'https://linkedin.com',
       name: 'LinkedIn',
     },
-    link: 'https://linkedin.com/in/calmilne',
-    user: 'calmilne'
+    link: 'https://linkedin.com/company/eviratec',
+    user: 'Eviratec'
   }, {
     service: {
       icon: 'facebook',
       link: 'https://www.facebook.com',
       name: 'Facebook',
     },
-    link: 'https://www.facebook.com/subspacemonkey',
-    user: 'subspacemonkey'
+    link: 'https://www.facebook.com/eviratec',
+    user: 'Eviratec'
   }, {
     service: {
       icon: 'twitter',
@@ -41,16 +41,8 @@ export default function SocialProfiles() {
       link: 'https://www.github.com',
       name: 'GitHub',
     },
-    link: 'https://github.com/eviratec',
-    user: 'eviratec',
-  }, {
-    service: {
-      icon: 'github',
-      link: 'https://www.github.com',
-      name: 'GitHub',
-    },
-    link: 'https://github.com/luminous-patterns',
-    user: 'luminous-patterns',
+    link: 'https://github.com/eviratec-com',
+    user: 'eviratec-com',
   }])
 
   return (
