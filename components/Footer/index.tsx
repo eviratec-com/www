@@ -15,7 +15,10 @@ export default function Footer() {
     <div className={styles._}>
       <div className={styles.lhs}>
         <div className={styles.developer}>
-          Made by <Link prefetch={false} href="mailto:info@eviratec.com">Callan Milne</Link>
+          Created by&nbsp;
+          <Link prefetch={false} href="mailto:info@eviratec.com">
+            Callan Milne
+          </Link>
         </div>
 
         <div className={styles.links}>
