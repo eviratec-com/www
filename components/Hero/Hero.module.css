@@ -116,7 +116,8 @@
     margin-bottom: 7vh;
   }
 
-  .text p.primary {
+  .text p.primary,
+  .text h1.primary {
     font-size: 3rem;
     margin-bottom: 0.5rem;
   }
