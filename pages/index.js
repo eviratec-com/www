@@ -27,60 +27,43 @@ export default function Home() {
         <meta property="og:image" content="https://www.eviratec.com.au/og.png" />
       </Head>
 
-      <Hero />
+      <Hero homepage={true} />
 
       <main className={styles.main}>
         <div className={styles.section} id="about">
-          <h3>About</h3>
+          <h2>About</h2>
           <About />
         </div>
 
-        <div className={styles.section} id="portfolio">
-          <h3>Portfolio</h3>
-          <Portfolio />
-        </div>
-
-        <div className={styles.section} id="experience">
-          <h3>Experience</h3>
-          <Experience />
-        </div>
-
         <div className={styles.section} id="profiles">
-          <h3>Social Profiles</h3>
+          <h2>Social Profiles</h2>
           <SocialProfiles />
         </div>
 
         <div className={`${styles.section} ${styles.contact}`} id="contact">
-          <h3>Contact</h3>
+          <h2>Contact</h2>
           <p>
             MILNE, CALLAN PETER<br />
             ABN 62 842 988 455
           </p>
 
-          <h4>By Phone</h4>
+          <h3>By Phone</h3>
           <p>
             <Link href={`tel:+61482465983`}>
               +61 482 465 983
             </Link>
           </p>
 
-          <h4>By Email</h4>
+          <h3>By Email</h3>
           <p>
             <Link href={`mailto:info@eviratec.com.au`}>
               info@eviratec.com.au
             </Link>
           </p>
-
-          <h4>In Person</h4>
-          <p>
-            21 CASTOR STREET,<br />
-            CLIFTON BEACH, QLD<br />
-            AUSTRALIA 4879
-          </p>
         </div>
 
         <div className={`${styles.section} ${styles.contact}`} id="legal">
-          <h3>Legal</h3>  
+          <h2>Legal</h2>
           <ul>
             <li><Link href={`/terms`}>Terms of Use</Link></li>
             <li><Link href={`/privacy`}>Privacy Policy</Link></li>
