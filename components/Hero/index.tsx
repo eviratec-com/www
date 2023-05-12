@@ -38,9 +38,10 @@ const MENU_ITEMS: MenuItem[] = [{
 
 interface Props {
   onClick?: (e: any) => void
+  homepage?: boolean
 }
 
-export default function Hero({ onClick }: Props) {
+export default function Hero({ onClick, homepage }: Props) {
   const router = useRouter()
   const [loggedIn, setLoggedIn] = useState<boolean>(false)
   const [menuItems, setMenuItems] = useState<MenuItem[]>([...MENU_ITEMS])
@@ -85,7 +86,11 @@ export default function Hero({ onClick }: Props) {
         <div className={styles.logo}></div>
 
         <div className={styles.text}>
-          <p className={styles.primary}>Eviratec</p>
+          {homepage && (
+            <h1 className={styles.primary}>Eviratec</h1>
+          ) || (
+            <p className={styles.primary}>Eviratec</p>
+          )}
           <p className={styles.secondary}>Social Media</p>
         </div>
 

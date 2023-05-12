@@ -76,7 +76,8 @@
   z-index: 2;
 }
 
-.text p.primary {
+.text p.primary,
+.text h1.primary {
   font-size: 14vh;
   line-height: 0.9;
   margin-bottom: 1rem;
