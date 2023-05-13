@@ -41,7 +41,7 @@ const VerifyIdentityPage: NextPage<Props> = ({ profile, token, _session }: Infer
         <meta name="description" content="Verify your personal identity on Eviratec" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="rgba(33,33,33,1)" />
+        <meta name="theme-color" content="rgba(77,0,153,1)" />
         <meta property="og:title" content="Eviratec Personal Identity Verification" />
         <meta property="og:description" content="Verify your personal identity on Eviratec" />
         <meta property="og:type" content="website" />

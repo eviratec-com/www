@@ -60,7 +60,7 @@ const StartConversationPage: NextPage<Props> = ({ conversation, uploadUrl, _sess
         <meta name="description" content={`Start a new conversation on Eviratec`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="rgba(33,33,33,1)" />
+        <meta name="theme-color" content="rgba(77,0,153,1)" />
         <meta property="og:site_name" content="Eviratec" />
         <meta property="og:description" content={`Start a new conversation on Eviratec`} />
         <meta property="og:url" content={`https://www.eviratec.com.au/start/conversation/${recipient}}`} />

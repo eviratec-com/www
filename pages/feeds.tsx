@@ -34,7 +34,7 @@ const FeedsPage: NextPage<Props> = ({ feeds }: InferGetServerSidePropsType<typeo
         <meta name="description" content="List of popular feeds on Eviratec" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="rgba(33,33,33,1)" />
+        <meta name="theme-color" content="rgba(77,0,153,1)" />
         <meta property="og:title" content="Browse Feeds on Eviratec" />
         <meta property="og:description" content="List of popular feeds on Eviratec" />
         <meta property="og:type" content="website" />

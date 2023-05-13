@@ -73,7 +73,7 @@ const StatsPage: NextPage<Props> = ({ stats }: InferGetServerSidePropsType<typeo
         <meta name="description" content="Site stats for Eviratec" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="rgba(33,33,33,1)" />
+        <meta name="theme-color" content="rgba(77,0,153,1)" />
         <meta property="og:title" content="Eviratec Site Stats" />
         <meta property="og:description" content="Site stats for Eviratec" />
         <meta property="og:type" content="website" />
