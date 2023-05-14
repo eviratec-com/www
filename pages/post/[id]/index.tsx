@@ -52,6 +52,14 @@ const PostPage: NextPage<Props> = ({ post, replies, pageTitle }: InferGetServerS
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://www.eviratec.com.au/post/${id}`} />
         <meta property="og:image" content={image} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@eviratec" />
+        <meta name="twitter:title" content={`${pageTitle} - Eviratec`} />
+        <meta name="twitter:url" content={`https://www.eviratec.com.au/post/${id}`} />
+        <meta name="twitter:description" content={description} />
+
+      	<meta name="twitter:image" content={image} />
       </Head>
 
       <main className={styles.main}>
@@ -84,15 +92,16 @@ function postPageTitle (post: Post): string {
   const content: string[] = post.content.split(/\n/)
   const title: string = content[0]
 
-  // Return the full first-line of content as the title: if length < 50
-  if (title.length < 50) {
+  // Return the full first-line of content as the title: if length < 70
+  if (title.length < 70) {
     return title
   }
 
-  // Shorten the first line length to 50 characters, and split on white space
-  const words: string[] = title.substr(0, 50).split(/\s+/)
+  // Ensure only full words in page title
+  // Shorten the first line length to 70 characters, and split on white space
+  const words: string[] = title.substr(0, 70).split(/\s+/)
 
-  // Short title should include all words that fit fully in the first 50
+  // Short title should include all words that fit fully in the first 70
   // characters.  Assume last word is a fragment.
   const shortTitle: string = words.slice(0, words.length-1).join(' ')
 

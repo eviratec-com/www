@@ -40,6 +40,15 @@ const FeedsPage: NextPage<Props> = ({ feeds }: InferGetServerSidePropsType<typeo
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.eviratec.com.au/feeds" />
         <meta property="og:image" content="https://www.eviratec.com.au/og.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@eviratec" />
+        <meta name="twitter:creator" content="@eviratec" />
+        <meta name="twitter:title" content="Browse Feeds - Eviratec" />
+        <meta name="twitter:url" content="https://www.eviratec.com.au" />
+        <meta name="twitter:description" content="List of popular feeds on Eviratec" />
+
+      	<meta name="twitter:image" content="https://www.eviratec.com.au/og.png" />
       </Head>
 
       <main className={styles.main}>

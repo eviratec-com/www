@@ -15,16 +15,25 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Callan Milne - Eviratec</title>
-        <meta name="description" content="TypeScript, React.js, Next.js, MongoDB/MySQL, PHP, and AWS" />
+        <title>Eviratec - Full-Stack Web Development</title>
+        <meta name="description" content="Australian web development business, specialising in full-stack web applications, and software systems." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="rgba(77,0,153,1)" />
-        <meta property="og:title" content="Callan Milne: Full-stack Developer" />
-        <meta property="og:description" content="TypeScript, React.js, Next.js, MongoDB/MySQL, PHP, and AWS" />
+        <meta property="og:title" content="Eviratec - Full-Stack Web Development" />
+        <meta property="og:description" content="Australian web development business, specialising in full-stack web applications, and software systems." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.eviratec.com.au" />
         <meta property="og:image" content="https://www.eviratec.com.au/og.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@eviratec" />
+        <meta name="twitter:creator" content="@eviratec" />
+        <meta name="twitter:title" content="Eviratec - Full-Stack Web Development" />
+        <meta name="twitter:url" content="https://www.eviratec.com.au" />
+        <meta name="twitter:description" content="Australian web development business, specialising in full-stack web applications, and software systems." />
+
+      	<meta name="twitter:image" content="https://www.eviratec.com.au/og.png" />
       </Head>
 
       <Hero homepage={true} />
