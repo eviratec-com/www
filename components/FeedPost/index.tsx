@@ -201,17 +201,25 @@ export default function FeedPost({ post, data, linkToPost, showFeedLink }: Props
         }}></span>
 
         <div className={styles.commentButtons}>
+          <button className={styles.toggleCommentForm}
+            onClick={toggleCommentForm}>
+            {commentFormVisible &&
+              <span>&#10006;</span>
+            ||
+              <span>&#8617;</span>
+            }
+          </button>
+
           {canHideComments &&
             <button className={styles.toggleCommentForm}
               onClick={toggleComments}>
-              {commentsVisible ? 'Hide Replies' : 'Show Replies'}
+              {commentsVisible &&
+                <span>&#9663;</span>
+              ||
+                <span>&#9653;</span>
+              }
             </button>
           }
-
-          <button className={styles.toggleCommentForm}
-            onClick={toggleCommentForm}>
-            {commentFormVisible ? 'Discard Reply' : 'Reply'}
-          </button>
         </div>
       </footer>
 
