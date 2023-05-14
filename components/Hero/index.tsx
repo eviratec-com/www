@@ -100,7 +100,7 @@ export default function Hero({ onClick, homepage }: Props) {
           <ol>
             {loggedIn &&
               <li>
-                <Link prefetch={false} href={`/`} scroll={false} onClick={e => { logout(e); onClick && onClick(e) }}>
+                <Link prefetch={false} href={`/`} scroll={true} onClick={e => { logout(e); onClick && onClick(e) }}>
                   Logout
                 </Link>
               </li>
@@ -109,7 +109,7 @@ export default function Hero({ onClick, homepage }: Props) {
             {menuItems.map((item: MenuItem, index: number) => {
               return (
                 <li key={`menuitem-${index}`}>
-                  <Link prefetch={false} href={item.link} scroll={false} onClick={e => onClick && onClick(e)}>
+                  <Link prefetch={false} href={item.link} scroll={true} onClick={e => onClick && onClick(e)}>
                     {item.label}
                   </Link>
                 </li>
