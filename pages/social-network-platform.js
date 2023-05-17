@@ -57,7 +57,7 @@ export default function SocialNetworkPlatform() {
               <div className={styles.imgWrapper}>
                 <Image
                   src={`https://eviratecphotos.blob.core.windows.net/assets/marketing/promotional/ESP_20230517/eviratec-com-au-signup.jpg`}
-                  alt={`A screenshot of a the signup form, on a mobile device, in light mode, on Eviratec Social Network.`}
+                  alt={`A screenshot of the signup form, on a mobile device, in light mode, on Eviratec Social Network.`}
                   style={{
                     objectFit: 'cover',
                   }}
@@ -67,8 +67,7 @@ export default function SocialNetworkPlatform() {
               </div>
 
               <figcaption>
-                Screenshot of a User Profile, on a mobile device, in light
-                mode.
+                Mobile signup form, in light mode.
               </figcaption>
             </figure>
 
@@ -87,7 +86,7 @@ export default function SocialNetworkPlatform() {
               </div>
 
               <figcaption>
-                Screenshot of a Feed, on a mobile device, in light mode
+                Mobile Feed/Topic page, in light mode.
               </figcaption>
             </figure>
 
@@ -105,8 +104,7 @@ export default function SocialNetworkPlatform() {
               </div>
 
               <figcaption>
-                Screenshot of a User Profile, on a mobile device, in light
-                mode.
+                Mobile User Profile page, in light mode.
               </figcaption>
             </figure>
           </section>
@@ -147,8 +145,7 @@ export default function SocialNetworkPlatform() {
               </div>
 
               <figcaption>
-                A screenshot of the homepage hero on Eviratec Network (desktop)
-                (www.eviratec.net)
+                Homepage of Eviratec Network link directory (www.eviratec.net)
               </figcaption>
             </figure>
           </section>
