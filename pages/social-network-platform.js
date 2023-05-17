@@ -187,11 +187,11 @@ export default function SocialNetworkPlatform() {
                   <li>BYO/Custom domain name</li>
                   <li>Free sub-domain<br /><span>you.eviratecsocial(.online|.life)</span></li>
                   <li>BYO branding<br /><span>(text, logo, &amp; colours)</span></li>
-                  <li>Custom user profile fields</li>
                   <li>Reserved usernames</li>
                   <li>User photo uploads<br /><span>(up to 50MB per file)</span></li>
-                  <li>Automatic optimisation and re-sizing user uploads</li>
+                  <li>Automatic Photo Processing<br /><span>Automatic optimise+resize photos on user upload</span></li>
                   <li>Custom Profile Fields</li>
+                  <li>Bcrypt Password Security<br /><span>Passwords stored using one-way encryption</span></li>
                   <li>Custom Account Status<br /><span>(e.g. Unverified, Admin, ID Verified)</span></li>
                   <li>Signup Age Limit</li>
                 </ul>
