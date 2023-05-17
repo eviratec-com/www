@@ -3,7 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   output: "standalone",
   images: {
-    domains: ['eviratecphotos.blob.core.windows.net']
+    domains: [
+      'eviratecphotos.blob.core.windows.net'
+    ]
   }
 }
 

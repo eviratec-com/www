@@ -34,6 +34,9 @@ const MENU_ITEMS: MenuItem[] = [{
 }, {
   label: 'Browse Topics',
   link: '/feeds',
+}, {
+  label: 'Social Platform',
+  link: '/social-network-platform',
 }]
 
 interface Props {
