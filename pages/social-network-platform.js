@@ -204,7 +204,7 @@ export default function SocialNetworkPlatform() {
                   <li>Fully-managed hosting</li>
                   <li>Fault-tolerant infrastructure</li>
                   <li>Daily backups</li>
-                  <li>Set-up in 2 business days<br /><span>(or 20% discount)</span></li>
+                  <li>Set-up in 2 business days<br /><span>(or 20% discount for 12-months)</span></li>
                   <li>Free Technical Support</li>
                 </ul>
 
@@ -257,28 +257,56 @@ export default function SocialNetworkPlatform() {
 
         <section className={styles.section}>
           <TextBlock>
-            <h2>Want to know more?</h2>
+            <h2 style={{textAlign: 'center'}}>
+              Want to know more?
+            </h2>
+          </TextBlock>
+        </section>
+
+        <section className={`${styles.section} ${styles.featuresSection}`}>
+          <TextBlock>
             <p style={{display: 'none'}}>
               Get in touch with our sales team, using the following form.
             </p>
-            <p>
-              Call us: <br />
-              <Link href="tel:+61482465983">+61 482 465 983</Link>
-            </p>
-            <p>
-              Email us: <br />
-              <Link href="mailto:sales@eviratec.com">sales@eviratec.com</Link>
-            </p>
+
+            <div className={styles.twoCol}>
+              <div className={styles.col}>
+                <p>
+                  Call us: <br />
+                  <Link href="tel:+61482465983">+61 482 465 983</Link>
+                </p>
+              </div>
+              <div className={styles.col}>
+                <p>
+                  Email us: <br />
+                  <Link href="mailto:sales@eviratec.com">sales@eviratec.com</Link>
+                </p>
+              </div>
+            </div>
+          </TextBlock>
+        </section>
+
+        <section className={styles.section}>
+          <TextBlock>
+            <h2 style={{textAlign: 'center'}}>
+              Social Profiles
+            </h2>
           </TextBlock>
         </section>
 
         <div className={styles.section} id="profiles">
-          <h2>Social Profiles</h2>
           <SocialProfiles />
         </div>
 
+        <section className={styles.section}>
+          <TextBlock>
+            <h2 style={{textAlign: 'center'}}>
+              Legal
+            </h2>
+          </TextBlock>
+        </section>
+
         <div className={`${styles.section} ${styles.contact}`} id="legal">
-          <h2>Legal</h2>
           <ul>
             <li><Link href={`/terms`}>Terms of Use</Link></li>
             <li><Link href={`/privacy`}>Privacy Policy</Link></li>
