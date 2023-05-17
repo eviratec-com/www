@@ -57,7 +57,7 @@ export default function SocialNetworkPlatform() {
               <div className={styles.imgWrapper}>
                 <Image
                   src={`https://eviratecphotos.blob.core.windows.net/assets/marketing/promotional/ESP_20230517/eviratec-com-au-signup.jpg`}
-                  alt={`A screenshot of a the signup form, on a mobile device, in dark mode, on Eviratec Social Network.`}
+                  alt={`A screenshot of a the signup form, on a mobile device, in light mode, on Eviratec Social Network.`}
                   style={{
                     objectFit: 'cover',
                   }}
@@ -87,8 +87,7 @@ export default function SocialNetworkPlatform() {
               </div>
 
               <figcaption>
-                Screenshot of a User Profile, on a mobile device, in light
-                mode.
+                Screenshot of a Feed, on a mobile device, in light mode
               </figcaption>
             </figure>
 
@@ -148,8 +147,8 @@ export default function SocialNetworkPlatform() {
               </div>
 
               <figcaption>
-                Screenshot of a User Profile, on a mobile device, in light
-                mode, on Eviratec Social Network.
+                A screenshot of the homepage hero on Eviratec Network (desktop)
+                (www.eviratec.net)
               </figcaption>
             </figure>
           </section>
@@ -216,33 +215,51 @@ export default function SocialNetworkPlatform() {
               </div>
 
               <div className={styles.col}>
-                <h3>Standard</h3>
+                <div className={styles.plan}>
+                  <h3>Standard</h3>
 
-                <p>AU&#x24;50 per month, plus GST</p>
+                  <div className={styles.price}>
+                    <span>&#x24;50</span>
+                    <span>Per month</span>
+                    <span>Including GST</span>
+                  </div>
 
-                <ul>
-                  <li>Up to 10 Post Categories</li>
-                  <li>Up to 25 User Accounts</li>
-                </ul>
+                  <ul>
+                    <li>10 Categories</li>
+                    <li>25 User Accounts</li>
+                  </ul>
+                </div>
 
-                <h3>Premium</h3>
+                <div className={styles.plan}>
+                  <h3>Premium</h3>
 
-                <p>AU&#x24;100 per month, plus GST</p>
+                  <div className={styles.price}>
+                    <span>&#x24;100</span>
+                    <span>Per month</span>
+                    <span>Including GST</span>
+                  </div>
 
-                <ul>
-                  <li>Up to 50 Post Categories</li>
-                  <li>Up to 125 User Accounts</li>
-                </ul>
+                  <ul>
+                    <li>50 Categories</li>
+                    <li>125 User Accounts</li>
+                  </ul>
+                </div>
 
-                <h3>Enterprise</h3>
+                <div className={styles.plan}>
+                  <h3>Enterprise</h3>
 
-                <p>Call us for a quote.</p>
+                  <div className={styles.price}>
+                    <span>Call Us</span>
+                    <span>For a quote</span>
+                    <span>+61 481 465 983</span>
+                  </div>
 
-                <ul>
-                  <li>Unlimited Post Categories</li>
-                  <li>Unlimited User Accounts</li>
-                  <li>Staging/Preview Site</li>
-                </ul>
+                  <ul>
+                    <li>Unlimited Categories</li>
+                    <li>Unlimited User Accounts</li>
+                    <li>Staging/Preview Site</li>
+                  </ul>
+                </div>
 
                 <h3>Additional Charges</h3>
 
