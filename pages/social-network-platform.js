@@ -210,8 +210,23 @@ export default function SocialNetworkPlatform() {
                   <li>Phone Technical Support<br />Monday to Friday: 9AM to 5PM<br /><span>Aus Eastern Standard Time (AEST)</span></li>
                 </ul>
               </div>
-
+              
               <div className={styles.col}>
+                <div className={styles.plan}>
+                  <h3>Lite</h3>
+
+                  <div className={styles.price}>
+                    <span>&#x24;15</span>
+                    <span>Per month</span>
+                    <span>Including GST</span>
+                  </div>
+
+                  <ul>
+                    <li>5 Categories</li>
+                    <li>5 User Accounts</li>
+                  </ul>
+                </div>
+
                 <div className={styles.plan}>
                   <h3>Standard</h3>
 
