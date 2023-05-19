@@ -6,20 +6,21 @@ import styles from '@/styles/SocialNetworkPlatform.module.css'
 
 import Hero from '@/components/Hero'
 import Footer from '@/components/Footer'
+import Button from '@/components/Button'
 import TextBlock from '@/components/TextBlock'
 import SocialProfiles from '@/components/SocialProfiles'
 import FeedPageHeading from '@/components/FeedPageHeading'
 
-const META_TITLE = '\
-Launch Your Own Social Network | Eviratec Social Platform'
+const META_TITLE = "\
+Launch Your Own Social Network | Eviratec Social Platform"
 
-const META_DESCRIPTION = '\
+const META_DESCRIPTION = "\
 Launch your own public or private Social Network. Complete with photo uploads, \
 user registration, private messaging, public feeds (aka boards, or forums), \
-custom profile fields, reserved usernames, custom domains, and BYO branding.'
+custom profile fields, reserved usernames, custom domains, and BYO branding."
 
-const META_OG_IMAGE = '\
-https://www.eviratec.com.au/og-social-platform.png'
+const META_OG_IMAGE = "\
+https://www.eviratec.com.au/og-social-platform.png"
 
 export default function SocialNetworkPlatform() {
   return (
@@ -57,7 +58,7 @@ export default function SocialNetworkPlatform() {
               <div className={styles.imgWrapper}>
                 <Image
                   src={`https://eviratecphotos.blob.core.windows.net/assets/marketing/promotional/ESP_20230517/eviratec-com-au-signup.jpg`}
-                  alt={`A screenshot of the signup form, on a mobile device, in light mode, on Eviratec Social Network.`}
+                  alt={`A screenshot of the signup form, on a mobile device, in light mode`}
                   style={{
                     objectFit: 'cover',
                   }}
@@ -75,7 +76,7 @@ export default function SocialNetworkPlatform() {
               <div className={styles.imgWrapper}>
                 <Image
                   src={`https://eviratecphotos.blob.core.windows.net/assets/marketing/promotional/ESP_20230517/eviratec-com-au-feed.jpg`}
-                  alt={`A screenshot of a Feed, on a mobile device, in light mode, on Eviratec Social Network.`}
+                  alt={`A screenshot of a Feed, on a mobile device, in light mode`}
                   style={{
                     objectFit: 'cover',
                     objectPosition: 'top',
@@ -86,7 +87,7 @@ export default function SocialNetworkPlatform() {
               </div>
 
               <figcaption>
-                Mobile Feed/Topic page, in light mode.
+                Mobile feed/topic page, in light mode.
               </figcaption>
             </figure>
 
@@ -94,7 +95,7 @@ export default function SocialNetworkPlatform() {
               <div className={styles.imgWrapper}>
                 <Image
                   src={`https://eviratecphotos.blob.core.windows.net/assets/marketing/promotional/ESP_20230517/eviratec-com-au-mobile-profile.jpg`}
-                  alt={`A screenshot of a User Profile, on a mobile device, in light mode, on Eviratec Social Network.`}
+                  alt={`A screenshot of a User Profile, on a mobile device, in light mode`}
                   style={{
                     objectFit: 'cover',
                   }}
@@ -104,7 +105,7 @@ export default function SocialNetworkPlatform() {
               </div>
 
               <figcaption>
-                Mobile User Profile page, in light mode.
+                Mobile user profile page, in light mode.
               </figcaption>
             </figure>
           </section>
@@ -116,6 +117,10 @@ export default function SocialNetworkPlatform() {
                 photo uploads, user registration, private messaging, public feeds
                 (aka boards, or forums), custom profile fields, reserved
                 usernames, custom domains, and BYO branding.
+              </p>
+
+              <p>
+                <Button href="#signup">Contact Us To Order</Button>
               </p>
             </TextBlock>
           </section>
@@ -135,7 +140,7 @@ export default function SocialNetworkPlatform() {
               <div className={styles.imgWrapper}>
                 <Image
                   src={`https://eviratecphotos.blob.core.windows.net/assets/marketing/promotional/ESP_20230517/eviratec-net-desktop-hero.png`}
-                  alt={`A screenshot of the homepage hero on Eviratec Network (desktop) (www.eviratec.net). Showing 50 link categories, with item counts. Homepage title reads Eviratec Net, Web Directory.`}
+                  alt={`A screenshot of the homepage from Eviratec Network (www.eviratec.net). Showing 50 link categories, with item counts. Homepage title reads Eviratec Net, Web Directory.`}
                   style={{
                     objectFit: 'contain',
                   }}
@@ -145,7 +150,7 @@ export default function SocialNetworkPlatform() {
               </div>
 
               <figcaption>
-                Homepage of Eviratec Network link directory (www.eviratec.net)
+                Eviratec Network link directory homepage (www.eviratec.net)
               </figcaption>
             </figure>
           </section>
@@ -160,6 +165,10 @@ export default function SocialNetworkPlatform() {
               <p>
                 Near, or far: Make your own place to connect, with the people
                 you care about.
+              </p>
+
+              <p>
+                <Button href="#signup">Contact Us To Order</Button>
               </p>
             </TextBlock>
           </section>
@@ -207,11 +216,32 @@ export default function SocialNetworkPlatform() {
                 <h3>Technical Support</h3>
 
                 <ul>
-                  <li>Phone Technical Support<br />Monday to Friday: 9AM to 5PM<br /><span>Aus Eastern Standard Time (AEST)</span></li>
+                  <li>Phone: <span>(+61482465983)</span><br />Monday to Friday: 9AM to 5PM<br /><span>Aus Eastern Standard Time (AEST)</span></li>
+                  <li>Email: <span>(support@eviratec.com)</span><br />Monday to Friday: 9AM to 5PM<br /><span>Aus Eastern Standard Time (AEST)</span></li>
+                  <li>Customer Portal:<br />Monday to Friday: 9AM to 5PM<br /><span>Aus Eastern Standard Time (AEST)</span></li>
                 </ul>
               </div>
 
               <div className={styles.col}>
+                <div className={styles.plan}>
+                  <h3>Lite</h3>
+
+                  <div className={styles.price}>
+                    <span>&#x24;15</span>
+                    <span>Per month</span>
+                    <span>Including GST</span>
+                  </div>
+
+                  <ul>
+                    <li>5 Categories</li>
+                    <li>5 User Accounts</li>
+                  </ul>
+
+                  <Button href="#signup" className={styles.cta}>
+                    Contact Us To Order
+                  </Button>
+                </div>
+
                 <div className={styles.plan}>
                   <h3>Standard</h3>
 
@@ -225,6 +255,10 @@ export default function SocialNetworkPlatform() {
                     <li>10 Categories</li>
                     <li>25 User Accounts</li>
                   </ul>
+
+                  <Button href="#signup" className={styles.cta}>
+                    Contact Us To Order
+                  </Button>
                 </div>
 
                 <div className={styles.plan}>
@@ -240,6 +274,10 @@ export default function SocialNetworkPlatform() {
                     <li>50 Categories</li>
                     <li>125 User Accounts</li>
                   </ul>
+
+                  <Button href="#signup" className={styles.cta}>
+                    Contact Us To Order
+                  </Button>
                 </div>
 
                 <div className={styles.plan}>
@@ -252,17 +290,27 @@ export default function SocialNetworkPlatform() {
                   </div>
 
                   <ul>
+                    <li>Staging Site</li>
                     <li>Unlimited Categories</li>
                     <li>Unlimited User Accounts</li>
-                    <li>Staging/Preview Site</li>
                   </ul>
+
+                  <Button href="#signup" className={styles.cta}>
+                    Contact Us To Order
+                  </Button>
                 </div>
 
-                <h3>Additional Charges</h3>
+                <h3>Excess Usage</h3>
 
                 <ul>
-                  <li>Storage: AU&#x24;1.00 per GB<br /><span>Per month, incl. GST</span></li>
-                  <li>Transfer (outbound): AU&#x24;1.00 per GB<br /><span>Per month, incl. GST</span></li>
+                  <li>
+                    Storage: &#x24;1.00<br />
+                    <span>Per month, per gigabyte (GB)</span>
+                  </li>
+                  <li>
+                    Transfer (outbound): &#x24;1.00<br />
+                    <span>Per month, per gigabyte (GB)</span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -271,9 +319,25 @@ export default function SocialNetworkPlatform() {
 
         <section className={styles.section}>
           <TextBlock>
+            <p className={styles.priceAsterisk}>
+              * All prices quoted in Australian Dollars (AUD), inclusive of GST.
+            </p>
+          </TextBlock>
+        </section>
+
+        <section className={styles.section} id="signup">
+          <TextBlock>
             <h2 style={{textAlign: 'center'}}>
               Want to know more?
             </h2>
+          </TextBlock>
+        </section>
+
+        <section className={styles.section}>
+          <TextBlock>
+            <p style={{textAlign: 'center'}}>
+              Contact us to sign-up...
+            </p>
           </TextBlock>
         </section>
 
