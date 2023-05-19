@@ -15,9 +15,12 @@ export default function Footer() {
     <div className={styles._}>
       <div className={styles.lhs}>
         <div className={styles.developer}>
-          Created by&nbsp;
-          <Link prefetch={false} href="mailto:info@eviratec.com">
-            Callan Milne
+          ABN &nbsp;
+          <Link
+            prefetch={false}
+            href="https://abr.business.gov.au/ABN/View/62842988455"
+          >
+            62 842 988 455
           </Link>
         </div>
 
