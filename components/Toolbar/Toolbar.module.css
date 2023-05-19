@@ -89,8 +89,8 @@
   flex: 1;
 }
 
-.menu-btn,
-.messages-btn,
+.menuBtn,
+.messagesBtn,
 .closeMenuBtn {
   font-size: 32px;
   width: 48px;
@@ -99,42 +99,47 @@
   display: flex;
   align-items: stretch;
   justify-content: stretch;
+  position: relative;
+  transition: all 333ms;
 }
 
-.menu-btn a,
-.messages-btn a {
+.menuBtn a,
+.messagesBtn a {
   display: flex;
   align-items: center;
   justify-content: center;
   flex: 1;
 }
 
-.menu-btn a {
+.menuBtn a {
   flex-direction: column;
 }
 
-.menu-btn a div {
-  height: 3px;
-  background-color: #fff;
-  margin: 3px 0;
-  width: 26px;
-}
-
+.menuBtn a div,
 .closeMenuBtn a div {
   height: 3px;
   background-color: #fff;
   margin: 3px 0;
   width: 26px;
+  transition: all 333ms;
 }
 
 .closeMenuBtn a div:nth-of-type(1) {
-  transform: rotate(45deg);
-  transform-origin: left;
+  transform: translateY(9px) rotate(45deg);
+  transform-origin: center;
+  /* Top moves down 9px, and turns 45 degrees clockwise */
 }
 
 .closeMenuBtn a div:nth-of-type(2) {
-  transform: rotate(-45deg);
   transform-origin: center;
+  transform: translateX(20vh);
+  /* Middle flies out to the right */
+}
+
+.closeMenuBtn a div:nth-of-type(3) {
+  transform: translateY(-9px) rotate(-45deg);
+  transform-origin: center;
+  /* Bottom moves up 9px, and turns 45 degrees counter-clockwise */
 }
 
 .menuWrapper {

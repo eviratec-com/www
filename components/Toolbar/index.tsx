@@ -72,15 +72,20 @@ export default function Toolbar() {
       <div className={styles.spacer}></div>
 
       {showMessagesIcon &&
-        <div className={styles['messages-btn']}>
+        <div className={styles.messagesBtn}>
           <Link prefetch={false} href='/conversations' scroll={true}>
             &#9993;
           </Link>
         </div>
       }
 
-      <div className={styles['menu-btn']}>
-        <Link prefetch={false} href='/' scroll={true} onClick={toggleMenu}>
+      <div className={`${styles.menuBtn} ${menuVisible ? styles.closeMenuBtn : ''}`}>
+        <Link
+          href='/'
+          scroll={true}
+          prefetch={false}
+          onClick={toggleMenu}
+        >
           <div></div>
           <div></div>
           <div></div>
