@@ -120,7 +120,7 @@ export default function SocialNetworkPlatform() {
               </p>
 
               <p>
-                <Button href="#signup">Contact Us To Order</Button>
+                <Button href="https://www.eviratecsocial.com">Create your site &gt;</Button>
               </p>
             </TextBlock>
           </section>
@@ -168,7 +168,7 @@ export default function SocialNetworkPlatform() {
               </p>
 
               <p>
-                <Button href="#signup">Contact Us To Order</Button>
+                <Button href="https://www.eviratecsocial.com">Create your site &gt;</Button>
               </p>
             </TextBlock>
           </section>
@@ -237,9 +237,7 @@ export default function SocialNetworkPlatform() {
                     <li>5 User Accounts</li>
                   </ul>
 
-                  <Button href="#signup" className={styles.cta}>
-                    Contact Us To Order
-                  </Button>
+                  <Button href="https://www.eviratecsocial.com">Create your site &gt;</Button>
                 </div>
 
                 <div className={styles.plan}>
@@ -256,9 +254,7 @@ export default function SocialNetworkPlatform() {
                     <li>25 User Accounts</li>
                   </ul>
 
-                  <Button href="#signup" className={styles.cta}>
-                    Contact Us To Order
-                  </Button>
+                  <Button href="https://www.eviratecsocial.com">Create your site &gt;</Button>
                 </div>
 
                 <div className={styles.plan}>
@@ -275,9 +271,7 @@ export default function SocialNetworkPlatform() {
                     <li>125 User Accounts</li>
                   </ul>
 
-                  <Button href="#signup" className={styles.cta}>
-                    Contact Us To Order
-                  </Button>
+                  <Button href="https://www.eviratecsocial.com">Create your site &gt;</Button>
                 </div>
 
                 <div className={styles.plan}>
@@ -295,9 +289,7 @@ export default function SocialNetworkPlatform() {
                     <li>Unlimited User Accounts</li>
                   </ul>
 
-                  <Button href="#signup" className={styles.cta}>
-                    Contact Us To Order
-                  </Button>
+                  <Button href="https://www.eviratecsocial.com">Create your site &gt;</Button>
                 </div>
 
                 <h3>Excess Usage</h3>
@@ -324,72 +316,6 @@ export default function SocialNetworkPlatform() {
             </p>
           </TextBlock>
         </section>
-
-        <section className={styles.section} id="signup">
-          <TextBlock>
-            <h2 style={{textAlign: 'center'}}>
-              Want to know more?
-            </h2>
-          </TextBlock>
-        </section>
-
-        <section className={styles.section}>
-          <TextBlock>
-            <p style={{textAlign: 'center'}}>
-              Contact us to sign-up...
-            </p>
-          </TextBlock>
-        </section>
-
-        <section className={`${styles.section} ${styles.featuresSection}`}>
-          <TextBlock>
-            <p style={{display: 'none'}}>
-              Get in touch with our sales team, using the following form.
-            </p>
-
-            <div className={styles.twoCol}>
-              <div className={styles.col}>
-                <p>
-                  Call us: <br />
-                  <Link href="tel:+61482465983">+61 482 465 983</Link>
-                </p>
-              </div>
-              <div className={styles.col}>
-                <p>
-                  Email us: <br />
-                  <Link href="mailto:sales@eviratec.com">sales@eviratec.com</Link>
-                </p>
-              </div>
-            </div>
-          </TextBlock>
-        </section>
-
-        <section className={styles.section}>
-          <TextBlock>
-            <h2 style={{textAlign: 'center'}}>
-              Social Profiles
-            </h2>
-          </TextBlock>
-        </section>
-
-        <div className={styles.section} id="profiles">
-          <SocialProfiles />
-        </div>
-
-        <section className={styles.section}>
-          <TextBlock>
-            <h2 style={{textAlign: 'center'}}>
-              Legal
-            </h2>
-          </TextBlock>
-        </section>
-
-        <div className={`${styles.section} ${styles.contact}`} id="legal">
-          <ul>
-            <li><Link href={`/terms`}>Terms of Use</Link></li>
-            <li><Link href={`/privacy`}>Privacy Policy</Link></li>
-          </ul>
-        </div>
       </main>
 
       <Footer />
