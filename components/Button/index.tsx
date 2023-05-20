@@ -15,12 +15,12 @@ export default function Button({ children, href, onClick, className }: Props) {
   return (
     <>
       {!href &&
-        <div
+        <button
           className={`${styles._} ${className ? className : ''}`}
           onClick={onClick}
         >
           {children}
-        </div>
+        </button>
       ||
         <Link
           href={href}
