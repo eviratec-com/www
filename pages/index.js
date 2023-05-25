@@ -52,7 +52,7 @@ export default function Home() {
         <div className={`${styles.section} ${styles.contact}`} id="contact">
           <h2>Contact</h2>
           <p>
-            MILNE, CALLAN PETER<br />
+            EVIRATEC<br />
             ABN 62 842 988 455
           </p>
 
