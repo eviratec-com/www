@@ -4,6 +4,7 @@ import signup from '@/functions/signup'
 import setCookie from '@/functions/setCookie'
 import createSession from '@/functions/createSession'
 import checkUsername from '@/functions/users/checkUsername'
+import sendWelcomeEmail from '@/functions/email/send/welcome'
 
 import type { Session } from '@/types/Session'
 import type { User, UserRegistration } from '@/types/User'
@@ -51,11 +52,21 @@ export default async function handler(
     const s: Session = await createSession({
       user: u.id
     })
-    
+
     setCookie(res, 'eviratecseshid', s.token, { path: '/', maxAge: 86400*3 })
 
     // Send response body
     res.status(200).json(s)
+
+    // Send welcome email
+    sendWelcomeEmail(
+      {
+        displayName: display_name,
+        address: email_address
+      },
+      display_name,
+      username
+    )
   }
   catch (err) {
     res.status(400).json({
