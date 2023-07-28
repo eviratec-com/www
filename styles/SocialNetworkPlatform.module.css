@@ -75,6 +75,18 @@
   border-radius: 6px;
 }
 
+.main .section .ctaBtn,
+.main .section p .ctaBtn {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 200;
+  font-size: 1.2rem;
+}
+
+.main .plan .ctaBtn {
+  margin-top: 2rem;
+}
+
 .main h1,
 .main h2,
 .main h3,
