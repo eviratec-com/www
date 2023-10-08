@@ -9,7 +9,7 @@ export default function About() {
     <div className={styles._}>
       <p>
         We&apos;re an Australian web development business, specialising in
-        full-stack web applications, and software systems. We provide a number
+        full-stack web application development and DevOps. We provide a number
         of services and products, including a white-label Social Network
         solution.
       </p>
@@ -44,11 +44,11 @@ export default function About() {
       <p>We prefer to use the following technologies:</p>
 
       <ul>
-        <li>React.js (18)</li>
-        <li>Next.js (13)</li>
-        <li>TypeScript</li>
-        <li>Node.js</li>
-        <li>Microsoft Azure</li>
+        <li>React.js and Angular</li>
+        <li>Java, TypeScript, JavaScript, PHP and Python</li>
+        <li>Django, Node.js, Express.js and Spring</li>
+        <li>MySQL, PostgreSQL, MongoDB and DynamoDB</li>
+        <li>Amazon Web Services and Microsoft Azure</li>
       </ul>
     </div>
   )

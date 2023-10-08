@@ -15,13 +15,13 @@ type MenuItem = {
   link: string
 }
 
-const ANON_MENU_ITEMS: MenuItem[] = [{
+const ANON_MENU_ITEMS: MenuItem[] = [/*{
   label: 'Login',
   link: '/login',
 }, {
   label: 'Sign-up',
   link: '/join',
-}]
+}*/]
 
 const USER_MENU_ITEMS: MenuItem[] = [{
   label: 'Messages',
@@ -29,6 +29,15 @@ const USER_MENU_ITEMS: MenuItem[] = [{
 }]
 
 const MENU_ITEMS: MenuItem[] = [{
+  label: 'About',
+  link: '/#about',
+}, {
+  label: 'Contact Us',
+  link: '/#contact',
+}, {
+  label: 'Social Profiles',
+  link: '/#profiles',
+}, /*{
   label: 'Recent Posts',
   link: '/recent',
 }, {
@@ -37,7 +46,7 @@ const MENU_ITEMS: MenuItem[] = [{
 }, {
   label: 'Social Platform',
   link: '/social-network-platform',
-}]
+}*/]
 
 interface Props {
   onClick?: (e: any) => void
@@ -94,7 +103,7 @@ export default function Hero({ onClick, homepage }: Props) {
           ) || (
             <p className={styles.primary}>Eviratec</p>
           )}
-          <p className={styles.secondary}>Social Media</p>
+          <p className={styles.secondary}>Web Development</p>
         </div>
 
         <div style={{flex: '1'}}></div>
@@ -113,7 +122,7 @@ export default function Hero({ onClick, homepage }: Props) {
               return (
                 <li key={`menuitem-${index}`}>
                   <Link prefetch={false} href={item.link} scroll={true} onClick={e => onClick && onClick(e)}>
-                    {item.label}
+                    {item.label} <span className={styles.arrow}>&#9654;</span>
                   </Link>
                 </li>
               )

@@ -44,11 +44,6 @@ export default function Home() {
           <About />
         </div>
 
-        <div className={styles.section} id="profiles">
-          <h2>Social Profiles</h2>
-          <SocialProfiles />
-        </div>
-
         <div className={`${styles.section} ${styles.contact}`} id="contact">
           <h2>Contact</h2>
           <p>
@@ -69,6 +64,11 @@ export default function Home() {
               info@eviratec.com.au
             </Link>
           </p>
+        </div>
+
+        <div className={styles.section} id="profiles">
+          <h2>Social Profiles</h2>
+          <SocialProfiles />
         </div>
 
         <div className={`${styles.section} ${styles.contact}`} id="legal">
